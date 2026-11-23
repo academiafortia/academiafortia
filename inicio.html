@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Inicio</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no ha entrado por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; padding: 24px;
+      font-family: 'Montserrat', sans-serif; color: #fff;
+      background: radial-gradient(circle at 50% 30%, #30355A 0%, #272B46 45%, #1C1F35 100%);
+    }
+    img { width: 160px; }
+    h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 2.2rem; color: #DCB668; margin: 16px 0 8px; }
+    p { color: #B9BCD0; }
+    button {
+      margin-top: 24px; padding: 10px 22px; font-family: inherit; color: #DCB668;
+      background: none; border: 1px solid #DCB668; border-radius: 8px; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <img src="logo-fortia.png" alt="Fortia">
+  <h1>Bienvenido, <span id="agent"></span></h1>
+  <p>Aquí estará el inicio de la academia con los carriers. (Próximo paso)</p>
+  <button onclick="sessionStorage.removeItem('fortiaAgent'); location.href='index.html';">Cerrar sesión</button>
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+  </script>
+</body>
+</html>
