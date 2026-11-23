@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Inicio</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="eyebrow">Bienvenido a la Academia Fortia</p>
+    <h1 id="pageTitle">Tu ruta para vender IUL en una semana</h1>
+    <p class="lead">Sigue las 4 partes en orden: prepárate con el kit de ventas, aprende a trabajar con cada carrier, entiende tus comisiones y construye tu marca en redes.</p>
+
+    <div class="video-welcome">
+      <p class="eyebrow">Empieza aquí</p>
+      <h2 class="video-title">Video de bienvenida</h2>
+      <div class="video-frame">
+        <!-- Video de Google Drive: para cambiarlo, reemplaza el ID entre /d/ y /preview -->
+        <iframe src="https://drive.google.com/file/d/1M_20U-ZOl4Pr7RcSpUOx-golxtns41dO/preview"
+                allow="autoplay; fullscreen" allowfullscreen title="Video de bienvenida Fortia"></iframe>
+      </div>
+    </div>
+
+    <h2>Tu ruta en 4 partes</h2>
+    <p class="section-note">Avanza en orden: cada parte te prepara para la siguiente.</p>
+
+    <div class="parts">
+      <a class="part" href="parte1-kit.html">
+        <div class="part-num">1</div>
+        <div class="part-body">
+          <p class="eyebrow">Parte 1</p>
+          <h3>Kit de ventas</h3>
+          <p>Todo lo que necesitas para tu primera semana.</p>
+          <div class="chips"><span>Guion</span><span>Elegibilidad</span><span>Tabla de peso y estatura</span><span>Llamadas en vivo</span><span>Inversión</span><span>Horario</span><span>Calendario</span></div>
+        </div>
+        <span class="go">Entrar →</span>
+      </a>
+      <a class="part" href="parte2-carriers.html">
+        <div class="part-num">2</div>
+        <div class="part-body">
+          <p class="eyebrow">Parte 2</p>
+          <h3>Carriers</h3>
+          <p>Cómo hacer ilustraciones y someter aplicaciones con cada carrier.</p>
+          <div class="chips"><span>Mutual of Omaha</span><span>Transamerica</span><span>Americo</span><span>National Life Group</span><span>F&amp;G</span></div>
+        </div>
+        <span class="go">Entrar →</span>
+      </a>
+      <a class="part" href="parte3-comisiones.html">
+        <div class="part-num">3</div>
+        <div class="part-body">
+          <p class="eyebrow">Parte 3</p>
+          <h3>Comisiones y bonos</h3>
+          <p>Cuánto ganas, cuándo te pagan y cómo subir de nivel.</p>
+          <div class="chips"><span>Tabla de comisiones</span><span>Cómo se paga</span><span>Bonos</span><span>Niveles</span></div>
+        </div>
+        <span class="go">Entrar →</span>
+      </a>
+      <a class="part" href="parte4-marketing.html">
+        <div class="part-num">4</div>
+        <div class="part-body">
+          <p class="eyebrow">Parte 4</p>
+          <h3>Marketing digital</h3>
+          <p>Genera confianza y atrae clientes en redes.</p>
+          <div class="chips"><span>WhatsApp Business</span><span>Instagram</span><span>Contenido</span></div>
+        </div>
+        <span class="go">Entrar →</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
