@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Marketing digital</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="inicio.html" class="back">← Volver al inicio</a>
+    <p class="eyebrow">Parte 4</p>
+    <h1 id="pageTitle">Marketing digital</h1>
+    <p class="lead">Genera confianza con tus clientes a través de WhatsApp Business, Instagram y contenido.</p>
+
+    <h2>Contenido</h2>
+    <p class="section-note">El material de cada tema se irá agregando paso a paso.</p>
+
+    <div class="grid">
+      <div class="card soon">
+        <span class="badge">Próximamente</span>
+        <div class="monogram">1</div>
+        <h3>WhatsApp Business</h3>
+        <p>Perfil profesional, catálogo, mensajes automáticos, etiquetas y respuestas rápidas.</p>
+      </div>
+      <div class="card soon">
+        <span class="badge">Próximamente</span>
+        <div class="monogram">2</div>
+        <h3>Instagram</h3>
+        <p>Biografía, historias destacadas y qué publicar para generar confianza.</p>
+      </div>
+      <div class="card soon">
+        <span class="badge">Próximamente</span>
+        <div class="monogram">3</div>
+        <h3>Contenido</h3>
+        <p>Calendario de 30 días con ideas de reels y publicaciones.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

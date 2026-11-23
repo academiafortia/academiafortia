@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Comisiones y bonos</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="inicio.html" class="back">← Volver al inicio</a>
+    <p class="eyebrow">Parte 3</p>
+    <h1 id="pageTitle">Comisiones y bonos</h1>
+    <p class="lead">Cuánto ganas por cada póliza, cuándo te pagan y cómo crecer dentro de Fortia.</p>
+
+    <h2>Contenido</h2>
+    <p class="section-note">El material de cada tema se irá agregando paso a paso.</p>
+
+    <div class="grid">
+      <div class="card soon">
+        <span class="badge">Próximamente</span>
+        <div class="monogram">1</div>
+        <h3>Tabla de comisiones</h3>
+        <p>Porcentajes por carrier y por nivel de contrato.</p>
+      </div>
+      <div class="card soon">
+        <span class="badge">Próximamente</span>
+        <div class="monogram">2</div>
+        <h3>Cómo se paga</h3>
+        <p>Adelanto o según se gana, fechas de pago y qué es un chargeback.</p>
+      </div>
+      <div class="card soon">
+        <span class="badge">Próximamente</span>
+        <div class="monogram">3</div>
+        <h3>Bonos</h3>
+        <p>Bonos de producción y de agencia.</p>
+      </div>
+      <div class="card soon">
+        <span class="badge">Próximamente</span>
+        <div class="monogram">4</div>
+        <h3>Niveles</h3>
+        <p>Cómo subir de nivel y aumentar tu comisión.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+/* ===== Academia Fortia · estilos compartidos ===== */
+:root {
+  --navy: #272B46;
+  --navy-dark: #1C1F35;
+  --navy-card: #2F3456;
+  --gold: #DCB668;
+  --gold-light: #EBCB7E;
+  --white: #FFFFFF;
+  --text-soft: #B9BCD0;
+  --text-muted: #7F8399;
+  --line: rgba(220, 182, 104, 0.25);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--navy-dark); }
+body {
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--white);
+  background: radial-gradient(circle at 50% 0%, #30355A 0%, var(--navy) 40%, var(--navy-dark) 100%) no-repeat;
+  background-color: var(--navy-dark);
+}
+a { color: inherit; text-decoration: none; }
+
+/* --- Barra superior --- */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(28, 31, 53, 0.7);
+  backdrop-filter: blur(6px);
+  position: sticky; top: 0; z-index: 10;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand img { height: 40px; }
+.brand span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+}
+.user { display: flex; align-items: center; gap: 16px; font-size: 0.88rem; color: var(--text-soft); }
+.user strong { color: var(--white); font-weight: 500; }
+.btn-outline {
+  padding: 8px 16px; font-family: inherit; font-size: 0.8rem; color: var(--gold);
+  background: none; border: 1px solid var(--gold); border-radius: 8px; cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover { background: var(--gold); color: var(--navy-dark); }
+
+/* --- Contenido --- */
+.container { max-width: 1100px; margin: 0 auto; padding: 48px 32px 64px; }
+.eyebrow {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+}
+h1 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.15; margin: 8px 0 12px;
+}
+.lead { color: var(--text-soft); max-width: 640px; line-height: 1.6; }
+h2 {
+  font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 1.8rem;
+  margin: 56px 0 6px;
+}
+.section-note { color: var(--text-soft); font-size: 0.92rem; margin-bottom: 22px; }
+
+/* --- Pasos de la ruta --- */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
+.step {
+  padding: 18px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--line);
+}
+.step b { display: block; color: var(--gold); font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 6px; }
+.step p { font-size: 0.88rem; line-height: 1.45; }
+
+/* --- Tarjetas --- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+.card {
+  position: relative; display: flex; flex-direction: column; gap: 14px;
+  padding: 24px; border-radius: 14px;
+  background: var(--navy-card); border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+a.card:hover { transform: translateY(-3px); border-color: var(--gold); box-shadow: 0 10px 28px rgba(0,0,0,0.3); }
+.monogram {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600;
+  color: var(--navy-dark); background: linear-gradient(135deg, var(--gold-light), var(--gold));
+}
+.card h3 { font-size: 1.08rem; font-weight: 600; }
+.card p { font-size: 0.86rem; color: var(--text-soft); line-height: 1.5; }
+.card .go { margin-top: auto; font-size: 0.82rem; font-weight: 600; color: var(--gold); }
+.card.wide { grid-column: span 2; }
+.grid.carriers { grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.grid.carriers .card { padding: 22px 18px; }
+@media (max-width: 1000px) { .grid.carriers { grid-template-columns: repeat(3, 1fr); } }
+.badge {
+  position: absolute; top: 18px; right: 18px;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 4px 9px; border-radius: 20px; color: var(--text-soft); border: 1px solid rgba(255,255,255,0.18);
+}
+.card.soon { opacity: 0.75; }
+
+.back { display: inline-block; margin-bottom: 20px; font-size: 0.85rem; color: var(--text-soft); }
+.back:hover { color: var(--gold); }
+
+footer { text-align: center; padding: 24px; font-size: 0.78rem; color: var(--text-muted); border-top: 1px solid var(--line); }
+
+/* --- Celular --- */
+@media (max-width: 760px) {
+  .topbar { padding: 12px 18px; }
+  .brand span, .user .hello { display: none; }
+  .container { padding: 32px 18px 48px; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .card.wide { grid-column: span 1; }
+  .grid.carriers { grid-template-columns: 1fr; }
+}
+
+/* --- Las 4 partes del inicio --- */
+.parts { display: flex; flex-direction: column; gap: 16px; }
+.part {
+  display: flex; align-items: center; gap: 24px;
+  padding: 24px 28px; border-radius: 14px;
+  background: var(--navy-card); border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.part:hover { transform: translateY(-2px); border-color: var(--gold); box-shadow: 0 10px 28px rgba(0,0,0,0.3); }
+.part-num {
+  flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600;
+  color: var(--navy-dark); background: linear-gradient(135deg, var(--gold-light), var(--gold));
+}
+.part-body { flex: 1; }
+.part-body h3 { font-size: 1.25rem; font-weight: 600; margin: 4px 0 6px; }
+.part-body > p:not(.eyebrow) { font-size: 0.9rem; color: var(--text-soft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chips span {
+  font-size: 0.76rem; padding: 5px 11px; border-radius: 20px;
+  color: var(--gold-light); background: rgba(220,182,104,0.1); border: 1px solid rgba(220,182,104,0.25);
+}
+.part .go { font-size: 0.85rem; font-weight: 600; color: var(--gold); white-space: nowrap; }
+.monogram { font-family: 'Cormorant Garamond', 'Segoe UI Emoji', 'Apple Color Emoji', serif; }
+
+@media (max-width: 760px) {
+  .part { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px; }
+  .part-num { width: 52px; height: 52px; font-size: 1.6rem; }
+}

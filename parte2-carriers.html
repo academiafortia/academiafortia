@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Carriers</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="inicio.html" class="back">← Volver al inicio</a>
+    <p class="eyebrow">Parte 2</p>
+    <h1 id="pageTitle">Carriers</h1>
+    <p class="lead">Aprende a correr ilustraciones y a someter aplicaciones con cada uno de nuestros carriers.</p>
+
+    <h2>Elige tu carrier</h2>
+    <p class="section-note">Cada carrier tiene su propio sistema para ilustraciones y aplicaciones.</p>
+
+    <div class="grid carriers">
+      <a class="card" href="carrier.html?c=mutual-of-omaha">
+        <div class="monogram">MO</div>
+        <h3>Mutual of Omaha</h3>
+        <p>Ilustraciones y sometimiento</p>
+        <span class="go">Entrar →</span>
+      </a>
+      <a class="card" href="carrier.html?c=transamerica">
+        <div class="monogram">TA</div>
+        <h3>Transamerica</h3>
+        <p>Ilustraciones y sometimiento</p>
+        <span class="go">Entrar →</span>
+      </a>
+      <a class="card" href="carrier.html?c=americo">
+        <div class="monogram">AM</div>
+        <h3>Americo</h3>
+        <p>Ilustraciones y sometimiento</p>
+        <span class="go">Entrar →</span>
+      </a>
+      <a class="card" href="carrier.html?c=national-life">
+        <div class="monogram">NL</div>
+        <h3>National Life Group</h3>
+        <p>Ilustraciones y sometimiento</p>
+        <span class="go">Entrar →</span>
+      </a>
+      <a class="card" href="carrier.html?c=fg">
+        <div class="monogram" style="font-size:1rem">F&amp;G</div>
+        <h3>F&amp;G</h3>
+        <p>Ilustraciones y sometimiento</p>
+        <span class="go">Entrar →</span>
+      </a>
+    </div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
