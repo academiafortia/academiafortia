@@ -143,3 +143,22 @@ footer { text-align: center; padding: 24px; font-size: 0.78rem; color: var(--tex
   .part { flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px; }
   .part-num { width: 52px; height: 52px; font-size: 1.6rem; }
 }
+
+/* --- Video de bienvenida --- */
+.video-welcome {
+  margin-top: 40px; padding: 28px; border-radius: 16px;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--line);
+}
+.video-title { margin: 4px 0 18px; }
+.video-frame {
+  position: relative; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: 12px; overflow: hidden; background: #000;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media (max-width: 760px) { .video-welcome { padding: 18px; } }
+
+/* Números en Montserrat (en Cormorant el 1 parece una I) */
+.part-num, .monogram { font-family: 'Montserrat', sans-serif; font-weight: 600; }
+.part-num { font-size: 1.6rem; }
+.monogram { font-size: 1.05rem; }
