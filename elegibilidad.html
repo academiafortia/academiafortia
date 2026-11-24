@@ -12,7 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=3">
   <link rel="stylesheet" href="guion.css?v=3">
-  <link rel="stylesheet" href="elegibilidad.css?v=4">
+  <link rel="stylesheet" href="elegibilidad.css?v=7">
+  <script src="html2pdf.bundle.min.js"></script>
 </head>
 <body class="paper">
 
@@ -30,20 +31,22 @@
     <h1 id="pageTitle">Formulario de elegibilidad</h1>
     <p class="lead">Llénalo con tu cliente durante la llamada, en el mismo orden del guion. Puedes escribir aquí mismo o descargarlo en blanco para imprimir.</p>
 
-    <div class="print-header"><img src="logo-fortia.png" alt="Fortia"><div><b>Academia Fortia</b><span>Formulario de elegibilidad IUL</span></div></div>
     <div class="g-actions">
-      <a class="btn-gold" href="formulario-elegibilidad-fortia.pdf" download>Descargar en blanco (PDF)</a>
-      <button class="btn-outline-dark" onclick="window.print()">Imprimir lo que llené</button>
+      <button class="btn-gold" id="downloadFilled">Descargar lo que llené (PDF)</button>
+      <a class="btn-outline-dark" href="formulario-elegibilidad-fortia.pdf" download>Descargar en blanco</a>
+      <button class="btn-outline-dark" onclick="window.print()">Imprimir</button>
       <button class="btn-outline-dark" id="clearForm">Borrar todo</button>
     </div>
     <div class="f-privacy">🔒 Lo que escribas aquí <b>no se guarda ni se envía</b> a ningún lado: se borra al cerrar o recargar la página. Si imprimes o guardas el formulario lleno, trátalo como un documento confidencial porque lleva datos personales del cliente.</div>
+    <div id="pdfArea">
+    <div class="print-header"><img src="logo-fortia.png" alt="Fortia"><div><b>Academia Fortia</b><span>Formulario de elegibilidad IUL</span></div></div>
     <form id="eligForm" onsubmit="return false">
 
     <section class="g-step f-sec">
       <div class="g-step-head"><h3>Datos del cliente</h3></div>
       <div class="g-step-body">
 <div class="f-row"><label class="f-field" style="flex:2"><span># de póliza</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Fecha</span><input type="text" autocomplete="off" placeholder=""></label></div>
-<div class="f-row"><label class="f-field" style="flex:2"><span>Nombre y apellidos</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>País de nacimiento</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:2"><span>Nombre y apellidos</span><input type="text" autocomplete="off" placeholder="" id="clienteNombre"></label><label class="f-field" style="flex:1"><span>País de nacimiento</span><input type="text" autocomplete="off" placeholder=""></label></div>
 <div class="f-row"><label class="f-field" style="flex:1.4"><span>Teléfono</span><input type="text" autocomplete="off" placeholder=""></label><div class="f-checks"><span>Género</span><label><input type="radio" name="genero"> F</label><label><input type="radio" name="genero"> M</label></div><label class="f-field" style="flex:1.3"><span>Fecha de nacimiento</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:.6"><span>Edad</span><input type="text" autocomplete="off" placeholder=""></label></div>
 <div class="f-row"><label class="f-field" style="flex:.6"><span>Años en USA</span><input type="text" autocomplete="off" placeholder=""></label><div class="f-checks"><span>Tiene</span><label><input type="checkbox" name="tiene"> Seguro de vida</label><label><input type="checkbox" name="tiene"> Ahorro</label><label><input type="checkbox" name="tiene"> Pensión</label></div><label class="f-field" style="flex:1.6"><span>Información adicional</span><input type="text" autocomplete="off" placeholder=""></label></div>
 <div class="f-row"><div class="f-checks"><span>Estado civil</span><label><input type="radio" name="civil"> Casado</label><label><input type="radio" name="civil"> Soltero</label><label><input type="radio" name="civil"> Viudo</label><label><input type="radio" name="civil"> Divorciado</label></div><label class="f-field" style="flex:1"><span>Hijos / dependientes</span><input type="text" autocomplete="off" placeholder=""></label></div>
@@ -129,6 +132,7 @@
     </section>
 
     </form>
+    </div>
   </main>
 
   <footer>© Fortia · Material exclusivo para agentes</footer>
@@ -138,6 +142,34 @@
     document.getElementById("logout").addEventListener("click", () => {
       sessionStorage.removeItem("fortiaAgent");
       window.location.href = "index.html";
+    });
+
+    // Descargar el formulario lleno como PDF (se genera en el navegador, no se envía a ningún lado)
+    const dl = document.getElementById("downloadFilled");
+    dl.addEventListener("click", async () => {
+      if (typeof html2pdf === "undefined") { alert("No se pudo cargar el generador de PDF. Usa el botón Imprimir y elige 'Guardar como PDF'."); return; }
+      const label = dl.textContent;
+      dl.disabled = true; dl.textContent = "Generando PDF…";
+      const nombre = document.getElementById("clienteNombre").value.trim() || "cliente";
+      const slug = nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").toLowerCase();
+      const hoy = new Date();
+      const fecha = hoy.getFullYear() + "-" + String(hoy.getMonth() + 1).padStart(2, "0") + "-" + String(hoy.getDate()).padStart(2, "0");
+      document.body.classList.add("pdf-export");
+      try {
+        await html2pdf().set({
+          margin: [0.35, 0.4, 0.45, 0.4],
+          filename: "elegibilidad-" + slug + "-" + fecha + ".pdf",
+          image: { type: "jpeg", quality: 0.95 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+          pagebreak: { mode: ["css"], avoid: [".f-sec"] }
+        }).from(document.getElementById("pdfArea")).save();
+      } catch (e) {
+        alert("No se pudo generar el PDF. Usa el botón Imprimir y elige 'Guardar como PDF'.");
+      } finally {
+        document.body.classList.remove("pdf-export");
+        dl.disabled = false; dl.textContent = label;
+      }
     });
 
     document.getElementById("clearForm").addEventListener("click", () => {
