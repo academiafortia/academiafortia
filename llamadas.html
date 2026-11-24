@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Llamadas en vivo</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <link rel="stylesheet" href="llamadas.css?v=1">
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte1-kit.html" class="back">← Volver al kit de ventas</a>
+    <p class="eyebrow">Parte 1 · Kit de ventas</p>
+    <h1 id="pageTitle">Llamadas en vivo</h1>
+    <p class="lead">Aprende escuchando llamadas reales de venta de IUL y únete a las sesiones en vivo del equipo.</p>
+
+    <section class="l-live">
+      <div>
+        <p class="eyebrow">Sesiones en vivo</p>
+        <h3>Escucha llamadas reales con el equipo</h3>
+        <p id="liveInfo">Próximamente: aquí estarán los días, la hora y el enlace de Zoom.</p>
+      </div>
+      <a class="btn-gold" id="liveBtn" href="#" target="_blank" rel="noopener" hidden>Entrar a Zoom</a>
+    </section>
+
+    <div class="g-tip"><b>Cómo usar estas grabaciones:</b> escúchalas con el <a href="guion.html">guion</a> abierto y fíjate en qué paso va el agente, cómo saca el dolor y cómo maneja las objeciones. Después practica en voz alta.</div>
+
+    <h2 class="e-h2">Grabaciones</h2>
+    <p class="section-note e-sn" id="count"></p>
+    <div class="l-list" id="list"></div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+
+    // ================================================================
+    //  LLAMADAS GRABADAS
+    //  Para agregar una llamada, copia un bloque { ... }, pégalo al final
+    //  de la lista y cambia el título, la descripción y el ID de Drive.
+    //  El ID es lo que va entre /d/ y /view (o /preview) en el enlace.
+    //  Recuerda compartir cada archivo en Drive como
+    //  "Cualquier persona que tenga el enlace".
+    // ================================================================
+    const LLAMADAS = [
+      {
+        titulo: "Llamada 1",
+        descripcion: "Llamada de venta real.",
+        drive: "1HMqdTKIAY26j2i4u0ugPTyBOO4UpZMhm"
+      }
+    ];
+
+    // Sesiones en vivo: llena estos datos cuando los tengas
+    const EN_VIVO = {
+      horario: "",   // ejemplo: "Martes y jueves, 7:00 p.m. (hora del Este)"
+      zoom: ""       // ejemplo: "https://zoom.us/j/123456789"
+    };
+
+    if (EN_VIVO.horario) document.getElementById("liveInfo").textContent = EN_VIVO.horario;
+    if (EN_VIVO.zoom) { const b = document.getElementById("liveBtn"); b.href = EN_VIVO.zoom; b.hidden = false; }
+
+    const list = document.getElementById("list");
+    document.getElementById("count").textContent =
+      LLAMADAS.length + (LLAMADAS.length === 1 ? " llamada" : " llamadas") + ". Dale play para escuchar.";
+    LLAMADAS.forEach((l, i) => {
+      const card = document.createElement("article");
+      card.className = "l-card";
+      card.innerHTML =
+        '<div class="l-head"><span class="g-num">' + (i + 1) + '</span><div><h4></h4><p></p></div></div>' +
+        '<div class="l-frame"><iframe loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>';
+      card.querySelector("h4").textContent = l.titulo;
+      card.querySelector("p").textContent = l.descripcion;
+      const f = card.querySelector("iframe");
+      f.src = "https://drive.google.com/file/d/" + l.drive + "/preview";
+      f.title = l.titulo;
+      list.appendChild(card);
+    });
+  </script>
+</body>
+</html>

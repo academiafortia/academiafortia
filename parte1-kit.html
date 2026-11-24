@@ -10,7 +10,7 @@
     if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -28,8 +28,26 @@
     <h1 id="pageTitle">Kit de ventas</h1>
     <p class="lead">Todo lo que necesitas para prepararte y hacer tu primera venta en una semana.</p>
 
-    <h2>Contenido</h2>
-    <p class="section-note">El material de cada tema se irá agregando paso a paso.</p>
+    <section class="featured">
+      <div class="featured-text">
+        <p class="eyebrow">Clase completa · Empieza aquí</p>
+        <h2>De cero a la venta</h2>
+        <p>Diana Henao, líder del equipo, explica todo el proceso: desde la primera llamada hasta cerrar la venta. Es una clase de Zoom de aproximadamente 1 hora. Mírala completa antes de usar las herramientas de abajo.</p>
+        <ul>
+          <li>Ten el guion abierto mientras la ves</li>
+          <li>Toma notas de las frases que más te sirvan</li>
+          <li>Después repasa cada tema del kit</li>
+        </ul>
+      </div>
+      <div class="featured-video">
+        <!-- Video de Google Drive: para cambiarlo, reemplaza el ID entre /d/ y /preview -->
+        <iframe src="https://drive.google.com/file/d/1Ea06Umkc0-oUYEcofuwhmbSa2fEtaPE7/preview"
+                allow="autoplay; fullscreen" allowfullscreen title="De cero a la venta - Diana Henao"></iframe>
+      </div>
+    </section>
+
+    <h2>Herramientas del kit</h2>
+    <p class="section-note">Úsalas durante tus llamadas. El material de cada tema se irá agregando paso a paso.</p>
 
     <div class="grid">
       <a class="card" href="guion.html">
@@ -50,12 +68,12 @@
         <p>Escribe estatura y peso y ve al momento en qué clase califica tu cliente.</p>
         <span class="go">Abrir tabla →</span>
       </a>
-      <div class="card soon">
-        <span class="badge">Próximamente</span>
+      <a class="card" href="llamadas.html">
         <div class="monogram">4</div>
         <h3>Llamadas en vivo</h3>
         <p>Grabaciones de ejemplo y horario de las sesiones en Zoom.</p>
-      </div>
+        <span class="go">Escuchar llamadas →</span>
+      </a>
       <div class="card soon">
         <span class="badge">Próximamente</span>
         <div class="monogram">5</div>

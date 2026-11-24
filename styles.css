@@ -162,3 +162,21 @@ footer { text-align: center; padding: 24px; font-size: 0.78rem; color: var(--tex
 .part-num, .monogram { font-family: 'Montserrat', sans-serif; font-weight: 600; }
 .part-num { font-size: 1.6rem; }
 .monogram { font-size: 1.05rem; }
+
+/* --- Clase destacada (Parte 1) --- */
+.featured {
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 28px; align-items: center;
+  margin-top: 36px; padding: 28px; border-radius: 16px;
+  background: rgba(255,255,255,0.04); border: 1px solid var(--gold);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+}
+.featured h2 { margin: 6px 0 10px; font-size: 2rem; }
+.featured-text > p:not(.eyebrow) { color: var(--text-soft); line-height: 1.6; font-size: 0.93rem; }
+.featured ul { margin-top: 14px; padding-left: 0; list-style: none; }
+.featured li { position: relative; padding: 4px 0 4px 22px; font-size: 0.88rem; }
+.featured li::before { content: "✓"; position: absolute; left: 0; color: var(--gold); font-weight: 600; }
+.featured-video {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #000;
+}
+.featured-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media (max-width: 900px) { .featured { grid-template-columns: 1fr; padding: 20px; } }
