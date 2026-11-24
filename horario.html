@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Horario</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <link rel="stylesheet" href="horario.css?v=2">
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte1-kit.html" class="back">← Volver al kit de ventas</a>
+    <p class="eyebrow">Parte 1 · Kit de ventas</p>
+    <h1 id="pageTitle">Cronograma semanal</h1>
+    <p class="lead">Así se organiza la semana de un agente nuevo en Fortia. El día de hoy aparece resaltado.</p>
+
+    <div class="print-header"><img src="logo-fortia.png" alt="Fortia"><div><b>Academia Fortia</b><span>Cronograma semanal · Agentes nuevos</span></div></div>
+
+    <div class="h-stats">
+      <div><b>6 horas</b><span>de llamadas al día</span></div>
+      <div><b>1 hora</b><span>de entrenamiento diario</span></div>
+      <div><b>1 hora</b><span>de Soporte Fortia</span></div>
+      <div><b>Sábado</b><span>entrenamiento y soporte</span></div>
+    </div>
+
+    <div class="g-actions">
+      <a class="btn-gold" href="horario-fortia.pdf" download>Descargar PDF</a>
+      <button class="btn-outline-dark" onclick="window.print()">Imprimir</button>
+    </div>
+
+    <div class="h-legend">
+      <span class="lg llamadas">Llamadas</span><span class="lg entreno">Entrenamiento</span><span class="lg soporte">Soporte</span>
+      <span class="lg lectura">Lectura y operativos</span><span class="lg individual">Trabajo individual</span><span class="lg descanso">Descanso</span>
+    </div>
+
+    <div class="h-table-wrap">
+      <table class="h-table" id="hTable"><thead><tr><th class="t-h">Horario</th><th data-d="1">Lunes</th><th data-d="2">Martes</th><th data-d="3">Miércoles</th><th data-d="4">Jueves</th><th data-d="5">Viernes</th><th class="sat" data-d="6">Sábado</th></tr></thead><tbody><tr><td class="t-h">8:30 – 9:00 AM</td><td data-d="1"><div class="blk lectura"><b>Lectura + Mentalidad</b><span class="b-det">Sala de Zoom Fortia</span></div></td><td data-d="2"><div class="blk lectura"><b>Lectura + Mentalidad</b><span class="b-det">Sala de Zoom Fortia</span></div></td><td data-d="3"><div class="blk lectura"><b>Lectura + Mentalidad</b><span class="b-det">Sala de Zoom Fortia</span></div></td><td data-d="4"><div class="blk lectura"><b>Lectura + Mentalidad</b><span class="b-det">Sala de Zoom Fortia</span></div></td><td data-d="5"><div class="blk lectura"><b>Lectura + Mentalidad</b><span class="b-det">Sala de Zoom Fortia</span></div></td><td class="sat" data-d="6" rowspan="2"><div class="blk entreno"><b>Entrenamiento de la Agencia</b><span class="b-time">10:00 AM – 12:00 PM</span><span class="b-det">Zoom Nationwide</span></div></td></tr><tr><td class="t-h">9:00 – 10:00 AM</td><td data-d="1"><div class="blk entreno"><b>Entrenamiento de la Agencia</b><span class="b-det">Zoom Nationwide</span></div></td><td data-d="2"><div class="blk entreno"><b>Entrenamiento de la Agencia</b><span class="b-det">Zoom Nationwide</span></div></td><td data-d="3"><div class="blk entreno"><b>Entrenamiento de la Agencia</b><span class="b-det">Zoom Nationwide</span></div></td><td data-d="4"><div class="blk entreno"><b>Entrenamiento de la Agencia</b><span class="b-det">Zoom Nationwide</span></div></td><td data-d="5"><div class="blk entreno"><b>Entrenamiento de la Agencia</b><span class="b-det">Zoom Nationwide</span></div></td></tr><tr><td class="t-h">10:00 – 11:00 AM</td><td data-d="1"><div class="blk operativo"><b>Temas Operativos y Metas</b></div></td><td data-d="2"><div class="blk operativo"><b>Temas Operativos y Metas</b></div></td><td data-d="3"><div class="blk operativo"><b>Temas Operativos y Metas</b></div></td><td data-d="4"><div class="blk operativo"><b>Temas Operativos y Metas</b></div></td><td data-d="5"><div class="blk operativo"><b>Temas Operativos y Metas</b></div></td><td class="sat" data-d="6" rowspan="2"><div class="blk soporte"><b>Soporte Fortia</b><span class="b-time">12:00 – 2:00 PM</span><span class="b-det">Dudas y preguntas</span></div></td></tr><tr><td class="t-h">11:00 AM – 1:00 PM</td><td data-d="1"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="2"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="3"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="4"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="5"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td></tr><tr><td class="t-h">1:00 – 2:00 PM</td><td data-d="1"><div class="blk descanso"><b>Descanso</b></div></td><td data-d="2"><div class="blk descanso"><b>Descanso</b></div></td><td data-d="3"><div class="blk descanso"><b>Descanso</b></div></td><td data-d="4"><div class="blk descanso"><b>Descanso</b></div></td><td data-d="5"><div class="blk descanso"><b>Descanso</b></div></td><td class="sat" data-d="6" rowspan="6"><div class="blk individual"><b>Trabajo Individual de cada Agente</b><span class="b-time">2:00 PM en adelante</span></div></td></tr><tr><td class="t-h">2:00 – 4:00 PM</td><td data-d="1"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="2"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="3"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="4"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="5"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td></tr><tr><td class="t-h">4:00 – 5:00 PM</td><td data-d="1"><div class="blk soporte"><b>Soporte Fortia</b></div></td><td data-d="2"><div class="blk soporte"><b>Soporte Fortia</b></div></td><td data-d="3"><div class="blk soporte"><b>Soporte Fortia</b></div></td><td data-d="4"><div class="blk soporte"><b>Soporte Fortia</b></div></td><td data-d="5"><div class="blk soporte"><b>Soporte Fortia</b></div></td></tr><tr><td class="t-h">5:00 – 6:00 PM</td><td data-d="1"><div class="blk descanso"><b>Descanso</b></div></td><td data-d="2"><div class="blk descanso"><b>Descanso</b></div></td><td data-d="3"><div class="blk descanso"><b>Descanso</b></div></td><td data-d="4"><div class="blk descanso"><b>Descanso</b></div></td><td data-d="5"><div class="blk descanso"><b>Descanso</b></div></td></tr><tr><td class="t-h">6:00 – 8:00 PM</td><td data-d="1"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="2"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="3"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="4"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td><td data-d="5"><div class="blk llamadas"><b>Bloque de Llamadas</b></div></td></tr><tr><td class="t-h">8:00 PM en adelante</td><td data-d="1"><div class="blk individual"><b>Trabajo Individual por Agente</b><span class="b-det">Llamadas a compañías, someter pólizas</span></div></td><td data-d="2"><div class="blk individual"><b>Trabajo Individual por Agente</b><span class="b-det">Llamadas a compañías, someter pólizas</span></div></td><td data-d="3"><div class="blk individual"><b>Trabajo Individual por Agente</b><span class="b-det">Llamadas a compañías, someter pólizas</span></div></td><td data-d="4"><div class="blk individual"><b>Trabajo Individual por Agente</b><span class="b-det">Llamadas a compañías, someter pólizas</span></div></td><td data-d="5"><div class="blk individual"><b>Trabajo Individual por Agente</b><span class="b-det">Llamadas a compañías, someter pólizas</span></div></td></tr></tbody></table>
+    </div>
+
+    <div class="h-mobile">
+      <div class="h-tabs" id="hTabs"><button data-d="1">Lun</button><button data-d="2">Mar</button><button data-d="3">Mié</button><button data-d="4">Jue</button><button data-d="5">Vie</button><button data-d="6">Sáb</button></div>
+      <div class="h-day" data-day="week"><div class="m-row"><span class="m-time">8:30 – 9:00 AM</span><div class="blk lectura"><b>Lectura + Mentalidad</b><span class="b-det">Sala de Zoom Fortia</span></div></div><div class="m-row"><span class="m-time">9:00 – 10:00 AM</span><div class="blk entreno"><b>Entrenamiento de la Agencia</b><span class="b-det">Zoom Nationwide</span></div></div><div class="m-row"><span class="m-time">10:00 – 11:00 AM</span><div class="blk operativo"><b>Temas Operativos y Metas</b></div></div><div class="m-row"><span class="m-time">11:00 AM – 1:00 PM</span><div class="blk llamadas"><b>Bloque de Llamadas</b></div></div><div class="m-row"><span class="m-time">1:00 – 2:00 PM</span><div class="blk descanso"><b>Descanso</b></div></div><div class="m-row"><span class="m-time">2:00 – 4:00 PM</span><div class="blk llamadas"><b>Bloque de Llamadas</b></div></div><div class="m-row"><span class="m-time">4:00 – 5:00 PM</span><div class="blk soporte"><b>Soporte Fortia</b></div></div><div class="m-row"><span class="m-time">5:00 – 6:00 PM</span><div class="blk descanso"><b>Descanso</b></div></div><div class="m-row"><span class="m-time">6:00 – 8:00 PM</span><div class="blk llamadas"><b>Bloque de Llamadas</b></div></div><div class="m-row"><span class="m-time">8:00 PM en adelante</span><div class="blk individual"><b>Trabajo Individual por Agente</b><span class="b-det">Llamadas a compañías, someter pólizas</span></div></div></div>
+      <div class="h-day" data-day="sat" hidden><div class="m-row"><span class="m-time">10:00 AM – 12:00 PM</span><div class="blk entreno"><b>Entrenamiento de la Agencia</b><span class="b-det">Zoom Nationwide</span></div></div><div class="m-row"><span class="m-time">12:00 – 2:00 PM</span><div class="blk soporte"><b>Soporte Fortia</b><span class="b-det">Dudas y preguntas</span></div></div><div class="m-row"><span class="m-time">2:00 PM en adelante</span><div class="blk individual"><b>Trabajo Individual de cada Agente</b></div></div></div>
+    </div>
+
+    <div class="g-tip h-tip"><b>Recuerda:</b> los bloques de llamadas son tu prioridad. Llega a cada sesión con el <a href="guion.html">guion</a> y el <a href="elegibilidad.html">formulario de elegibilidad</a> listos, y usa el soporte de las 4:00 PM para resolver tus dudas del día.</div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+
+    // Resalta el día de hoy (1 = lunes ... 6 = sábado)
+    const hoy = new Date().getDay();
+    if (hoy >= 1 && hoy <= 6) document.querySelectorAll('#hTable [data-d="' + hoy + '"]').forEach(c => c.classList.add("today"));
+
+    // Celular: pestañas por día
+    const tabs = document.querySelectorAll("#hTabs button");
+    function showDay(d) {
+      tabs.forEach(b => b.classList.toggle("active", +b.dataset.d === d));
+      document.querySelector('[data-day="week"]').hidden = d === 6;
+      document.querySelector('[data-day="sat"]').hidden = d !== 6;
+    }
+    tabs.forEach(b => b.addEventListener("click", () => showDay(+b.dataset.d)));
+    showDay(hoy >= 1 && hoy <= 6 ? hoy : 1);
+  </script>
+</body>
+</html>
