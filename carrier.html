@@ -88,7 +88,14 @@
     //  El ID de Drive es lo que va entre /d/ y /view en el enlace.
     // ================================================================
     const CONTENIDO = {
-      "mutual-of-omaha":  { ilustracion: [], sometimiento: [] },
+      "mutual-of-omaha": {
+        ilustracion: [
+          { titulo: "Cómo correr la ilustración · Video 1", descripcion: "Ilustración del IUL con Mutual of Omaha, paso a paso.", drive: "1932EHoK95TG_p216YC0shzOMJspVaskZ" },
+          { titulo: "Cómo correr la ilustración · Video 2", descripcion: "Ilustración del IUL con Mutual of Omaha, paso a paso.", drive: "1tJjfanGHtK24Jnwak8xIh65AcTkGZiL6" },
+          { titulo: "Cómo correr la ilustración · Video 3", descripcion: "Ilustración del IUL con Mutual of Omaha, paso a paso.", drive: "1I151UXvxDCdO8UWFqIRyche7SkvrFUbG" }
+        ],
+        sometimiento: []
+      },
       "transamerica": {
         completo: [
           { titulo: "Ilustración y sometimiento · Video 1", descripcion: "Cómo correr la ilustración y someter la aplicación con Transamerica.", drive: "1xfFhQE1pEf3kuyd-4ZQoObRiLl06jEP0" },
@@ -96,7 +103,12 @@
         ],
         ilustracion: [], sometimiento: []
       },
-      "americo":          { ilustracion: [], sometimiento: [] },
+      "americo": {
+        ilustracion: [
+          { titulo: "Cómo correr la ilustración", descripcion: "Ilustración del IUL con Americo, paso a paso.", drive: "13ABNCacn47eT9GzLsP_VGmdHTSaY1AQG" }
+        ],
+        sometimiento: []
+      },
       "national-life": {
         ilustracion: [
           { titulo: "Cómo correr la ilustración · Video 1", descripcion: "Ilustración del IUL con National Life Group, paso a paso.", drive: "1AZfqO33uLG2DdbUXUQZfPqPHz8hvFNa6" },
@@ -106,7 +118,14 @@
           { titulo: "Cómo someter la aplicación", descripcion: "Sometimiento de la aplicación con National Life Group, paso a paso.", drive: "10CDMWNGsl4Z5IsK2AYnonDJefJqA7G40" }
         ]
       },
-      "fg":               { ilustracion: [], sometimiento: [] }
+      "fg": {
+        ilustracion: [
+          { titulo: "Cómo correr la ilustración", descripcion: "Ilustración del IUL con F&G, paso a paso.", drive: "1nC-89JULRI19tl9OodRB5M9GlQ4JcK-_" }
+        ],
+        sometimiento: [
+          { titulo: "Cómo someter la aplicación", descripcion: "Sometimiento de la aplicación con F&G, paso a paso.", drive: "1IIJTaqoA71ELMk48O2I12ghS49T7UkM-" }
+        ]
+      }
     };
 
     const key = new URLSearchParams(location.search).get("c");
