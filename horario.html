@@ -12,7 +12,99 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=5">
   <link rel="stylesheet" href="guion.css?v=3">
-  <link rel="stylesheet" href="horario.css?v=2">
+  <style>
+/* ===== Horario / cronograma semanal ===== */
+.h-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 26px 0 6px; }
+.h-stats div { padding: 14px 16px; border-radius: 12px; background: #F7F5EF; border-top: 3px solid var(--gold); }
+.h-stats b { display: block; font-size: 1.3rem; color: var(--navy); }
+.h-stats span { font-size: 0.82rem; color: #5A5E73; }
+
+.h-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.lg { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #3E4258; }
+.lg::before { content: ""; width: 14px; height: 14px; border-radius: 4px; }
+.lg.llamadas::before { background: var(--navy); border: 1px solid var(--gold); }
+.lg.entreno::before { background: #E9D5A6; }
+.lg.soporte::before { background: #FCF6E6; border: 1px solid var(--gold); }
+.lg.lectura::before { background: #EEF0F5; }
+.lg.individual::before { background: #E4E6EE; }
+.lg.descanso::before { background: #fff; border: 1px dashed #C9CCD8; }
+
+/* Tabla */
+.h-table-wrap { border-radius: 14px; overflow: hidden; border: 1px solid #E1E3EB; box-shadow: 0 8px 24px rgba(28,31,53,0.08); }
+.h-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.h-table th {
+  padding: 12px 6px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #fff; background: var(--navy);
+}
+.h-table th.sat { background: var(--navy-dark); color: var(--gold); }
+.h-table th.t-h { width: 118px; color: var(--gold); }
+.h-table td { padding: 5px; border-top: 1px solid #EEF0F5; vertical-align: middle; }
+.h-table td.t-h {
+  font-size: 0.78rem; font-weight: 600; line-height: 1.3; text-align: center;
+  color: var(--gold); background: var(--navy);
+}
+.h-table td.sat { background: #F7F5EF; border-left: 1px solid #E8E2D2; }
+.h-table th.today { box-shadow: inset 0 -4px 0 var(--gold); }
+.h-table th.today::after { content: " · hoy"; color: var(--gold-light); text-transform: none; letter-spacing: 0; }
+.h-table td.today { background: #FFFBF1; }
+
+.blk {
+  display: flex; flex-direction: column; justify-content: center; gap: 2px;
+  min-height: 46px; padding: 7px 8px; border-radius: 9px; text-align: center;
+  font-size: 0.78rem; line-height: 1.3;
+}
+.blk b { font-weight: 600; }
+.b-time { font-size: 0.74rem; font-weight: 600; }
+.b-det { font-size: 0.72rem; opacity: 0.8; }
+.blk.llamadas { background: var(--navy); color: var(--gold-light); border: 1px solid var(--gold); }
+.blk.entreno { background: #E9D5A6; color: var(--navy-dark); }
+.blk.soporte { background: #FCF6E6; color: var(--navy); border: 1px solid #E3C98C; }
+.blk.lectura, .blk.operativo { background: #EEF0F5; color: var(--navy); }
+.blk.individual { background: #E4E6EE; color: var(--navy); }
+.blk.descanso { background: #fff; color: #8A8DA0; border: 1px dashed #D4D6E0; min-height: 34px; }
+td.sat .blk { min-height: 100%; padding: 14px 10px; }
+td.sat .blk.llamadas, td.sat .blk.entreno { font-size: 0.85rem; }
+
+.h-tip { margin-top: 22px; }
+.h-tip a { color: #9A7428; font-weight: 600; text-decoration: underline; }
+
+/* Celular */
+.h-mobile { display: none; }
+.h-tabs { display: flex; gap: 6px; margin-bottom: 14px; overflow-x: auto; }
+.h-tabs button {
+  flex: 1; padding: 9px 0; font-family: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  color: var(--navy); background: #fff; border: 1px solid #D9DBE5; border-radius: 9px;
+}
+.h-tabs button.active { color: #fff; background: var(--navy); border-color: var(--navy); box-shadow: inset 0 -3px 0 var(--gold); }
+.m-row { display: grid; grid-template-columns: 92px 1fr; gap: 10px; align-items: center; margin-bottom: 8px; }
+.m-time { font-size: 0.74rem; font-weight: 600; color: var(--navy); line-height: 1.3; }
+.m-row .blk { text-align: left; align-items: flex-start; font-size: 0.86rem; }
+
+@media (max-width: 860px) {
+  .h-table-wrap, .h-legend { display: none; }
+  .h-mobile { display: block; }
+  .h-stats { grid-template-columns: 1fr 1fr; }
+}
+
+@media print {
+  @page { size: letter landscape; margin: 0.35in; }
+  body.paper main > .lead, body.paper main > .eyebrow, body.paper main > h1, .h-stats, .h-tip { display: none !important; }
+  .h-mobile { display: none !important; }
+  .h-table-wrap, .h-legend { display: flex !important; }
+  .h-table-wrap { display: block !important; box-shadow: none; }
+  .h-table td.today, .h-table th.today { background: inherit; box-shadow: none; }
+  .h-table th.today::after { content: ""; }
+  .blk { min-height: 38px; padding: 5px 6px; font-size: 0.72rem; }
+  .blk.descanso { min-height: 26px; }
+}
+@media print {
+  .h-table th.today { background: var(--navy) !important; }
+  .h-table th.sat.today { background: var(--navy-dark) !important; }
+  .h-table td.today { background: transparent !important; }
+  .h-table td.sat.today { background: #F7F5EF !important; }
+}
+
+  </style>
 </head>
 <body class="paper">
 
