@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Tabla de peso y estatura</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <link rel="stylesheet" href="peso.css?v=6">
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte1-kit.html" class="back">← Volver al kit de ventas</a>
+    <p class="eyebrow">Parte 1 · Kit de ventas</p>
+    <h1 id="pageTitle">Tabla de peso y estatura</h1>
+    <p class="lead">Escribe la estatura y el peso de tu cliente para ver al momento si califica con cada carrier. Abajo tienes las tablas completas.</p>
+
+    <div class="print-header"><img src="logo-fortia.png" alt="Fortia"><div><b>Academia Fortia</b><span>Tablas de peso y estatura</span></div></div>
+
+    <section class="w-calc">
+      <h3>¿Tu cliente califica por peso?</h3>
+      <div class="w-inputs">
+        <label><span>Estatura</span>
+          <select id="hSel"><option value="">Elige la estatura</option><option value="54">4' 6"</option><option value="55">4' 7"</option><option value="56">4' 8"</option><option value="57">4' 9"</option><option value="58">4' 10"</option><option value="59">4' 11"</option><option value="60">5' 0"</option><option value="61">5' 1"</option><option value="62">5' 2"</option><option value="63">5' 3"</option><option value="64">5' 4"</option><option value="65">5' 5"</option><option value="66">5' 6"</option><option value="67">5' 7"</option><option value="68">5' 8"</option><option value="69">5' 9"</option><option value="70">5' 10"</option><option value="71">5' 11"</option><option value="72">6' 0"</option><option value="73">6' 1"</option><option value="74">6' 2"</option><option value="75">6' 3"</option><option value="76">6' 4"</option><option value="77">6' 5"</option><option value="78">6' 6"</option><option value="79">6' 7"</option><option value="80">6' 8"</option><option value="81">6' 9"</option><option value="82">6' 10"</option><option value="83">6' 11"</option><option value="84">7' 0"</option></select>
+        </label>
+        <label><span>Peso (libras)</span>
+          <input id="wIn" type="number" inputmode="numeric" min="50" max="600" placeholder="Ej. 180">
+        </label>
+        <label class="w-small"><span>Edad</span>
+          <input id="aIn" type="number" inputmode="numeric" min="0" max="100" placeholder="Ej. 40">
+        </label>
+        <label class="w-small"><span>Sexo</span>
+          <select id="sSel"><option value="">Elige</option><option value="M">Hombre</option><option value="F">Mujer</option></select>
+        </label>
+      </div>
+      <div class="w-results" id="results">
+        <div class="w-result"><small>National Life Group</small><div class="r" id="rNLG">Escribe la estatura y el peso del cliente.</div></div>
+        <div class="w-result"><small>Mutual of Omaha · IUL Express</small><div class="r" id="rMOO">Escribe la estatura y el peso del cliente.</div></div>
+        <div class="w-result"><small>Transamerica · FFIUL</small><div class="r" id="rTA">Escribe la estatura y el peso del cliente.</div></div>
+        <div class="w-result"><small>Americo · Instant Decision IUL</small><div class="r" id="rAM">Escribe la estatura y el peso del cliente.</div></div>
+        <div class="w-result"><small>F&amp;G</small><div class="r" id="rFG">Escribe la estatura y el peso del cliente.</div></div>
+      </div>
+    </section>
+
+    <div class="g-tip"><b>Importante:</b> Estas tablas son una guía. La decisión final la toma underwriting y puede cambiar por la edad, la salud o las medidas del cuerpo.</div>
+
+    <h2 class="e-h2">Tablas completas</h2>
+    <p class="section-note e-sn">Peso en libras. La fila de la estatura que elijas arriba se resalta.</p>
+
+    <div class="e-tabs" id="tabs">
+      <button class="active" data-t="nlg">National Life Group</button>
+      <button data-t="moo">Mutual of Omaha</button>
+      <button data-t="ta">Transamerica</button>
+      <button data-t="am">Americo</button>
+      <button data-t="fg">F&amp;G</button>
+    </div>
+
+    <div class="e-panel w-panel" id="p-nlg">
+      <h3>National Life Group</h3>
+      <p class="w-meta">Productos permanentes (IUL) · Clientes de 16 años en adelante · Consideración individual para IMC bajo · Confirma con la herramienta XRAE.</p>
+      <div class="w-table-wrap"><table class="w-table" id="tNLG"><thead><tr><th>Estatura</th><th>Elite<small>IMC 18.5–27.1</small></th><th>Preferred<small>IMC 27.1–29.9</small></th><th>Select<small>IMC 29.9–32.7</small></th><th>Standard<small>IMC 32.7–37.5</small></th><th>Express Standard 1<small>IMC 37.5–42.5</small></th><th>Express Standard 2<small>IMC 42.5–46.5</small></th></tr></thead><tbody><tr data-h="56"><td class="h">4' 8"</td><td>83–120</td><td>121–133</td><td>134–145</td><td>146–167</td><td>168–189</td><td>190–207</td></tr><tr data-h="57"><td class="h">4' 9"</td><td>86–125</td><td>126–138</td><td>139–151</td><td>152–173</td><td>174–196</td><td>197–214</td></tr><tr data-h="58"><td class="h">4' 10"</td><td>89–129</td><td>130–143</td><td>144–156</td><td>157–179</td><td>180–203</td><td>204–222</td></tr><tr data-h="59"><td class="h">4' 11"</td><td>92–134</td><td>135–148</td><td>149–161</td><td>162–185</td><td>186–210</td><td>211–230</td></tr><tr data-h="60"><td class="h">5' 0"</td><td>95–138</td><td>139–153</td><td>154–167</td><td>168–191</td><td>192–217</td><td>218–238</td></tr><tr data-h="61"><td class="h">5' 1"</td><td>98–143</td><td>144–158</td><td>159–173</td><td>174–198</td><td>199–224</td><td>225–246</td></tr><tr data-h="62"><td class="h">5' 2"</td><td>102–148</td><td>149–163</td><td>164–178</td><td>179–205</td><td>206–232</td><td>233–254</td></tr><tr data-h="63"><td class="h">5' 3"</td><td>105–152</td><td>153–168</td><td>169–184</td><td>185–211</td><td>212–239</td><td>240–262</td></tr><tr data-h="64"><td class="h">5' 4"</td><td>108–157</td><td>158–174</td><td>175–190</td><td>191–218</td><td>219–247</td><td>248–270</td></tr><tr data-h="65"><td class="h">5' 5"</td><td>112–162</td><td>163–179</td><td>180–196</td><td>197–225</td><td>226–255</td><td>256–279</td></tr><tr data-h="66"><td class="h">5' 6"</td><td>115–167</td><td>168–185</td><td>186–202</td><td>203–232</td><td>233–263</td><td>264–288</td></tr><tr data-h="67"><td class="h">5' 7"</td><td>119–172</td><td>173–190</td><td>191–208</td><td>209–239</td><td>240–271</td><td>272–296</td></tr><tr data-h="68"><td class="h">5' 8"</td><td>122–177</td><td>178–196</td><td>197–215</td><td>216–246</td><td>247–279</td><td>280–305</td></tr><tr data-h="69"><td class="h">5' 9"</td><td>126–183</td><td>184–202</td><td>203–221</td><td>222–253</td><td>254–287</td><td>288–314</td></tr><tr data-h="70"><td class="h">5' 10"</td><td>129–188</td><td>189–208</td><td>209–227</td><td>228–261</td><td>262–296</td><td>297–324</td></tr><tr data-h="71"><td class="h">5' 11"</td><td>133–194</td><td>195–214</td><td>215–234</td><td>235–268</td><td>269–304</td><td>305–333</td></tr><tr data-h="72"><td class="h">6' 0"</td><td>137–199</td><td>200–220</td><td>221–241</td><td>242–276</td><td>277–313</td><td>314–342</td></tr><tr data-h="73"><td class="h">6' 1"</td><td>141–205</td><td>206–226</td><td>227–247</td><td>248–284</td><td>285–322</td><td>323–352</td></tr><tr data-h="74"><td class="h">6' 2"</td><td>145–211</td><td>212–232</td><td>233–254</td><td>255–292</td><td>293–330</td><td>331–362</td></tr><tr data-h="75"><td class="h">6' 3"</td><td>148–216</td><td>217–239</td><td>240–261</td><td>262–299</td><td>300–339</td><td>340–371</td></tr><tr data-h="76"><td class="h">6' 4"</td><td>152–222</td><td>223–245</td><td>246–268</td><td>269–308</td><td>309–349</td><td>350–381</td></tr><tr data-h="77"><td class="h">6' 5"</td><td>156–228</td><td>229–252</td><td>253–275</td><td>276–316</td><td>317–358</td><td>359–392</td></tr><tr data-h="78"><td class="h">6' 6"</td><td>161–234</td><td>235–258</td><td>259–282</td><td>283–324</td><td>325–367</td><td>368–402</td></tr><tr data-h="79"><td class="h">6' 7"</td><td>165–240</td><td>241–265</td><td>266–290</td><td>291–332</td><td>333–377</td><td>378–412</td></tr><tr data-h="80"><td class="h">6' 8"</td><td>169–246</td><td>247–272</td><td>273–297</td><td>298–341</td><td>342–386</td><td>387–423</td></tr></tbody></table></div>
+      <p class="w-src">Fuente: National Life Group, Life Insurance Underwriting Guide, “Table of Height and Weight, Ages 16 and Older (Permanent Products)”. Solo para uso de agentes.</p>
+    </div>
+
+    <div class="e-panel w-panel" id="p-moo" hidden>
+      <h3>Mutual of Omaha · IUL Express</h3>
+      <div class="w-facts">
+        <div><b>Edades 18–50</b><span>$25,000 a $300,000</span></div>
+        <div><b>Edades 51–60</b><span>$25,000 a $250,000</span></div>
+        <div><b>Edades 61–75</b><span>$25,000 a $150,000</span></div>
+      </div>
+      <p class="w-meta">Suscripción simplificada. Requisitos: tabla de peso, MIB, revisión de farmacia y de datos médicos, récord de manejo (MVR, obligatorio de 18 a 35 años) y entrevista telefónica si hace falta.</p>
+      <div class="w-table-wrap"><table class="w-table" id="tMOO"><thead><tr><th>Estatura</th><th>Peso mínimo</th><th>Peso máximo<small>IUL Express</small></th><th>Máximo con impedimentos<small>Tabla 2 (ver nota)</small></th><th>Máximo rider DI<small>Incapacidad</small></th></tr></thead><tbody><tr data-h="56"><td class="h">4' 8"</td><td>74</td><td>197</td><td>184</td><td>170</td></tr><tr data-h="57"><td class="h">4' 9"</td><td>77</td><td>202</td><td>189</td><td>176</td></tr><tr data-h="58"><td class="h">4' 10"</td><td>79</td><td>208</td><td>194</td><td>182</td></tr><tr data-h="59"><td class="h">4' 11"</td><td>82</td><td>214</td><td>199</td><td>187</td></tr><tr data-h="60"><td class="h">5' 0"</td><td>85</td><td>220</td><td>205</td><td>193</td></tr><tr data-h="61"><td class="h">5' 1"</td><td>88</td><td>226</td><td>211</td><td>199</td></tr><tr data-h="62"><td class="h">5' 2"</td><td>91</td><td>232</td><td>215</td><td>205</td></tr><tr data-h="63"><td class="h">5' 3"</td><td>94</td><td>238</td><td>220</td><td>213</td></tr><tr data-h="64"><td class="h">5' 4"</td><td>97</td><td>245</td><td>225</td><td>221</td></tr><tr data-h="65"><td class="h">5' 5"</td><td>100</td><td>251</td><td>231</td><td>226</td></tr><tr data-h="66"><td class="h">5' 6"</td><td>103</td><td>258</td><td>239</td><td>232</td></tr><tr data-h="67"><td class="h">5' 7"</td><td>106</td><td>265</td><td>245</td><td>239</td></tr><tr data-h="68"><td class="h">5' 8"</td><td>109</td><td>274</td><td>251</td><td>246</td></tr><tr data-h="69"><td class="h">5' 9"</td><td>112</td><td>282</td><td>258</td><td>254</td></tr><tr data-h="70"><td class="h">5' 10"</td><td>115</td><td>289</td><td>266</td><td>262</td></tr><tr data-h="71"><td class="h">5' 11"</td><td>119</td><td>298</td><td>274</td><td>269</td></tr><tr data-h="72"><td class="h">6' 0"</td><td>122</td><td>305</td><td>281</td><td>275</td></tr><tr data-h="73"><td class="h">6' 1"</td><td>126</td><td>313</td><td>289</td><td>282</td></tr><tr data-h="74"><td class="h">6' 2"</td><td>129</td><td>321</td><td>296</td><td>289</td></tr><tr data-h="75"><td class="h">6' 3"</td><td>133</td><td>329</td><td>303</td><td>296</td></tr><tr data-h="76"><td class="h">6' 4"</td><td>136</td><td>338</td><td>311</td><td>301</td></tr><tr data-h="77"><td class="h">6' 5"</td><td>140</td><td>347</td><td>319</td><td>307</td></tr><tr data-h="78"><td class="h">6' 6"</td><td>143</td><td>358</td><td>328</td><td>313</td></tr><tr data-h="79"><td class="h">6' 7"</td><td>147</td><td>367</td><td>336</td><td>320</td></tr><tr data-h="80"><td class="h">6' 8"</td><td>151</td><td>376</td><td>345</td><td>327</td></tr><tr data-h="81"><td class="h">6' 9"</td><td>154</td><td>385</td><td>352</td><td>335</td></tr><tr data-h="82"><td class="h">6' 10"</td><td>158</td><td>395</td><td>359</td><td>343</td></tr></tbody></table></div>
+      <div class="g-tip w-note"><b>Nota sobre “Máximo con impedimentos”:</b> si el peso pasa esta columna (peso de Tabla 2 o más) y además el cliente tiene diabetes después de los 45 años, presión alta que suba la tarifa, asma con tabaco o enfermedad vascular periférica (PVD), Mutual of Omaha lo declina en IUL Express.</div>
+      <p class="w-src">Fuente: Mutual of Omaha, Express Life Products Reference Guide (27857_0823). Soporte de underwriting: 1-800-775-7896 · Soporte iGO e-App: 1-800-641-6557. Solo para uso de agentes.</p>
+    </div>
+
+    <div class="e-panel w-panel" id="p-ta" hidden>
+      <h3>Transamerica · FFIUL y TFLIC FFIUL</h3>
+      <p class="w-meta">Peso <b>máximo</b> en libras para cada clase. Si el peso está por debajo o igual al número, califica en esa clase. Las tablas cambian según el sexo y la edad; a partir de los 71 años no hay Preferred Elite. Si el cliente fuma, las clases son Preferred Tobacco y Tobacco.</p>
+      <div class="w-sex" id="taSex">
+        <button class="active" data-s="M">Hombre</button><button data-s="F">Mujer</button>
+      </div>
+      <div class="w-table-wrap" data-s="M"><table class="w-table w-ta" id="tTA_M"><thead><tr><th rowspan="2">Estatura</th><th colspan="4">Edades 18–70</th><th colspan="4">Edades 71+</th></tr><tr><th>Preferred Elite</th><th>Preferred Plus<small>o Preferred Tobacco</small></th><th>Preferred</th><th>Standard<small>Non-Tobacco y Tobacco</small></th><th>Preferred Elite<small>No disponible</small></th><th>Preferred Plus<small>o Preferred Tobacco</small></th><th>Preferred</th><th>Standard<small>Non-Tobacco y Tobacco</small></th></tr></thead><tbody><tr data-h="54"><td class="h">4' 6"</td><td>119</td><td>132</td><td>139</td><td>155</td><td class="sep">—</td><td>133</td><td>143</td><td>158</td></tr><tr data-h="55"><td class="h">4' 7"</td><td>123</td><td>136</td><td>144</td><td>160</td><td class="sep">—</td><td>138</td><td>148</td><td>164</td></tr><tr data-h="56"><td class="h">4' 8"</td><td>127</td><td>140</td><td>149</td><td>166</td><td class="sep">—</td><td>143</td><td>153</td><td>170</td></tr><tr data-h="57"><td class="h">4' 9"</td><td>131</td><td>145</td><td>154</td><td>172</td><td class="sep">—</td><td>148</td><td>158</td><td>176</td></tr><tr data-h="58"><td class="h">4' 10"</td><td>135</td><td>150</td><td>159</td><td>178</td><td class="sep">—</td><td>153</td><td>163</td><td>182</td></tr><tr data-h="59"><td class="h">4' 11"</td><td>140</td><td>155</td><td>164</td><td>184</td><td class="sep">—</td><td>158</td><td>168</td><td>188</td></tr><tr data-h="60"><td class="h">5' 0"</td><td>144</td><td>160</td><td>169</td><td>190</td><td class="sep">—</td><td>163</td><td>173</td><td>194</td></tr><tr data-h="61"><td class="h">5' 1"</td><td>149</td><td>164</td><td>175</td><td>196</td><td class="sep">—</td><td>168</td><td>179</td><td>200</td></tr><tr data-h="62"><td class="h">5' 2"</td><td>154</td><td>169</td><td>180</td><td>202</td><td class="sep">—</td><td>173</td><td>185</td><td>206</td></tr><tr data-h="63"><td class="h">5' 3"</td><td>159</td><td>174</td><td>186</td><td>208</td><td class="sep">—</td><td>178</td><td>191</td><td>212</td></tr><tr data-h="64"><td class="h">5' 4"</td><td>164</td><td>179</td><td>192</td><td>214</td><td class="sep">—</td><td>184</td><td>197</td><td>218</td></tr><tr data-h="65"><td class="h">5' 5"</td><td>169</td><td>184</td><td>198</td><td>220</td><td class="sep">—</td><td>189</td><td>203</td><td>225</td></tr><tr data-h="66"><td class="h">5' 6"</td><td>174</td><td>189</td><td>204</td><td>227</td><td class="sep">—</td><td>194</td><td>209</td><td>232</td></tr><tr data-h="67"><td class="h">5' 7"</td><td>179</td><td>195</td><td>210</td><td>233</td><td class="sep">—</td><td>200</td><td>215</td><td>238</td></tr><tr data-h="68"><td class="h">5' 8"</td><td>184</td><td>200</td><td>215</td><td>239</td><td class="sep">—</td><td>205</td><td>221</td><td>244</td></tr><tr data-h="69"><td class="h">5' 9"</td><td>189</td><td>206</td><td>221</td><td>244</td><td class="sep">—</td><td>211</td><td>227</td><td>249</td></tr><tr data-h="70"><td class="h">5' 10"</td><td>195</td><td>211</td><td>227</td><td>250</td><td class="sep">—</td><td>216</td><td>232</td><td>255</td></tr><tr data-h="71"><td class="h">5' 11"</td><td>200</td><td>217</td><td>233</td><td>256</td><td class="sep">—</td><td>222</td><td>238</td><td>261</td></tr><tr data-h="72"><td class="h">6' 0"</td><td>205</td><td>223</td><td>239</td><td>263</td><td class="sep">—</td><td>228</td><td>244</td><td>268</td></tr><tr data-h="73"><td class="h">6' 1"</td><td>211</td><td>229</td><td>245</td><td>269</td><td class="sep">—</td><td>234</td><td>250</td><td>274</td></tr><tr data-h="74"><td class="h">6' 2"</td><td>217</td><td>235</td><td>251</td><td>276</td><td class="sep">—</td><td>240</td><td>256</td><td>281</td></tr><tr data-h="75"><td class="h">6' 3"</td><td>223</td><td>241</td><td>257</td><td>283</td><td class="sep">—</td><td>246</td><td>262</td><td>288</td></tr><tr data-h="76"><td class="h">6' 4"</td><td>228</td><td>247</td><td>263</td><td>289</td><td class="sep">—</td><td>252</td><td>268</td><td>295</td></tr><tr data-h="77"><td class="h">6' 5"</td><td>233</td><td>253</td><td>269</td><td>296</td><td class="sep">—</td><td>258</td><td>274</td><td>302</td></tr><tr data-h="78"><td class="h">6' 6"</td><td>238</td><td>259</td><td>276</td><td>303</td><td class="sep">—</td><td>264</td><td>281</td><td>309</td></tr><tr data-h="79"><td class="h">6' 7"</td><td>244</td><td>265</td><td>283</td><td>310</td><td class="sep">—</td><td>270</td><td>287</td><td>316</td></tr><tr data-h="80"><td class="h">6' 8"</td><td>249</td><td>271</td><td>289</td><td>317</td><td class="sep">—</td><td>276</td><td>293</td><td>323</td></tr><tr data-h="81"><td class="h">6' 9"</td><td>254</td><td>277</td><td>295</td><td>324</td><td class="sep">—</td><td>282</td><td>300</td><td>331</td></tr><tr data-h="82"><td class="h">6' 10"</td><td>260</td><td>283</td><td>302</td><td>331</td><td class="sep">—</td><td>288</td><td>306</td><td>338</td></tr><tr data-h="83"><td class="h">6' 11"</td><td>265</td><td>289</td><td>308</td><td>338</td><td class="sep">—</td><td>294</td><td>313</td><td>345</td></tr><tr data-h="84"><td class="h">7' 0"</td><td>270</td><td>295</td><td>314</td><td>346</td><td class="sep">—</td><td>300</td><td>319</td><td>353</td></tr></tbody></table></div>
+      <div class="w-table-wrap" data-s="F" hidden><table class="w-table w-ta" id="tTA_F"><thead><tr><th rowspan="2">Estatura</th><th colspan="4">Edades 18–70</th><th colspan="4">Edades 71+</th></tr><tr><th>Preferred Elite</th><th>Preferred Plus<small>o Preferred Tobacco</small></th><th>Preferred</th><th>Standard<small>Non-Tobacco y Tobacco</small></th><th>Preferred Elite<small>No disponible</small></th><th>Preferred Plus<small>o Preferred Tobacco</small></th><th>Preferred</th><th>Standard<small>Non-Tobacco y Tobacco</small></th></tr></thead><tbody><tr data-h="54"><td class="h">4' 6"</td><td>117</td><td>128</td><td>136</td><td>149</td><td class="sep">—</td><td>132</td><td>140</td><td>152</td></tr><tr data-h="55"><td class="h">4' 7"</td><td>121</td><td>132</td><td>141</td><td>154</td><td class="sep">—</td><td>136</td><td>145</td><td>157</td></tr><tr data-h="56"><td class="h">4' 8"</td><td>125</td><td>136</td><td>146</td><td>159</td><td class="sep">—</td><td>140</td><td>150</td><td>162</td></tr><tr data-h="57"><td class="h">4' 9"</td><td>129</td><td>140</td><td>151</td><td>164</td><td class="sep">—</td><td>145</td><td>155</td><td>168</td></tr><tr data-h="58"><td class="h">4' 10"</td><td>133</td><td>144</td><td>156</td><td>169</td><td class="sep">—</td><td>150</td><td>160</td><td>174</td></tr><tr data-h="59"><td class="h">4' 11"</td><td>138</td><td>149</td><td>161</td><td>175</td><td class="sep">—</td><td>155</td><td>165</td><td>180</td></tr><tr data-h="60"><td class="h">5' 0"</td><td>142</td><td>154</td><td>166</td><td>181</td><td class="sep">—</td><td>160</td><td>170</td><td>186</td></tr><tr data-h="61"><td class="h">5' 1"</td><td>147</td><td>159</td><td>171</td><td>187</td><td class="sep">—</td><td>164</td><td>176</td><td>192</td></tr><tr data-h="62"><td class="h">5' 2"</td><td>151</td><td>164</td><td>176</td><td>193</td><td class="sep">—</td><td>169</td><td>181</td><td>198</td></tr><tr data-h="63"><td class="h">5' 3"</td><td>156</td><td>169</td><td>181</td><td>197</td><td class="sep">—</td><td>174</td><td>186</td><td>203</td></tr><tr data-h="64"><td class="h">5' 4"</td><td>161</td><td>174</td><td>185</td><td>202</td><td class="sep">—</td><td>179</td><td>190</td><td>207</td></tr><tr data-h="65"><td class="h">5' 5"</td><td>165</td><td>179</td><td>189</td><td>206</td><td class="sep">—</td><td>184</td><td>195</td><td>211</td></tr><tr data-h="66"><td class="h">5' 6"</td><td>170</td><td>184</td><td>194</td><td>210</td><td class="sep">—</td><td>189</td><td>199</td><td>215</td></tr><tr data-h="67"><td class="h">5' 7"</td><td>174</td><td>189</td><td>199</td><td>215</td><td class="sep">—</td><td>195</td><td>204</td><td>220</td></tr><tr data-h="68"><td class="h">5' 8"</td><td>178</td><td>195</td><td>204</td><td>220</td><td class="sep">—</td><td>200</td><td>210</td><td>225</td></tr><tr data-h="69"><td class="h">5' 9"</td><td>182</td><td>200</td><td>210</td><td>225</td><td class="sep">—</td><td>205</td><td>215</td><td>230</td></tr><tr data-h="70"><td class="h">5' 10"</td><td>186</td><td>205</td><td>215</td><td>230</td><td class="sep">—</td><td>210</td><td>220</td><td>235</td></tr><tr data-h="71"><td class="h">5' 11"</td><td>190</td><td>210</td><td>221</td><td>236</td><td class="sep">—</td><td>216</td><td>226</td><td>241</td></tr><tr data-h="72"><td class="h">6' 0"</td><td>195</td><td>216</td><td>227</td><td>242</td><td class="sep">—</td><td>222</td><td>232</td><td>247</td></tr><tr data-h="73"><td class="h">6' 1"</td><td>200</td><td>222</td><td>233</td><td>248</td><td class="sep">—</td><td>228</td><td>238</td><td>254</td></tr><tr data-h="74"><td class="h">6' 2"</td><td>205</td><td>228</td><td>239</td><td>254</td><td class="sep">—</td><td>233</td><td>244</td><td>260</td></tr><tr data-h="75"><td class="h">6' 3"</td><td>210</td><td>233</td><td>244</td><td>260</td><td class="sep">—</td><td>239</td><td>251</td><td>267</td></tr><tr data-h="76"><td class="h">6' 4"</td><td>215</td><td>239</td><td>250</td><td>267</td><td class="sep">—</td><td>244</td><td>257</td><td>273</td></tr><tr data-h="77"><td class="h">6' 5"</td><td>220</td><td>245</td><td>256</td><td>274</td><td class="sep">—</td><td>250</td><td>263</td><td>279</td></tr><tr data-h="78"><td class="h">6' 6"</td><td>225</td><td>250</td><td>262</td><td>281</td><td class="sep">—</td><td>256</td><td>270</td><td>286</td></tr><tr data-h="79"><td class="h">6' 7"</td><td>230</td><td>256</td><td>268</td><td>287</td><td class="sep">—</td><td>261</td><td>277</td><td>292</td></tr><tr data-h="80"><td class="h">6' 8"</td><td>235</td><td>262</td><td>274</td><td>293</td><td class="sep">—</td><td>267</td><td>284</td><td>299</td></tr><tr data-h="81"><td class="h">6' 9"</td><td>240</td><td>267</td><td>280</td><td>300</td><td class="sep">—</td><td>273</td><td>291</td><td>305</td></tr><tr data-h="82"><td class="h">6' 10"</td><td>245</td><td>273</td><td>286</td><td>306</td><td class="sep">—</td><td>279</td><td>298</td><td>312</td></tr><tr data-h="83"><td class="h">6' 11"</td><td>250</td><td>279</td><td>292</td><td>313</td><td class="sep">—</td><td>285</td><td>305</td><td>319</td></tr><tr data-h="84"><td class="h">7' 0"</td><td>255</td><td>284</td><td>298</td><td>319</td><td class="sep">—</td><td>290</td><td>312</td><td>325</td></tr></tbody></table></div>
+      <p class="w-src">Fuente: Transamerica, Height and Weight Charts, páginas 18 (hombres) y 19 (mujeres), filas FFIUL & TFLIC FFIUL. Solo para uso de agentes.</p>
+    </div>
+
+    <div class="e-panel w-panel" id="p-am" hidden>
+      <h3>Americo · Instant Decision IUL</h3>
+      <div class="w-facts">
+        <div><b>Edades de emisión</b><span>18 a 65 años</span></div>
+        <div><b>Cobertura</b><span>$50,000 a $450,000</span></div>
+        <div><b>Clases</b><span>Non-nicotine o Nicotine</span></div>
+      </div>
+      <p class="w-meta">Rango de peso <b>aceptable</b> en libras, siempre que no haya otra condición de salud. Americo no emite este producto con recargo (no hay substandard): si el peso está fuera del rango, no califica. Sin exámenes médicos: la decisión sale de las preguntas de salud, el MIB y la revisión de recetas. Non-nicotine requiere 24 meses sin usar nicotina.</p>
+      <div class="w-table-wrap w-narrow"><table class="w-table" id="tAM"><thead><tr><th>Estatura</th><th>Peso mínimo</th><th>Peso máximo</th></tr></thead><tbody><tr data-h="56"><td class="h">4' 8"</td><td>80</td><td>188</td></tr><tr data-h="57"><td class="h">4' 9"</td><td>82</td><td>195</td></tr><tr data-h="58"><td class="h">4' 10"</td><td>85</td><td>202</td></tr><tr data-h="59"><td class="h">4' 11"</td><td>88</td><td>209</td></tr><tr data-h="60"><td class="h">5' 0"</td><td>91</td><td>216</td></tr><tr data-h="61"><td class="h">5' 1"</td><td>95</td><td>223</td></tr><tr data-h="62"><td class="h">5' 2"</td><td>97</td><td>231</td></tr><tr data-h="63"><td class="h">5' 3"</td><td>100</td><td>238</td></tr><tr data-h="64"><td class="h">5' 4"</td><td>103</td><td>246</td></tr><tr data-h="65"><td class="h">5' 5"</td><td>107</td><td>254</td></tr><tr data-h="66"><td class="h">5' 6"</td><td>110</td><td>262</td></tr><tr data-h="67"><td class="h">5' 7"</td><td>113</td><td>270</td></tr><tr data-h="68"><td class="h">5' 8"</td><td>117</td><td>278</td></tr><tr data-h="69"><td class="h">5' 9"</td><td>120</td><td>286</td></tr><tr data-h="70"><td class="h">5' 10"</td><td>123</td><td>295</td></tr><tr data-h="71"><td class="h">5' 11"</td><td>127</td><td>303</td></tr><tr data-h="72"><td class="h">6' 0"</td><td>131</td><td>312</td></tr><tr data-h="73"><td class="h">6' 1"</td><td>134</td><td>321</td></tr><tr data-h="74"><td class="h">6' 2"</td><td>138</td><td>330</td></tr><tr data-h="75"><td class="h">6' 3"</td><td>142</td><td>339</td></tr><tr data-h="76"><td class="h">6' 4"</td><td>145</td><td>348</td></tr><tr data-h="77"><td class="h">6' 5"</td><td>149</td><td>357</td></tr><tr data-h="78"><td class="h">6' 6"</td><td>153</td><td>366</td></tr><tr data-h="79"><td class="h">6' 7"</td><td>157</td><td>376</td></tr></tbody></table></div>
+      <p class="w-src">Fuente: Americo, Agent Guide Instant Decision Indexed Universal Life, Policy Series 336 (23-084-1, 06/25), “Underwriting Build Chart”, página 13. Agent Services: 800.231.0801. Solo para uso de agentes.</p>
+    </div>
+
+    <div class="e-panel w-panel" id="p-fg" hidden>
+      <h3>F&amp;G</h3>
+      <p class="w-meta">Peso <b>máximo</b> en libras para clientes de <b>16 a 50 años</b>. Si el peso está por debajo o igual al número, califica en esa clase. <b>De 51 a 65 años, suma 5 libras</b> a cada número; <b>de 66 en adelante, suma 10 libras</b>. La calculadora de arriba ya hace esa suma sola.</p>
+      <div class="w-table-wrap w-narrow2"><table class="w-table w-ta" id="tFG"><thead>
+        <tr><th rowspan="2">Estatura</th><th colspan="2">Hombre · peso máximo</th><th colspan="2">Mujer · peso máximo</th></tr>
+        <tr><th>Preferred</th><th>Standard</th><th>Preferred</th><th>Standard</th></tr>
+      </thead><tbody><tr data-h="56"><td class="h">4' 8"</td><td>166</td><td>183</td><td>152</td><td>167</td></tr><tr data-h="57"><td class="h">4' 9"</td><td>170</td><td>187</td><td>155</td><td>171</td></tr><tr data-h="58"><td class="h">4' 10"</td><td>174</td><td>191</td><td>157</td><td>173</td></tr><tr data-h="59"><td class="h">4' 11"</td><td>178</td><td>196</td><td>160</td><td>176</td></tr><tr data-h="60"><td class="h">5' 0"</td><td>182</td><td>200</td><td>163</td><td>179</td></tr><tr data-h="61"><td class="h">5' 1"</td><td>186</td><td>205</td><td>166</td><td>183</td></tr><tr data-h="62"><td class="h">5' 2"</td><td>190</td><td>209</td><td>169</td><td>186</td></tr><tr data-h="63"><td class="h">5' 3"</td><td>196</td><td>216</td><td>174</td><td>191</td></tr><tr data-h="64"><td class="h">5' 4"</td><td>202</td><td>222</td><td>179</td><td>197</td></tr><tr data-h="65"><td class="h">5' 5"</td><td>207</td><td>228</td><td>183</td><td>201</td></tr><tr data-h="66"><td class="h">5' 6"</td><td>213</td><td>234</td><td>189</td><td>208</td></tr><tr data-h="67"><td class="h">5' 7"</td><td>217</td><td>239</td><td>193</td><td>212</td></tr><tr data-h="68"><td class="h">5' 8"</td><td>223</td><td>245</td><td>198</td><td>218</td></tr><tr data-h="69"><td class="h">5' 9"</td><td>228</td><td>251</td><td>202</td><td>222</td></tr><tr data-h="70"><td class="h">5' 10"</td><td>235</td><td>259</td><td>208</td><td>229</td></tr><tr data-h="71"><td class="h">5' 11"</td><td>241</td><td>265</td><td>214</td><td>235</td></tr><tr data-h="72"><td class="h">6' 0"</td><td>248</td><td>273</td><td>221</td><td>243</td></tr><tr data-h="73"><td class="h">6' 1"</td><td>253</td><td>278</td><td>225</td><td>248</td></tr><tr data-h="74"><td class="h">6' 2"</td><td>260</td><td>286</td><td>232</td><td>255</td></tr><tr data-h="75"><td class="h">6' 3"</td><td>267</td><td>294</td><td>237</td><td>261</td></tr><tr data-h="76"><td class="h">6' 4"</td><td>276</td><td>304</td><td>246</td><td>271</td></tr><tr data-h="77"><td class="h">6' 5"</td><td>284</td><td>312</td><td>253</td><td>278</td></tr><tr data-h="78"><td class="h">6' 6"</td><td>293</td><td>322</td><td>261</td><td>287</td></tr><tr data-h="79"><td class="h">6' 7"</td><td>301</td><td>331</td><td>268</td><td>295</td></tr><tr data-h="80"><td class="h">6' 8"</td><td>308</td><td>341</td><td>274</td><td>308</td></tr><tr data-h="81"><td class="h">6' 9"</td><td>315</td><td>349</td><td>282</td><td>316</td></tr><tr data-h="82"><td class="h">6' 10"</td><td>325</td><td>359</td><td>288</td><td>326</td></tr><tr data-h="83"><td class="h">6' 11"</td><td>336</td><td>369</td><td>293</td><td>336</td></tr><tr data-h="84"><td class="h">7' 0"</td><td>345</td><td>378</td><td>298</td><td>345</td></tr></tbody></table></div>
+      <p class="w-src">Fuente: F&amp;G, Build Chart (Ages 16-50). Solo para uso de agentes.</p>
+    </div>
+
+    <div class="g-actions"><button class="btn-outline-dark" onclick="window.print()">Imprimir tablas</button></div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+
+    const CLASES = ["Elite", "Preferred", "Select", "Standard", "Express Standard 1", "Express Standard 2"];
+    const NLG = {"56": [[83, 120], [121, 133], [134, 145], [146, 167], [168, 189], [190, 207]], "57": [[86, 125], [126, 138], [139, 151], [152, 173], [174, 196], [197, 214]], "58": [[89, 129], [130, 143], [144, 156], [157, 179], [180, 203], [204, 222]], "59": [[92, 134], [135, 148], [149, 161], [162, 185], [186, 210], [211, 230]], "60": [[95, 138], [139, 153], [154, 167], [168, 191], [192, 217], [218, 238]], "61": [[98, 143], [144, 158], [159, 173], [174, 198], [199, 224], [225, 246]], "62": [[102, 148], [149, 163], [164, 178], [179, 205], [206, 232], [233, 254]], "63": [[105, 152], [153, 168], [169, 184], [185, 211], [212, 239], [240, 262]], "64": [[108, 157], [158, 174], [175, 190], [191, 218], [219, 247], [248, 270]], "65": [[112, 162], [163, 179], [180, 196], [197, 225], [226, 255], [256, 279]], "66": [[115, 167], [168, 185], [186, 202], [203, 232], [233, 263], [264, 288]], "67": [[119, 172], [173, 190], [191, 208], [209, 239], [240, 271], [272, 296]], "68": [[122, 177], [178, 196], [197, 215], [216, 246], [247, 279], [280, 305]], "69": [[126, 183], [184, 202], [203, 221], [222, 253], [254, 287], [288, 314]], "70": [[129, 188], [189, 208], [209, 227], [228, 261], [262, 296], [297, 324]], "71": [[133, 194], [195, 214], [215, 234], [235, 268], [269, 304], [305, 333]], "72": [[137, 199], [200, 220], [221, 241], [242, 276], [277, 313], [314, 342]], "73": [[141, 205], [206, 226], [227, 247], [248, 284], [285, 322], [323, 352]], "74": [[145, 211], [212, 232], [233, 254], [255, 292], [293, 330], [331, 362]], "75": [[148, 216], [217, 239], [240, 261], [262, 299], [300, 339], [340, 371]], "76": [[152, 222], [223, 245], [246, 268], [269, 308], [309, 349], [350, 381]], "77": [[156, 228], [229, 252], [253, 275], [276, 316], [317, 358], [359, 392]], "78": [[161, 234], [235, 258], [259, 282], [283, 324], [325, 367], [368, 402]], "79": [[165, 240], [241, 265], [266, 290], [291, 332], [333, 377], [378, 412]], "80": [[169, 246], [247, 272], [273, 297], [298, 341], [342, 386], [387, 423]]};
+    const MOO = {"56": [74, 197, 184, 170], "57": [77, 202, 189, 176], "58": [79, 208, 194, 182], "59": [82, 214, 199, 187], "60": [85, 220, 205, 193], "61": [88, 226, 211, 199], "62": [91, 232, 215, 205], "63": [94, 238, 220, 213], "64": [97, 245, 225, 221], "65": [100, 251, 231, 226], "66": [103, 258, 239, 232], "67": [106, 265, 245, 239], "68": [109, 274, 251, 246], "69": [112, 282, 258, 254], "70": [115, 289, 266, 262], "71": [119, 298, 274, 269], "72": [122, 305, 281, 275], "73": [126, 313, 289, 282], "74": [129, 321, 296, 289], "75": [133, 329, 303, 296], "76": [136, 338, 311, 301], "77": [140, 347, 319, 307], "78": [143, 358, 328, 313], "79": [147, 367, 336, 320], "80": [151, 376, 345, 327], "81": [154, 385, 352, 335], "82": [158, 395, 359, 343]};
+    const TA = {"M": {"54": [[119, 132, 139, 155], [123, 133, 143, 158]], "55": [[123, 136, 144, 160], [127, 138, 148, 164]], "56": [[127, 140, 149, 166], [131, 143, 153, 170]], "57": [[131, 145, 154, 172], [135, 148, 158, 176]], "58": [[135, 150, 159, 178], [140, 153, 163, 182]], "59": [[140, 155, 164, 184], [145, 158, 168, 188]], "60": [[144, 160, 169, 190], [149, 163, 173, 194]], "61": [[149, 164, 175, 196], [154, 168, 179, 200]], "62": [[154, 169, 180, 202], [159, 173, 185, 206]], "63": [[159, 174, 186, 208], [164, 178, 191, 212]], "64": [[164, 179, 192, 214], [169, 184, 197, 218]], "65": [[169, 184, 198, 220], [174, 189, 203, 225]], "66": [[174, 189, 204, 227], [179, 194, 209, 232]], "67": [[179, 195, 210, 233], [185, 200, 215, 238]], "68": [[184, 200, 215, 239], [190, 205, 221, 244]], "69": [[189, 206, 221, 244], [195, 211, 227, 249]], "70": [[195, 211, 227, 250], [200, 216, 232, 255]], "71": [[200, 217, 233, 256], [206, 222, 238, 261]], "72": [[205, 223, 239, 263], [212, 228, 244, 268]], "73": [[211, 229, 245, 269], [217, 234, 250, 274]], "74": [[217, 235, 251, 276], [222, 240, 256, 281]], "75": [[223, 241, 257, 283], [228, 246, 262, 288]], "76": [[228, 247, 263, 289], [234, 252, 268, 295]], "77": [[233, 253, 269, 296], [239, 258, 274, 302]], "78": [[238, 259, 276, 303], [244, 264, 281, 309]], "79": [[244, 265, 283, 310], [250, 270, 287, 316]], "80": [[249, 271, 289, 317], [255, 276, 293, 323]], "81": [[254, 277, 295, 324], [261, 282, 300, 331]], "82": [[260, 283, 302, 331], [266, 288, 306, 338]], "83": [[265, 289, 308, 338], [272, 294, 313, 345]], "84": [[270, 295, 314, 346], [277, 300, 319, 353]]}, "F": {"54": [[117, 128, 136, 149], [120, 132, 140, 152]], "55": [[121, 132, 141, 154], [124, 136, 145, 157]], "56": [[125, 136, 146, 159], [128, 140, 150, 162]], "57": [[129, 140, 151, 164], [133, 145, 155, 168]], "58": [[133, 144, 156, 169], [137, 150, 160, 174]], "59": [[138, 149, 161, 175], [142, 155, 165, 180]], "60": [[142, 154, 166, 181], [146, 160, 170, 186]], "61": [[147, 159, 171, 187], [151, 164, 176, 192]], "62": [[151, 164, 176, 193], [156, 169, 181, 198]], "63": [[156, 169, 181, 197], [160, 174, 186, 203]], "64": [[161, 174, 185, 202], [165, 179, 190, 207]], "65": [[165, 179, 189, 206], [170, 184, 195, 211]], "66": [[170, 184, 194, 210], [175, 189, 199, 215]], "67": [[174, 189, 199, 215], [179, 195, 204, 220]], "68": [[178, 195, 204, 220], [183, 200, 210, 225]], "69": [[182, 200, 210, 225], [187, 205, 215, 230]], "70": [[186, 205, 215, 230], [191, 210, 220, 235]], "71": [[190, 210, 221, 236], [196, 216, 226, 241]], "72": [[195, 216, 227, 242], [201, 222, 232, 247]], "73": [[200, 222, 233, 248], [206, 228, 238, 254]], "74": [[205, 228, 239, 254], [211, 233, 244, 260]], "75": [[210, 233, 244, 260], [216, 239, 251, 267]], "76": [[215, 239, 250, 267], [221, 244, 257, 273]], "77": [[220, 245, 256, 274], [226, 250, 263, 279]], "78": [[225, 250, 262, 281], [231, 256, 270, 286]], "79": [[230, 256, 268, 287], [237, 261, 277, 292]], "80": [[235, 262, 274, 293], [243, 267, 284, 299]], "81": [[240, 267, 280, 300], [249, 273, 291, 305]], "82": [[245, 273, 286, 306], [254, 279, 298, 312]], "83": [[250, 279, 292, 313], [259, 285, 305, 319]], "84": [[255, 284, 298, 319], [264, 290, 312, 325]]}};
+    const TA_CLASES = ["Preferred Elite", "Preferred Plus / Preferred Tobacco", "Preferred", "Standard (Non-Tobacco y Tobacco)"];
+    const AM = {"56": [80, 188], "57": [82, 195], "58": [85, 202], "59": [88, 209], "60": [91, 216], "61": [95, 223], "62": [97, 231], "63": [100, 238], "64": [103, 246], "65": [107, 254], "66": [110, 262], "67": [113, 270], "68": [117, 278], "69": [120, 286], "70": [123, 295], "71": [127, 303], "72": [131, 312], "73": [134, 321], "74": [138, 330], "75": [142, 339], "76": [145, 348], "77": [149, 357], "78": [153, 366], "79": [157, 376]};
+    const rAM = document.getElementById("rAM"), rFG = document.getElementById("rFG");
+    const FG = {"56": [166, 183, 152, 167], "57": [170, 187, 155, 171], "58": [174, 191, 157, 173], "59": [178, 196, 160, 176], "60": [182, 200, 163, 179], "61": [186, 205, 166, 183], "62": [190, 209, 169, 186], "63": [196, 216, 174, 191], "64": [202, 222, 179, 197], "65": [207, 228, 183, 201], "66": [213, 234, 189, 208], "67": [217, 239, 193, 212], "68": [223, 245, 198, 218], "69": [228, 251, 202, 222], "70": [235, 259, 208, 229], "71": [241, 265, 214, 235], "72": [248, 273, 221, 243], "73": [253, 278, 225, 248], "74": [260, 286, 232, 255], "75": [267, 294, 237, 261], "76": [276, 304, 246, 271], "77": [284, 312, 253, 278], "78": [293, 322, 261, 287], "79": [301, 331, 268, 295], "80": [308, 341, 274, 308], "81": [315, 349, 282, 316], "82": [325, 359, 288, 326], "83": [336, 369, 293, 336], "84": [345, 378, 298, 345]};
+    const hSel = document.getElementById("hSel"), wIn = document.getElementById("wIn");
+    const aIn = document.getElementById("aIn"), sSel = document.getElementById("sSel"), rTA = document.getElementById("rTA");
+    const rNLG = document.getElementById("rNLG"), rMOO = document.getElementById("rMOO");
+
+    function set(el, cls, html) { el.parentElement.className = "w-result " + cls; el.innerHTML = html; }
+
+    function mark(tableId, h, col) {
+      document.querySelectorAll("#" + tableId + " tbody tr").forEach(tr => {
+        tr.classList.toggle("sel", tr.dataset.h === h);
+        tr.querySelectorAll("td").forEach((td, j) => td.classList.toggle("hit", tr.dataset.h === h && j === col));
+      });
+    }
+
+    function update() {
+      const h = hSel.value, w = Math.round(parseFloat(wIn.value));
+      const hl = h ? hSel.options[hSel.selectedIndex].text : "";
+      const age = parseInt(aIn.value), sx = sSel.value;
+      mark("tNLG", h, -1); mark("tMOO", h, -1); mark("tTA_M", h, -1); mark("tTA_F", h, -1); mark("tAM", h, -1); mark("tFG", h, -1);
+      const all = [rNLG, rMOO, rTA, rAM, rFG];
+      if (!h) { all.forEach(r => set(r, "", "Escribe la estatura y el peso del cliente.")); return; }
+      if (!w) { all.forEach(r => set(r, "", "Ahora escribe el peso en libras.")); return; }
+      const bmi = (w * 703 / Math.pow(+h, 2)).toFixed(1);
+
+      // National Life Group
+      const r = NLG[h];
+      if (age && age < 16) set(rNLG, "warn", "Menor de 16 años<span>Esta tabla es para clientes de 16 años en adelante.</span>");
+      else if (!r) set(rNLG, "warn", "Estatura fuera de la tabla<span>La tabla de National Life va de 4' 8\" a 6' 8\". Consulta con underwriting.</span>");
+      else {
+        const k = r.findIndex(([a, b]) => w >= a && w <= b);
+        if (k >= 0) { mark("tNLG", h, k + 1); set(rNLG, k <= 2 ? "good" : "ok", "Califica en <b>" + CLASES[k] + "</b><span>IMC " + bmi + " · rango " + r[k][0] + "–" + r[k][1] + " lb</span>"); }
+        else if (w < r[0][0]) { mark("tNLG", h, -1); set(rNLG, "warn", "Peso por debajo de la tabla<span>IMC " + bmi + ". Consideración individual: consulta con underwriting.</span>"); }
+        else set(rNLG, "bad", "Peso por encima de la tabla<span>El máximo para " + hl + " es " + r[5][1] + " lb. Probablemente no califica.</span>");
+      }
+
+      // Mutual of Omaha IUL Express: [min, max, maxImpedimentos, maxDI]
+      const m = MOO[h];
+      if (age && (age < 18 || age > 75)) set(rMOO, "warn", "Fuera de las edades de IUL Express<span>Mutual of Omaha emite IUL Express de 18 a 75 años.</span>");
+      else if (!m) set(rMOO, "warn", "Estatura fuera de la tabla<span>Consulta con underwriting.</span>");
+      else if (w < m[0]) { mark("tMOO", h, 1); set(rMOO, "bad", "Peso por debajo del mínimo<span>El mínimo para " + hl + " es " + m[0] + " lb.</span>"); }
+      else if (w > m[1]) { mark("tMOO", h, 2); set(rMOO, "bad", "Peso por encima del máximo<span>El máximo para " + hl + " es " + m[1] + " lb. No califica en IUL Express.</span>"); }
+      else {
+        const notes = [];
+        if (w > m[2]) notes.push("⚠ Pasa el peso de Tabla 2 (" + m[2] + " lb): si además tiene diabetes después de los 45, presión alta, asma con tabaco o PVD, se declina.");
+        if (w > m[3]) notes.push("No califica para el rider de incapacidad (DI): máximo " + m[3] + " lb.");
+        mark("tMOO", h, w > m[2] ? 3 : 2);
+        set(rMOO, notes.length ? "ok" : "good", "<b>Califica por peso</b><span>Rango " + m[0] + "–" + m[1] + " lb · IMC " + bmi + "</span>" + notes.map(n => "<span class='n'>" + n + "</span>").join(""));
+      }
+      // Americo Instant Decision IUL: rango aceptable [min, max]
+      const am = AM[h];
+      if (age && (age < 18 || age > 65)) set(rAM, "warn", "Fuera de las edades de emisión<span>Americo emite este IUL de 18 a 65 años.</span>");
+      else if (!am) set(rAM, "warn", "Estatura fuera de la tabla<span>La tabla de Americo va de 4' 8\" a 6' 7\". Consulta con underwriting.</span>");
+      else if (w < am[0]) { mark("tAM", h, 1); set(rAM, "bad", "Peso por debajo del mínimo<span>El mínimo para " + hl + " es " + am[0] + " lb. No califica.</span>"); }
+      else if (w > am[1]) { mark("tAM", h, 2); set(rAM, "bad", "Peso por encima del máximo<span>El máximo para " + hl + " es " + am[1] + " lb. No califica (Americo no ofrece recargo en este producto).</span>"); }
+      else { mark("tAM", h, 2); set(rAM, "good", "<b>Califica por peso</b><span>Rango " + am[0] + "–" + am[1] + " lb · IMC " + bmi + "</span><span class='n'>Clase según nicotina: Non-nicotine o Nicotine.</span>"); }
+
+      // F&G: máximos Preferred/Standard por sexo (16-50); +5 lb de 51 a 65, +10 lb de 66+
+      if (!sx || !age) set(rFG, "", "Escribe también la <b>edad</b> y el <b>sexo</b> del cliente.");
+      else if (age < 16) set(rFG, "warn", "Menor de 16 años<span>Esta tabla es para clientes de 16 años en adelante.</span>");
+      else {
+        const f = FG[h];
+        if (!f) set(rFG, "warn", "Estatura fuera de la tabla<span>Consulta con underwriting.</span>");
+        else {
+          const add = age >= 66 ? 10 : age >= 51 ? 5 : 0, base = sx === "M" ? 0 : 2;
+          const pref = f[base] + add, std = f[base + 1] + add;
+          const extraTxt = add ? " (incluye +" + add + " lb por edad)" : "";
+          if (w <= pref) { mark("tFG", h, base + 1); set(rFG, "good", "Califica en <b>Preferred</b><span>Hasta " + pref + " lb" + extraTxt + " · IMC " + bmi + "</span>"); }
+          else if (w <= std) { mark("tFG", h, base + 2); set(rFG, "ok", "Califica en <b>Standard</b><span>Hasta " + std + " lb" + extraTxt + " · IMC " + bmi + "</span>"); }
+          else { mark("tFG", h, base + 2); set(rFG, "bad", "Peso por encima de la tabla<span>El máximo Standard para " + hl + " es " + std + " lb" + extraTxt + ". Consulta con underwriting.</span>"); }
+        }
+      }
+
+      // Transamerica FFIUL: pesos máximos por clase, según sexo y edad
+      if (!sx || !age) set(rTA, "", "Escribe también la <b>edad</b> y el <b>sexo</b> del cliente.");
+      else if (age < 18) set(rTA, "warn", "Menor de 18 años<span>Esta tabla es para clientes de 18 años en adelante.</span>");
+      else {
+        const t = TA[sx][h];
+        if (!t) set(rTA, "warn", "Estatura fuera de la tabla<span>Consulta con underwriting.</span>");
+        else {
+          const senior = age >= 71, lims = senior ? t[1] : t[0];
+          let k = lims.findIndex((mx, j) => !(senior && j === 0) && w <= mx);
+          const tid = "tTA_" + sx, off = senior ? 5 : 1;
+          if (k >= 0) {
+            mark(tid, h, senior ? 5 + k : 1 + k);
+            set(rTA, k <= 1 ? "good" : "ok", "Califica en <b>" + TA_CLASES[k].split(" / ")[0] + "</b><span>Hasta " + lims[k] + " lb · " + (senior ? "71 años o más" : "18 a 70 años") + " · " + (sx === "M" ? "hombre" : "mujer") + " · IMC " + bmi + "</span>" + (k === 1 ? "<span class='n'>Si fuma: Preferred Tobacco.</span>" : ""));
+          } else {
+            mark(tid, h, senior ? 8 : 4);
+            set(rTA, "bad", "Peso por encima de la tabla<span>El máximo estándar para " + hl + " es " + lims[3] + " lb. No califica en clases estándar: consulta con underwriting.</span>");
+          }
+        }
+      }
+    }
+    hSel.addEventListener("change", update);
+    wIn.addEventListener("input", update);
+    aIn.addEventListener("input", update);
+    sSel.addEventListener("change", () => { update(); if (sSel.value) showSex(sSel.value); });
+
+    function showSex(sv) {
+      document.querySelectorAll("#taSex button").forEach(b => b.classList.toggle("active", b.dataset.s === sv));
+      document.querySelectorAll("#p-ta .w-table-wrap").forEach(d => d.hidden = d.dataset.s !== sv);
+    }
+    document.querySelectorAll("#taSex button").forEach(b => b.addEventListener("click", () => showSex(b.dataset.s)));
+
+    // Pestañas de las tablas
+    document.querySelectorAll("#tabs button").forEach(b => b.addEventListener("click", () => {
+      document.querySelectorAll("#tabs button").forEach(x => x.classList.toggle("active", x === b));
+      document.querySelectorAll(".w-panel").forEach(p => p.hidden = p.id !== "p-" + b.dataset.t);
+    }));
+  </script>
+</body>
+</html>

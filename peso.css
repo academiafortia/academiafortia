@@ -1,0 +1,109 @@
+/* ===== Tabla de peso y estatura ===== */
+.w-carrier {
+  margin: 26px 0 18px; padding: 10px 16px; font-size: 0.88rem; color: #3E4258;
+  background: #F2F4FA; border-left: 4px solid var(--navy); border-radius: 6px;
+}
+.w-carrier b { color: var(--navy); }
+
+.w-calc {
+  padding: 24px; margin-bottom: 18px; border-radius: 14px; color: #fff;
+  background: var(--navy); border-top: 4px solid var(--gold);
+}
+.w-calc h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.6rem; margin-bottom: 16px; }
+.w-inputs { display: flex; gap: 16px; flex-wrap: wrap; }
+.w-inputs label { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 180px; }
+.w-inputs span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+.w-inputs select, .w-inputs input {
+  padding: 12px 14px; font-family: inherit; font-size: 1.05rem; color: #fff;
+  background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; outline: none;
+}
+.w-inputs select option { color: #1C1F35; }
+.w-inputs select:focus, .w-inputs input:focus { border-color: var(--gold); }
+
+.w-result {
+  margin-top: 18px; padding: 16px 18px; border-radius: 10px; font-size: 1rem;
+  color: var(--text-soft); background: rgba(255,255,255,0.06);
+}
+.w-result b { font-size: 1.35rem; }
+.w-result span { display: block; margin-top: 4px; font-size: 0.85rem; opacity: 0.9; }
+.w-result.good { color: #fff; background: rgba(76, 175, 120, 0.25); border-left: 4px solid #5CC48A; }
+.w-result.ok   { color: #fff; background: rgba(220, 182, 104, 0.2); border-left: 4px solid var(--gold); }
+.w-result.warn { color: #fff; background: rgba(120, 150, 220, 0.2); border-left: 4px solid #8FA8E6; }
+.w-result.bad  { color: #fff; background: rgba(230, 110, 100, 0.22); border-left: 4px solid #F08A7E; }
+
+.w-table-wrap { overflow-x: auto; border: 1px solid #E6E7EE; border-radius: 12px; }
+.w-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: center; }
+.w-table th {
+  padding: 10px 8px; font-size: 0.78rem; font-weight: 600; color: #fff; background: var(--navy);
+  position: sticky; top: 0;
+}
+.w-table th small { display: block; font-weight: 400; font-size: 0.68rem; color: var(--gold-light); margin-top: 2px; }
+.w-table td { padding: 7px 8px; border-top: 1px solid #EEF0F5; white-space: nowrap; }
+.w-table td.h { font-weight: 600; color: var(--navy); background: #F7F5EF; }
+.w-table tbody tr:nth-child(even) td:not(.h) { background: #FAFAFC; }
+.w-table tr.sel td { background: #FCF1D6 !important; font-weight: 600; }
+.w-table tr.sel td.hit, .w-table td.hit { background: var(--gold) !important; color: var(--navy-dark); }
+.w-src { margin-top: 12px; font-size: 0.75rem; color: #8A8DA0; }
+
+@media print {
+  .w-calc, .w-carrier { display: none; }
+  body.paper main > .lead { display: none; }
+  .w-table { font-size: 0.78rem; }
+  .w-table td { padding: 4px 6px; }
+  .w-table-wrap { overflow: visible; }
+}
+body.paper .e-h2 { color: var(--navy); margin-top: 40px; }
+body.paper .e-sn { color: #5A5E73; }
+
+/* ===== Varios carriers ===== */
+.w-results { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+.w-results .w-result { margin-top: 0; }
+.w-result > small { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.w-result .r { color: inherit; }
+.w-result .n { margin-top: 8px !important; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 0.82rem; }
+
+.e-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.e-tabs button {
+  padding: 10px 16px; font-family: inherit; font-size: 0.86rem; font-weight: 600; cursor: pointer;
+  color: var(--navy); background: #fff; border: 1px solid #D9DBE5; border-radius: 9px 9px 0 0; border-bottom: none;
+}
+.e-tabs button:hover { border-color: var(--gold); }
+.e-tabs button.active { color: #fff; background: var(--navy); border-color: var(--navy); box-shadow: inset 0 3px 0 var(--gold); }
+.e-panel { border: 1px solid #E6E7EE; border-radius: 0 12px 12px 12px; padding: 20px; margin-bottom: 18px; }
+.e-panel h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.6rem; color: var(--navy); margin-bottom: 8px; }
+.w-meta { font-size: 0.85rem; color: #5A5E73; line-height: 1.5; margin-bottom: 14px; }
+.w-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 6px 0 12px; }
+.w-facts div { padding: 10px 14px; background: #F7F5EF; border-radius: 10px; border-top: 3px solid var(--gold); }
+.w-facts b { display: block; font-size: 0.78rem; color: var(--navy); }
+.w-facts span { font-size: 0.95rem; font-weight: 600; color: #1C1F35; }
+.w-note { margin-top: 14px; }
+
+@media (max-width: 760px) {
+  .w-results, .w-facts { grid-template-columns: 1fr; }
+  .e-tabs button { border-radius: 9px; border-bottom: 1px solid #D9DBE5; }
+  .e-panel { border-radius: 12px; margin-top: 8px; }
+}
+@media print {
+  .e-tabs, .g-actions { display: none !important; }
+  .w-panel[hidden] { display: block !important; }
+  .w-panel { break-before: page; border: none; padding: 0; }
+  #p-nlg { break-before: auto; }
+}
+/* Transamerica + edad/sexo */
+.w-inputs label.w-small { flex: 0.6; min-width: 120px; }
+.w-results { grid-template-columns: repeat(3, 1fr); }
+.w-sex { display: inline-flex; gap: 0; margin-bottom: 12px; border: 1px solid #D9DBE5; border-radius: 9px; overflow: hidden; }
+.w-sex button { padding: 8px 18px; font-family: inherit; font-size: 0.85rem; font-weight: 600; border: none; background: #fff; color: var(--navy); cursor: pointer; }
+.w-sex button.active { background: var(--navy); color: #fff; }
+.w-ta th { font-size: 0.72rem; }
+.w-ta thead tr:first-child th { background: #1C1F35; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; }
+.w-ta td.sep { color: #B5B8C6; }
+@media (max-width: 1000px) { .w-results { grid-template-columns: 1fr; } }
+@media print { #p-ta .w-table-wrap[hidden] { display: block !important; break-before: page; } }
+.w-results { grid-template-columns: repeat(2, 1fr); }
+.w-narrow { max-width: 520px; }
+@media (max-width: 760px) { .w-results { grid-template-columns: 1fr; } }
+.w-narrow2 { max-width: 720px; }
+.w-results { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 1000px) { .w-results { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 760px) { .w-results { grid-template-columns: 1fr; } }
