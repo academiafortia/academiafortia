@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Contenido</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <style>
+.r-sec { margin-top: 34px; }
+.r-sec .g-step-head { border-radius: 10px 10px 0 0; }
+.r-body { padding: 18px 20px; border: 1px solid #E6E7EE; border-top: none; border-radius: 0 0 10px 10px; }
+.r-body > * + * { margin-top: 14px; }
+.r-body p, .r-body li { font-size: 0.92rem; line-height: 1.6; }
+.r-list { list-style: none; }
+.r-list li { position: relative; padding: 5px 0 5px 22px; }
+.r-list li::before { content: ""; position: absolute; left: 4px; top: 13px; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.r-list b { color: var(--navy); }
+.r-copy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.r-copy { display: flex; flex-direction: column; border: 1px solid #E6E7EE; border-radius: 12px; overflow: hidden; background: #fff; }
+.r-copy h4 { padding: 10px 14px; font-size: 0.85rem; font-weight: 600; color: var(--navy); background: #F7F5EF; border-bottom: 1px solid #ECE6D8; }
+.r-copy .r-text { flex: 1; padding: 14px; font-size: 0.9rem; line-height: 1.6; white-space: pre-line; color: #1C1F35; }
+.r-copy button { margin: 0 14px 14px; padding: 9px; font-family: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; border: none; border-radius: 9px; color: var(--navy-dark); background: linear-gradient(135deg, var(--gold-light), var(--gold)); }
+.r-copy button.ok { background: #5CC48A; color: #fff; }
+.r-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.r-card { padding: 14px; border-radius: 12px; background: #F7F5EF; border-top: 3px solid var(--gold); }
+.r-card .n { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font-size: 0.8rem; font-weight: 600; color: var(--navy-dark); background: var(--gold); margin-bottom: 8px; }
+.r-card b { display: block; color: var(--navy); font-size: 0.95rem; }
+.r-card span { display: block; font-size: 0.84rem; color: #5A5E73; margin-top: 4px; line-height: 1.45; }
+.r-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; border: 1px solid #E6E7EE; border-radius: 10px; overflow: hidden; }
+.r-table th { padding: 10px 12px; text-align: left; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--navy); }
+.r-table td { padding: 10px 12px; border-top: 1px solid #EEF0F5; vertical-align: top; line-height: 1.5; }
+.r-table td:first-child { font-weight: 600; color: var(--navy); background: #F7F5EF; white-space: nowrap; }
+.r-weeks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.r-week { border: 1px solid #E6E7EE; border-radius: 12px; overflow: hidden; }
+.r-week h4 { padding: 10px 14px; font-size: 0.88rem; color: #fff; background: var(--navy); border-bottom: 3px solid var(--gold); }
+.r-week h4 em { font-style: normal; color: var(--gold-light); font-weight: 400; }
+.r-week ol { list-style: none; padding: 8px 14px 12px; }
+.r-week li { display: grid; grid-template-columns: 34px 1fr; gap: 6px; padding: 6px 0; font-size: 0.88rem; border-bottom: 1px dashed #E6E7EE; }
+.r-week li:last-child { border-bottom: none; }
+.r-week li span { font-size: 0.72rem; font-weight: 600; color: #9A7428; padding-top: 2px; }
+.r-hooks { counter-reset: h; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; list-style: none; }
+.r-hooks li { counter-increment: h; display: flex; gap: 10px; align-items: center; padding: 10px 12px; font-size: 0.9rem; border: 1px solid #E6E7EE; border-radius: 10px; cursor: pointer; transition: border-color .2s; }
+.r-hooks li:hover { border-color: var(--gold); }
+.r-hooks li::before { content: counter(h); flex-shrink: 0; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; font-size: 0.75rem; font-weight: 600; color: var(--navy-dark); background: var(--gold); }
+.r-hooks li.ok { border-color: #5CC48A; background: #EFFAF3; }
+.r-no { list-style: none; }
+.r-no li { padding: 8px 12px; margin-bottom: 6px; font-size: 0.9rem; border-radius: 8px; background: #FDF0EE; border-left: 4px solid #E07A6E; }
+.r-no li.yes { background: #EFFAF3; border-left-color: #5CC48A; }
+.r-next { margin-top: 30px; }
+.r-next a { color: #9A7428; font-weight: 600; text-decoration: underline; }
+@media (max-width: 760px) { .r-weeks, .r-hooks { grid-template-columns: 1fr; } .r-table td:first-child { white-space: normal; } }
+</style>
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte4-marketing.html" class="back">← Volver a marketing digital</a>
+    <p class="eyebrow">Parte 4 · Marketing digital</p>
+    <h1 id="pageTitle">Contenido</h1>
+    <p class="lead">Qué publicar para que te escriban: los tipos de contenido, un calendario de 4 semanas, frases para tus reels y lo que no se puede decir.</p>
+
+    <section class="r-sec">
+      <div class="g-step-head"><span class="g-num">1</span><h3>Los 4 tipos de contenido</h3></div>
+      <div class="r-body">
+
+        <p>Rota estos cuatro tipos durante la semana. Si solo publicas de un tipo, tu perfil se vuelve aburrido o parece solo de ventas.</p>
+        <table class="r-table">
+          <thead><tr><th>Tipo</th><th>Para qué sirve</th><th>Ejemplo</th></tr></thead>
+          <tbody>
+            <tr><td>Educar</td><td>Que te vean como experto</td><td>“3 cosas que nadie te dice del seguro de tu trabajo”</td></tr>
+            <tr><td>Conectar</td><td>Que te conozcan como persona</td><td>Por qué empezaste en seguros</td></tr>
+            <tr><td>Demostrar</td><td>Que vean resultados reales</td><td>Entrega de póliza, testimonio de un cliente</td></tr>
+            <tr><td>Invitar</td><td>Que te escriban</td><td>“Escríbeme PROTEGER y te explico”</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="r-sec">
+      <div class="g-step-head"><span class="g-num">2</span><h3>Calendario de 4 semanas</h3></div>
+      <div class="r-body">
+
+        <p>Una idea por día, de lunes a viernes. Cuando termines la semana 4, vuelve a empezar con historias nuevas.</p>
+        <div class="r-weeks"><div class="r-week"><h4>Semana 1 · <em>Quién soy</em></h4><ol><li><span>Lun</span>Mi historia</li><li><span>Mar</span>Qué hago, en 30 segundos</li><li><span>Mié</span>Un día en mi trabajo</li><li><span>Jue</span>Por qué me importa la protección familiar</li><li><span>Vie</span>Invitación a escribirme</li></ol></div><div class="r-week"><h4>Semana 2 · <em>Educar</em></h4><ol><li><span>Lun</span>Qué es un seguro de vida</li><li><span>Mar</span>Seguro del trabajo vs. seguro propio</li><li><span>Mié</span>Qué son los beneficios en vida</li><li><span>Jue</span>Mitos del seguro de vida</li><li><span>Vie</span>Preguntas y respuestas</li></ol></div><div class="r-week"><h4>Semana 3 · <em>Demostrar</em></h4><ol><li><span>Lun</span>Entrega de póliza</li><li><span>Mar</span>Testimonio de un cliente</li><li><span>Mié</span>“Lo que me dijo un cliente esta semana”</li><li><span>Jue</span>Antes y después de proteger a su familia</li><li><span>Vie</span>Llamado a agendar</li></ol></div><div class="r-week"><h4>Semana 4 · <em>Conectar e invitar</em></h4><ol><li><span>Lun</span>Mi familia y por qué hago esto</li><li><span>Mar</span>Errores que veo seguido</li><li><span>Mié</span>Respondo sus preguntas en vivo</li><li><span>Jue</span>Una historia que me marcó</li><li><span>Vie</span>Invitación a una asesoría gratis</li></ol></div></div>
+      </div>
+    </section>
+
+    <section class="r-sec">
+      <div class="g-step-head"><span class="g-num">3</span><h3>Diez frases para empezar un reel</h3></div>
+      <div class="r-body">
+
+        <p>Los primeros 3 segundos deciden si la gente se queda. Empieza con una de estas frases. <b>Haz clic en una para copiarla.</b></p>
+        <ol class="r-hooks"><li>Si te pasara algo mañana, ¿tu familia sabría qué hacer?</li><li>El seguro de tu trabajo tiene un problema que nadie te cuenta…</li><li>Esto es lo que le pregunto a todos mis clientes antes de empezar.</li><li>Hoy entregué esta póliza y quiero contarte por qué me emocionó.</li><li>3 errores que veo en familias latinas en EE. UU.</li><li>¿Sabías que puedes usar tu seguro de vida estando en vida?</li><li>No necesitas ser rico para proteger a tu familia.</li><li>Lo que más me preguntan cuando digo que vendo seguros.</li><li>Si tienes hijos, mira esto hasta el final.</li><li>Esto lo hubiera querido saber cuando llegué a este país.</li></ol>
+      </div>
+    </section>
+
+    <section class="r-sec">
+      <div class="g-step-head"><span class="g-num">4</span><h3>Un texto de ejemplo listo para publicar</h3></div>
+      <div class="r-body">
+
+        <div class="r-copy-grid"><div class="r-copy"><h4>Publicación de entrega de póliza</h4><div class="r-text">Hoy entregué esta póliza y no me canso de esta parte del trabajo 💛
+[Nombre] me dijo: “Ahora sí duermo tranquila”. Y eso es todo.
+Proteger a tu familia no tiene que ser complicado ni caro.
+¿Quieres saber qué opciones tienes? Escríbeme PROTEGER 👇</div><button>Copiar texto</button></div></div>
+        <p>Recuerda pedir permiso al cliente antes de usar su nombre o su foto. Si prefiere no aparecer, cambia “[Nombre]” por “Mi cliente”.</p>
+      </div>
+    </section>
+
+    <section class="r-sec">
+      <div class="g-step-head"><span class="g-num">!</span><h3>Lo que NO se puede publicar</h3></div>
+      <div class="r-body">
+
+        <ul class="r-no">
+          <li>❌ Prometer rendimientos o ganancias (“vas a ganar 10%”).</li>
+          <li>❌ Llamar al IUL “inversión” o decir que es “sin riesgo”.</li>
+          <li>❌ Decir “libre de impuestos” sin explicar las condiciones.</li>
+          <li>❌ Usar logos o nombres de los carriers sin su aprobación.</li>
+          <li>❌ Mostrar datos del cliente: montos, números de póliza o información de salud.</li>
+          <li class="yes">✅ Antes de publicar algo nuevo sobre el producto, pregúntale a tu líder si está aprobado.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="g-tip r-next"><b>¿Tu perfil todavía no está listo?</b> Empieza por <a href="instagram.html">Instagram</a>: foto, biografía e historias destacadas.</div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+
+    // Botones de copiar: copian el texto de la tarjeta (o de la frase)
+    async function copyText(txt, el, label) {
+      try { await navigator.clipboard.writeText(txt); }
+      catch (e) { const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+      el.classList.add("ok"); if (label) el.textContent = "¡Copiado!";
+      setTimeout(() => { el.classList.remove("ok"); if (label) el.textContent = label; }, 1600);
+    }
+    document.querySelectorAll(".r-copy button").forEach(b => b.addEventListener("click", () =>
+      copyText(b.parentElement.querySelector(".r-text").innerText.trim(), b, "Copiar texto")));
+    document.querySelectorAll(".r-hooks li").forEach(li => { li.title = "Clic para copiar"; li.addEventListener("click", () => copyText(li.innerText.trim(), li)); });
+  </script>
+</body>
+</html>

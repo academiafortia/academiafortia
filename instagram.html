@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Instagram</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <style>
+.r-sec { margin-top: 34px; }
+.r-sec .g-step-head { border-radius: 10px 10px 0 0; }
+.r-body { padding: 18px 20px; border: 1px solid #E6E7EE; border-top: none; border-radius: 0 0 10px 10px; }
+.r-body > * + * { margin-top: 14px; }
+.r-body p, .r-body li { font-size: 0.92rem; line-height: 1.6; }
+.r-list { list-style: none; }
+.r-list li { position: relative; padding: 5px 0 5px 22px; }
+.r-list li::before { content: ""; position: absolute; left: 4px; top: 13px; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.r-list b { color: var(--navy); }
+.r-copy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.r-copy { display: flex; flex-direction: column; border: 1px solid #E6E7EE; border-radius: 12px; overflow: hidden; background: #fff; }
+.r-copy h4 { padding: 10px 14px; font-size: 0.85rem; font-weight: 600; color: var(--navy); background: #F7F5EF; border-bottom: 1px solid #ECE6D8; }
+.r-copy .r-text { flex: 1; padding: 14px; font-size: 0.9rem; line-height: 1.6; white-space: pre-line; color: #1C1F35; }
+.r-copy button { margin: 0 14px 14px; padding: 9px; font-family: inherit; font-size: 0.82rem; font-weight: 600; cursor: pointer; border: none; border-radius: 9px; color: var(--navy-dark); background: linear-gradient(135deg, var(--gold-light), var(--gold)); }
+.r-copy button.ok { background: #5CC48A; color: #fff; }
+.r-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.r-card { padding: 14px; border-radius: 12px; background: #F7F5EF; border-top: 3px solid var(--gold); }
+.r-card .n { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font-size: 0.8rem; font-weight: 600; color: var(--navy-dark); background: var(--gold); margin-bottom: 8px; }
+.r-card b { display: block; color: var(--navy); font-size: 0.95rem; }
+.r-card span { display: block; font-size: 0.84rem; color: #5A5E73; margin-top: 4px; line-height: 1.45; }
+.r-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; border: 1px solid #E6E7EE; border-radius: 10px; overflow: hidden; }
+.r-table th { padding: 10px 12px; text-align: left; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--navy); }
+.r-table td { padding: 10px 12px; border-top: 1px solid #EEF0F5; vertical-align: top; line-height: 1.5; }
+.r-table td:first-child { font-weight: 600; color: var(--navy); background: #F7F5EF; white-space: nowrap; }
+.r-weeks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.r-week { border: 1px solid #E6E7EE; border-radius: 12px; overflow: hidden; }
+.r-week h4 { padding: 10px 14px; font-size: 0.88rem; color: #fff; background: var(--navy); border-bottom: 3px solid var(--gold); }
+.r-week h4 em { font-style: normal; color: var(--gold-light); font-weight: 400; }
+.r-week ol { list-style: none; padding: 8px 14px 12px; }
+.r-week li { display: grid; grid-template-columns: 34px 1fr; gap: 6px; padding: 6px 0; font-size: 0.88rem; border-bottom: 1px dashed #E6E7EE; }
+.r-week li:last-child { border-bottom: none; }
+.r-week li span { font-size: 0.72rem; font-weight: 600; color: #9A7428; padding-top: 2px; }
+.r-hooks { counter-reset: h; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; list-style: none; }
+.r-hooks li { counter-increment: h; display: flex; gap: 10px; align-items: center; padding: 10px 12px; font-size: 0.9rem; border: 1px solid #E6E7EE; border-radius: 10px; cursor: pointer; transition: border-color .2s; }
+.r-hooks li:hover { border-color: var(--gold); }
+.r-hooks li::before { content: counter(h); flex-shrink: 0; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; font-size: 0.75rem; font-weight: 600; color: var(--navy-dark); background: var(--gold); }
+.r-hooks li.ok { border-color: #5CC48A; background: #EFFAF3; }
+.r-no { list-style: none; }
+.r-no li { padding: 8px 12px; margin-bottom: 6px; font-size: 0.9rem; border-radius: 8px; background: #FDF0EE; border-left: 4px solid #E07A6E; }
+.r-no li.yes { background: #EFFAF3; border-left-color: #5CC48A; }
+.r-next { margin-top: 30px; }
+.r-next a { color: #9A7428; font-weight: 600; text-decoration: underline; }
+@media (max-width: 760px) { .r-weeks, .r-hooks { grid-template-columns: 1fr; } .r-table td:first-child { white-space: normal; } }
+</style>
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte4-marketing.html" class="back">← Volver a marketing digital</a>
+    <p class="eyebrow">Parte 4 · Marketing digital</p>
+    <h1 id="pageTitle">Instagram</h1>
+    <p class="lead">Un perfil que da confianza: cómo armarlo, qué destacar y cómo responder para conseguir la llamada.</p>
+
+    <section class="r-sec">
+      <div class="g-step-head"><span class="g-num">1</span><h3>Arma tu perfil en 10 minutos</h3></div>
+      <div class="r-body">
+
+        <ul class="r-list">
+          <li><b>Foto:</b> de frente, sonriendo y con fondo limpio. Nada de logos ni fotos de grupo.</li>
+          <li><b>Nombre</b> (el campo que aparece en las búsquedas): <em>Tu nombre | Seguros de vida</em>. Ejemplo: Lucía Acosta | Seguros de vida.</li>
+          <li><b>Biografía:</b> qué haces + para quién + un llamado a la acción. Elige una de estas y ajústala:</li>
+          <li><b>Enlace:</b> que lleve directo a tu WhatsApp: <em>wa.me/1</em> seguido de tu número sin espacios ni guiones.</li>
+        </ul>
+        <div class="r-copy-grid"><div class="r-copy"><h4>Biografía 1</h4><div class="r-text">Ayudo a familias hispanas en EE. UU. a proteger su futuro 🛡️
+Asesoría en español
+Escríbeme 👇</div><button>Copiar texto</button></div><div class="r-copy"><h4>Biografía 2</h4><div class="r-text">Protección para tu familia y ahorro para tu retiro 💛
+Agente licenciada
+Agenda tu llamada gratis 👇</div><button>Copiar texto</button></div><div class="r-copy"><h4>Biografía 3</h4><div class="r-text">Que tu familia nunca quede desprotegida 🤝
+Te explico tus opciones sin complicaciones
+WhatsApp 👇</div><button>Copiar texto</button></div></div>
+      </div>
+    </section>
+
+    <section class="r-sec">
+      <div class="g-step-head"><span class="g-num">2</span><h3>Cinco historias destacadas que debes tener</h3></div>
+      <div class="r-body">
+
+        <p>Las historias destacadas son lo primero que ve alguien que entra a tu perfil. Con estas cinco, cualquier persona entiende quién eres y cómo hablar contigo.</p>
+        <div class="r-cards">
+          <div class="r-card"><span class="n">1</span><b>Quién soy</b><span>Tu historia y por qué haces este trabajo.</span></div>
+          <div class="r-card"><span class="n">2</span><b>¿Qué es un IUL?</b><span>Explicado en 3 o 4 historias sencillas.</span></div>
+          <div class="r-card"><span class="n">3</span><b>Clientes</b><span>Entregas de póliza y mensajes de agradecimiento, siempre con permiso.</span></div>
+          <div class="r-card"><span class="n">4</span><b>Preguntas</b><span>Las que más te hacen, con su respuesta.</span></div>
+          <div class="r-card"><span class="n">5</span><b>Agenda</b><span>Cómo y cuándo hablar contigo.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="r-sec">
+      <div class="g-step-head"><span class="g-num">3</span><h3>Rutina diaria de 20 minutos</h3></div>
+      <div class="r-body">
+
+        <div class="r-cards">
+          <div class="r-card"><span class="n">1</span><b>3 historias</b><span>Una de tu día, una que enseñe algo y una que invite a escribirte.</span></div>
+          <div class="r-card"><span class="n">2</span><b>Responde todo</b><span>Contesta cada mensaje directo antes de que pasen 24 horas.</span></div>
+          <div class="r-card"><span class="n">3</span><b>10 comentarios</b><span>Comenta publicaciones de tu comunidad: tu ciudad, grupos latinos y negocios locales.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="r-sec">
+      <div class="g-step-head"><span class="g-num">4</span><h3>Respuestas para mensajes directos frecuentes</h3></div>
+      <div class="r-body">
+
+        <p>Cuando alguien te escribe, el objetivo no es explicar todo por mensaje: es <b>conseguir la llamada</b>. Copia y ajusta:</p>
+        <div class="r-copy-grid"><div class="r-copy"><h4>“¿Cuánto cuesta?”</h4><div class="r-text">¡Buena pregunta! Depende de tu edad, tu salud y lo que quieras proteger. En una llamada de 15 minutos te digo exactamente. ¿Te queda mejor hoy o mañana?</div><button>Copiar texto</button></div><div class="r-copy"><h4>“Info” / “Más información”</h4><div class="r-text">¡Hola! Con gusto te explico. Para darte opciones reales necesito conocerte un poquito. ¿Te puedo llamar? ¿A qué hora te queda bien?</div><button>Copiar texto</button></div><div class="r-copy"><h4>“Ya tengo seguro en el trabajo”</h4><div class="r-text">¡Qué bueno que estés protegido! Una pregunta: ¿sabes qué pasa con ese seguro si cambias de trabajo? Te puedo ayudar a revisarlo sin compromiso.</div><button>Copiar texto</button></div></div>
+      </div>
+    </section>
+
+    <div class="g-tip r-next"><b>Siguiente paso:</b> con tu perfil listo, mira <a href="contenido.html">qué publicar</a> para que te escriban.</div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+
+    // Botones de copiar: copian el texto de la tarjeta (o de la frase)
+    async function copyText(txt, el, label) {
+      try { await navigator.clipboard.writeText(txt); }
+      catch (e) { const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+      el.classList.add("ok"); if (label) el.textContent = "¡Copiado!";
+      setTimeout(() => { el.classList.remove("ok"); if (label) el.textContent = label; }, 1600);
+    }
+    document.querySelectorAll(".r-copy button").forEach(b => b.addEventListener("click", () =>
+      copyText(b.parentElement.querySelector(".r-text").innerText.trim(), b, "Copiar texto")));
+    document.querySelectorAll(".r-hooks li").forEach(li => { li.title = "Clic para copiar"; li.addEventListener("click", () => copyText(li.innerText.trim(), li)); });
+  </script>
+</body>
+</html>
