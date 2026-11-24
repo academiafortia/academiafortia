@@ -12,19 +12,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=5">
   <style>
-.hr-sec { margin-top: 40px; }
-.hr-sec > p { color: var(--text-soft); font-size: 0.92rem; margin: 4px 0 18px; }
-.hr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
-.hr-card { display: flex; flex-direction: column; gap: 6px; padding: 18px; border-radius: 14px; background: var(--navy-card); border: 1px solid rgba(255,255,255,0.08); transition: transform .2s, border-color .2s; }
-a.hr-card:hover { transform: translateY(-2px); border-color: var(--gold); }
-.hr-card .ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; font-size: 0.85rem; font-weight: 600; color: var(--navy-dark); background: linear-gradient(135deg, var(--gold-light), var(--gold)); margin-bottom: 6px; }
-.hr-card b { font-size: 0.98rem; }
-.hr-card span { font-size: 0.82rem; color: var(--text-soft); line-height: 1.45; }
-.hr-card .go { margin-top: auto; padding-top: 8px; font-size: 0.8rem; font-weight: 600; color: var(--gold); }
-.hr-card.ext .go::after { content: " ↗"; }
-.hr-card.pend { opacity: .6; border-style: dashed; }
-.hr-card.pend .go { color: var(--text-muted); }
-.hr-sub { font-size: 0.78rem; color: var(--gold-light); }
+.hr-list { display: grid; gap: 24px; margin-top: 10px; }
+.hr-item { border-radius: 16px; overflow: hidden; background: var(--navy-card); border: 1px solid rgba(255,255,255,0.08); }
+.hr-head { display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; }
+.hr-head .monogram { flex-shrink: 0; width: 42px; height: 42px; font-size: 0.95rem; }
+.hr-head h3 { font-size: 1.1rem; font-weight: 600; }
+.hr-head p { font-size: 0.88rem; color: var(--text-soft); margin-top: 3px; line-height: 1.5; }
+.hr-open { margin-left: auto; align-self: center; white-space: nowrap; font-size: 0.82rem; font-weight: 600; color: var(--gold); text-decoration: underline; }
+.hr-frame { position: relative; aspect-ratio: 16 / 10; min-height: 260px; background: #000; }
+.hr-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media (max-width: 760px) { .hr-head { flex-wrap: wrap; } .hr-open { margin-left: 56px; } }
 </style>
 </head>
 <body>
@@ -41,25 +38,22 @@ a.hr-card:hover { transform: translateY(-2px); border-color: var(--gold); }
     <a href="inicio.html" class="back">← Volver al inicio</a>
     <p class="eyebrow">Parte 5</p>
     <h1 id="pageTitle">Herramientas</h1>
-    <p class="lead">Todo lo que usas en tu día de trabajo, a un clic: accesos rápidos, portales de los carriers y las herramientas del equipo.</p>
+    <p class="lead">Tutoriales para las tareas de tu trabajo como agente: licencias, trámites y más.</p>
 
-    <section class="hr-sec">
-      <h2>Accesos rápidos</h2>
-      <p>Lo que más usas durante tus llamadas, dentro de la academia.</p>
-      <div class="hr-grid" id="g-rapidos"></div>
-    </section>
-
-    <section class="hr-sec">
-      <h2>Portales de carriers</h2>
-      <p>Para correr ilustraciones, someter aplicaciones y revisar tus pólizas. Se abren en otra pestaña.</p>
-      <div class="hr-grid" id="g-portales"></div>
-    </section>
-
-    <section class="hr-sec">
-      <h2>Herramientas de trabajo</h2>
-      <p>Programas y aplicaciones que usa el equipo de Fortia.</p>
-      <div class="hr-grid" id="g-trabajo"></div>
-    </section>
+    <h2>Tutoriales</h2>
+    <p class="section-note">Videos cortos para resolver las tareas del día a día como agente.</p>
+    <div class="hr-list">
+      <article class="hr-item">
+        <div class="hr-head">
+          <div class="monogram">1</div>
+          <div><h3>Solicitar licencias de otros estados</h3><p>Paso a paso para pedir tu licencia en otros estados y poder vender en más lugares.</p></div>
+          <a class="hr-open" href="https://drive.google.com/file/d/1_VjL0ciC8D3kwhmsIy3290xGb5Rga1Al/view" target="_blank" rel="noopener">Abrir en pantalla completa ↗</a>
+        </div>
+        <div class="hr-frame">
+          <iframe loading="lazy" src="https://drive.google.com/file/d/1_VjL0ciC8D3kwhmsIy3290xGb5Rga1Al/preview" allow="autoplay; fullscreen" allowfullscreen title="Solicitar licencias de otros estados"></iframe>
+        </div>
+      </article>
+    </div>
   </main>
 
   <footer>© Fortia · Material exclusivo para agentes</footer>
@@ -70,54 +64,6 @@ a.hr-card:hover { transform: translateY(-2px); border-color: var(--gold); }
       sessionStorage.removeItem("fortiaAgent");
       window.location.href = "index.html";
     });
-
-    // ================================================================
-    //  HERRAMIENTAS
-    //  Para agregar una, copia un bloque { ... } en la lista que va y
-    //  cambia el nombre, la descripción y el enlace (url).
-    //  Si "url" está vacío, la tarjeta sale como "Por agregar".
-    // ================================================================
-    const RAPIDOS = [
-      { ic: "1", nombre: "Formulario de elegibilidad", desc: "Llénalo con tu cliente y descárgalo en PDF.", url: "elegibilidad.html" },
-      { ic: "2", nombre: "Tabla de peso y estatura", desc: "Calculadora con los 5 carriers.", url: "peso-estatura.html" },
-      { ic: "3", nombre: "Guion de ventas", desc: "Los 9 pasos de la llamada.", url: "guion.html" },
-      { ic: "4", nombre: "Mensajes de WhatsApp", desc: "Personaliza, copia y envía.", url: "whatsapp.html" },
-      { ic: "5", nombre: "Horario de la semana", desc: "Bloques de llamadas, entrenamiento y soporte.", url: "horario.html" },
-      { ic: "Z", nombre: "Zoom Fortia", desc: "Sala de Zoom del equipo.", url: "https://us06web.zoom.us/j/4770123456?pwd=9ad0zpKbg4Ozr6pV4Ha9EoObd2Npx2.1" }
-    ];
-
-    const PORTALES = [
-      { ic: "MO", nombre: "Mutual of Omaha", desc: "Portal de agentes.", url: "" },
-      { ic: "TA", nombre: "Transamerica", desc: "Portal de agentes.", url: "" },
-      { ic: "AM", nombre: "Americo", desc: "Portal de agentes.", url: "https://portal.americoagent.com" },
-      { ic: "AM", nombre: "Americo · Agent Tools", desc: "Cotizaciones e ilustraciones.", url: "https://tools.americoagent.com" },
-      { ic: "NL", nombre: "National Life Group", desc: "Portal de agentes.", url: "" },
-      { ic: "F&G", nombre: "F&G", desc: "Portal de agentes.", url: "" },
-      { ic: "AA", nombre: "American Amicable", desc: "Portal de agentes.", url: "" }
-    ];
-
-    const TRABAJO = [
-      { ic: "+", nombre: "Por agregar", desc: "CRM, marcador de llamadas, Canva, firma electrónica…", url: "" }
-    ];
-
-    function render(id, list) {
-      const box = document.getElementById(id);
-      list.forEach(t => {
-        const ext = /^https?:/.test(t.url);
-        const el = document.createElement(t.url ? "a" : "div");
-        el.className = "hr-card" + (ext ? " ext" : "") + (t.url ? "" : " pend");
-        if (t.url) { el.href = t.url; if (ext) { el.target = "_blank"; el.rel = "noopener"; } }
-        el.innerHTML = "<div class='ic'></div><b></b><span></span><div class='go'></div>";
-        el.querySelector(".ic").textContent = t.ic;
-        el.querySelector("b").textContent = t.nombre;
-        el.querySelector("span").textContent = t.desc;
-        el.querySelector(".go").textContent = t.url ? (ext ? "Abrir" : "Ir") : "Por agregar";
-        box.appendChild(el);
-      });
-    }
-    render("g-rapidos", RAPIDOS);
-    render("g-portales", PORTALES);
-    render("g-trabajo", TRABAJO);
   </script>
 </body>
 </html>
