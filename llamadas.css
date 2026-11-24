@@ -22,3 +22,8 @@ body.paper .e-sn { color: #5A5E73; }
 .l-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
 @media (max-width: 760px) { .l-list { grid-template-columns: 1fr; } }
+/* Videos más grandes: uno por fila y con espacio para los controles de Drive */
+.l-list { grid-template-columns: 1fr; gap: 26px; }
+.l-frame { aspect-ratio: 16 / 10; min-height: 260px; }
+.l-head { justify-content: space-between; }
+.l-open { margin-left: auto; align-self: center; white-space: nowrap; font-size: 0.8rem; font-weight: 600; color: #9A7428; text-decoration: underline; }

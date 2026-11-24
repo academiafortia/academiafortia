@@ -180,3 +180,6 @@ footer { text-align: center; padding: 24px; font-size: 0.78rem; color: var(--tex
 }
 .featured-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 @media (max-width: 900px) { .featured { grid-template-columns: 1fr; padding: 20px; } }
+.featured { grid-template-columns: 1fr; }
+.featured-video { aspect-ratio: 16 / 10; min-height: 260px; }
+.video-frame { aspect-ratio: 16 / 10 !important; min-height: 260px; }

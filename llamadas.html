@@ -10,9 +10,9 @@
     if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
   <link rel="stylesheet" href="guion.css?v=3">
-  <link rel="stylesheet" href="llamadas.css?v=1">
+  <link rel="stylesheet" href="llamadas.css?v=2">
 </head>
 <body class="paper">
 
@@ -89,10 +89,11 @@
     // Sesiones en vivo: llena estos datos cuando los tengas
     const EN_VIVO = {
       horario: "",   // ejemplo: "Martes y jueves, 7:00 p.m. (hora del Este)"
-      zoom: ""       // ejemplo: "https://zoom.us/j/123456789"
+      zoom: "https://us06web.zoom.us/j/4770123456?pwd=9ad0zpKbg4Ozr6pV4Ha9EoObd2Npx2.1"
     };
 
     if (EN_VIVO.horario) document.getElementById("liveInfo").textContent = EN_VIVO.horario;
+    else if (EN_VIVO.zoom) document.getElementById("liveInfo").textContent = "Entra a la sala de Zoom de Fortia para las sesiones en vivo con el equipo.";
     if (EN_VIVO.zoom) { const b = document.getElementById("liveBtn"); b.href = EN_VIVO.zoom; b.hidden = false; }
 
     const list = document.getElementById("list");
@@ -102,13 +103,14 @@
       const card = document.createElement("article");
       card.className = "l-card";
       card.innerHTML =
-        '<div class="l-head"><span class="g-num">' + (i + 1) + '</span><div><h4></h4><p></p></div></div>' +
+        '<div class="l-head"><span class="g-num">' + (i + 1) + '</span><div><h4></h4><p></p></div><a class="l-open" target="_blank" rel="noopener">Abrir en pantalla completa ↗</a></div>' +
         '<div class="l-frame"><iframe loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>';
       card.querySelector("h4").textContent = l.titulo;
       card.querySelector("p").textContent = l.descripcion;
       const f = card.querySelector("iframe");
       f.src = "https://drive.google.com/file/d/" + l.drive + "/preview";
       f.title = l.titulo;
+      card.querySelector(".l-open").href = "https://drive.google.com/file/d/" + l.drive + "/view";
       list.appendChild(card);
     });
   </script>
