@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | WhatsApp Business</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <style>
+.wa-fill { margin: 26px 0 22px; padding: 22px 24px; border-radius: 14px; background: var(--navy); color: #fff; border-top: 4px solid var(--gold); }
+.wa-fill h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.45rem; margin-bottom: 4px; }
+.wa-fill > p { font-size: 0.86rem; color: var(--text-soft); margin-bottom: 14px; }
+.wa-inputs { display: flex; gap: 14px; flex-wrap: wrap; }
+.wa-inputs label { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 180px; }
+.wa-inputs span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+.wa-inputs input { padding: 11px 13px; font-family: inherit; font-size: 0.98rem; color: #fff; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; outline: none; }
+.wa-inputs input:focus { border-color: var(--gold); }
+.wa-group { margin-top: 30px; }
+.wa-group h2 { color: var(--navy); margin: 0 0 4px; }
+.wa-group > p { font-size: 0.9rem; color: #5A5E73; margin-bottom: 14px; }
+.wa-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.wa-card { display: flex; flex-direction: column; border: 1px solid #E6E7EE; border-radius: 14px; overflow: hidden; background: #fff; }
+.wa-card h4 { padding: 12px 16px; font-size: 0.9rem; font-weight: 600; color: var(--navy); background: #F7F5EF; border-bottom: 1px solid #ECE6D8; }
+.wa-bubble { margin: 16px; padding: 14px 16px; font-size: 0.92rem; line-height: 1.6; color: #1C1F35; background: #E7F7E3; border-radius: 4px 14px 14px 14px; flex: 1; white-space: pre-line; }
+.wa-bubble mark { background: #FCE7A8; color: inherit; border-radius: 3px; padding: 0 2px; }
+.wa-actions { display: flex; gap: 8px; padding: 0 16px 16px; }
+.wa-actions button, .wa-actions a { flex: 1; padding: 10px; font-family: inherit; font-size: 0.84rem; font-weight: 600; text-align: center; border-radius: 9px; cursor: pointer; }
+.wa-copy { color: var(--navy-dark); background: linear-gradient(135deg, var(--gold-light), var(--gold)); border: none; }
+.wa-copy.ok { background: #5CC48A; color: #fff; }
+.wa-open { color: var(--navy); background: #fff; border: 1px solid #CFD1DC; }
+.wa-open:hover { border-color: var(--navy); }
+.wa-tip a { color: #9A7428; font-weight: 600; text-decoration: underline; }
+@media (max-width: 760px) { .wa-list { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte4-marketing.html" class="back">← Volver a marketing digital</a>
+    <p class="eyebrow">Parte 4 · Marketing digital</p>
+    <h1 id="pageTitle">Mensajes de WhatsApp</h1>
+    <p class="lead">Mensajes listos para contactar a tus prospectos antes de llamarlos. Personalízalos, cópialos y envíalos.</p>
+
+    <section class="wa-fill">
+      <h3>Personaliza los mensajes</h3>
+      <p>Escribe estos datos y todos los mensajes de abajo se llenan solos. Lo resaltado en amarillo es lo que cambia.</p>
+      <div class="wa-inputs">
+        <label><span>Nombre del cliente</span><input id="inCliente" placeholder="Ej. María"></label>
+        <label><span>Tu nombre</span><input id="inAgente" placeholder="Ej. Lucía de Fortia"></label>
+        <label><span>Cuándo lo vas a llamar</span><input id="inCuando" value="Mañana a las 2 p. m."></label>
+      </div>
+    </section>
+
+    <div class="g-tip wa-tip"><b>Tip:</b> manda el mensaje un día antes de llamar y cumple la hora que dijiste. Cuando te conteste, sigue el <a href="guion.html">guion</a>.</div>
+
+    <div id="groups"></div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+
+    const GRUPOS = [["Si todavía no han hablado", "Para prospectos con los que aún no has tenido una conversación.", [["Dejó sus datos hace unos meses", "{cliente}, un gusto saludarte. Soy {agente}. Hace unos meses algo te llevó a buscar información sobre cómo proteger tu futuro o el de los tuyos. Antes de que se nos vaya el año, quiero que por fin tengamos esa conversación y que conozcas qué opciones hay en Estados Unidos. {cuando} te llamo. Espero que podamos hablar."], ["Ya intentaste contactarlo", "{cliente}, soy {agente}. Nos quedó pendiente hablar sobre cómo darle un respaldo a tu familia. En estas fechas uno piensa mucho en los suyos y en lo que quiere dejar en orden. Quiero contarte qué puedes revisar en Estados Unidos para tomar esa decisión con más claridad. {cuando} te llamo. Espero que podamos hablar."]]], ["Si ya hablaron", "Para retomar la conversación con alguien con quien ya hablaste.", [["Quedó algo pendiente", "{cliente}, un gusto saludarte de nuevo. Cuando hablamos quedó pendiente algo importante: cómo cuidar tu futuro y el de los tuyos. Antes de que se nos vaya el año, quiero explicarte qué opciones hay en Estados Unidos y qué vale la pena mirar antes de decidir. {cuando} te llamo. Espero que podamos hablar."], ["Calcular el respaldo para su familia", "{cliente}, qué gusto saludarte. En estas fechas uno piensa mucho en los suyos y en cómo quiere cuidarlos el próximo año. Por eso quiero retomar lo que hablamos y mostrarte cómo calcular cuánto respaldo necesitaría tu familia. {cuando} te llamo. Espero que podamos hablar."], ["Comparar opciones antes de elegir", "{cliente}, ¿cómo vas? Antes de cerrar el año quiero retomar nuestra conversación y explicarte algo que te va a servir al comparar opciones de protección en Estados Unidos: qué cubren, cuánto cuestan y qué preguntas hacer antes de elegir. {cuando} te llamo. Espero que podamos hablar."]]]];
+    const inC = document.getElementById("inCliente"), inA = document.getElementById("inAgente"), inW = document.getElementById("inCuando");
+    // Se recuerda el nombre del agente en este navegador (no se guarda nada del cliente)
+    try { inA.value = localStorage.getItem("fortiaWaAgente") || ""; } catch (e) {}
+
+    function esc(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+    function fill(tpl, html) {
+      const v = { cliente: inC.value.trim() || "María", agente: inA.value.trim() || "[tu nombre]", cuando: inW.value.trim() || "Mañana a las 2 p. m." };
+      return tpl.replace(/\{(cliente|agente|cuando)\}/g, (_, k) => html ? "<mark>" + esc(v[k]) + "</mark>" : v[k]);
+    }
+
+    const root = document.getElementById("groups");
+    const cards = [];
+    GRUPOS.forEach(([titulo, desc, items]) => {
+      const g = document.createElement("section");
+      g.className = "wa-group";
+      g.innerHTML = "<h2></h2><p></p><div class='wa-list'></div>";
+      g.querySelector("h2").textContent = titulo;
+      g.querySelector("p").textContent = desc;
+      items.forEach(([t, tpl]) => {
+        const c = document.createElement("article");
+        c.className = "wa-card";
+        c.innerHTML = "<h4></h4><div class='wa-bubble'></div><div class='wa-actions'><button class='wa-copy'>Copiar mensaje</button><a class='wa-open' target='_blank' rel='noopener'>Abrir en WhatsApp</a></div>";
+        c.querySelector("h4").textContent = t;
+        const btn = c.querySelector(".wa-copy");
+        btn.addEventListener("click", async () => {
+          const txt = fill(tpl, false);
+          try { await navigator.clipboard.writeText(txt); }
+          catch (e) { const ta = document.createElement("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }
+          btn.textContent = "¡Copiado!"; btn.classList.add("ok");
+          setTimeout(() => { btn.textContent = "Copiar mensaje"; btn.classList.remove("ok"); }, 1800);
+        });
+        cards.push([c, tpl]);
+        g.querySelector(".wa-list").appendChild(c);
+      });
+      root.appendChild(g);
+    });
+
+    function render() {
+      cards.forEach(([c, tpl]) => {
+        c.querySelector(".wa-bubble").innerHTML = fill(tpl, true);
+        c.querySelector(".wa-open").href = "https://wa.me/?text=" + encodeURIComponent(fill(tpl, false));
+      });
+      try { localStorage.setItem("fortiaWaAgente", inA.value.trim()); } catch (e) {}
+    }
+    [inC, inA, inW].forEach(i => i.addEventListener("input", render));
+    render();
+  </script>
+</body>
+</html>
