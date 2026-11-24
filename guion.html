@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Guion IUL</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="guion.css?v=3">
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte1-kit.html" class="back">← Volver al kit de ventas</a>
+    <p class="eyebrow">Parte 1 · Kit de ventas</p>
+    <h1 id="pageTitle">Guion profesional IUL</h1>
+    <p class="lead">Guía de ventas consultiva de Fortia. Sigue los 9 pasos en orden durante tu llamada y reemplaza lo que está entre corchetes con los datos de tu cliente.</p>
+
+    <div class="print-header"><img src="logo-fortia.png" alt="Fortia"><div><b>Academia Fortia</b><span>Guion profesional IUL · Guía de ventas consultiva</span></div></div>
+    <div class="g-actions">
+      <a class="btn-gold" href="guion-fortia.pdf" download>Descargar PDF</a>
+      <button class="btn-outline-dark" onclick="window.print()">Imprimir</button>
+    </div>
+<nav class="g-nav"><a href="#paso1"><span>1</span>Saluda</a><a href="#paso2"><span>2</span>Preséntate</a><a href="#paso3"><span>3</span>Saca el dolor</a><a href="#paso4"><span>4</span>Cierre de descubrimiento</a><a href="#paso5"><span>5</span>Lo que va a pasar en la llamada</a><a href="#paso6"><span>6</span>Califica</a><a href="#paso7"><span>7</span>Explica el IUL</a><a href="#paso8"><span>8</span>Presenta las dos opciones de póliza</a><a href="#paso9"><span>9</span>Cierra: recolección de datos</a></nav>
+
+    <section class="g-step" id="paso1">
+      <div class="g-step-head"><span class="g-num">1</span><h3>Saluda</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Hola [NOMBRE], ¿cómo estás?”</blockquote>
+<div class="g-tip"><b>Tip:</b> Normalmente te dirán quién habla, o ellos preguntarán quién eres. Escucha bien antes de continuar.</div>
+      </div>
+    </section>
+
+    <section class="g-step" id="paso2">
+      <div class="g-step-head"><span class="g-num">2</span><h3>Preséntate</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Mi nombre es [NOMBRE], soy el profesional financiero de Fortia que te va a ayudar con la información que solicitaste sobre el IUL. ¿Lo recuerdas? ¿Cómo te encuentras el día de hoy?”</blockquote>
+<div class="g-tip"><b>Recuerda:</b> Termina siempre con una pregunta. Haz validación emocional.</div>
+<div class="g-cols">
+  <div class="g-col yes"><h4>Si responde SÍ o BIEN</h4>
+    <p>“Perfecto, cuéntame [NOMBRE], ¿qué fue lo que más te gustó de la información que viste sobre el IUL?”</p>
+  </div>
+  <div class="g-col no"><h4>Si responde NO</h4>
+    <p>“No te preocupes, [NOMBRE], para eso estoy yo aquí. La mayoría de personas se registran por alguna de estas tres razones…”</p>
+    <ol>
+      <li>Si tú faltas, tu familia recibe dinero para mantenerse y seguir con su vida tranquila.</li>
+      <li>Si te enfermas de algo serio como cáncer o un infarto, puedes usar parte del dinero en vida.</li>
+      <li>Es un ahorro inteligente donde tu dinero crece de forma segura, sin riesgo de perder y libre de impuestos.</li>
+    </ol>
+    <p>“¿Cuál de estas tres partes fue la que más te llamó la atención?”</p>
+  </div>
+</div>
+      </div>
+    </section>
+
+    <section class="g-step" id="paso3">
+      <div class="g-step-head"><span class="g-num">3</span><h3>Saca el dolor</h3></div>
+      <div class="g-step-body">
+<div class="g-grid4"><div class="g-card"><h4>Proteger a la familia</h4><ul class="g-list"><li>¿Quiénes son las personas que, si faltaras, te preocuparía que tengan que batallar?</li><li>¿Qué es lo que más te inquieta cuando piensas en [PERSONA] sin ti?</li><li>Si tú no estuvieras, con lo que hoy tienen, ¿cuánto tiempo podrían sostenerse?</li><li>¿Tienes seguro de vida actualmente?</li></ul>
+</div><div class="g-card"><h4>Protegerse a sí mismo</h4><ul class="g-list"><li>¿Alguna vez has pensado qué pasaría si no pudieras trabajar por unos meses?</li><li>¿Quién asumiría tus gastos si una enfermedad fuerte te obliga a parar?</li><li>¿Conoces a alguien que haya pasado por algo así?</li></ul>
+</div><div class="g-card"><h4>Asegurar un buen retiro</h4><ul class="g-list"><li>Si hoy pudieras mejorar una sola cosa de tu futuro, ¿cuál sería?</li><li>¿Qué te gustaría lograr con ese retiro?</li><li>¿Cómo te gustaría vivir cuando ya no quieras trabajar al mismo ritmo?</li><li>¿Qué sería más valioso: tranquilidad, ingresos, libertad o independencia?</li></ul>
+</div><div class="g-card"><h4>Si elige ahorro</h4><ul class="g-list"><li>Normalmente cuando pensamos en ahorro, es porque tenemos un plan… ¿cuál es el tuyo?</li><li>¿Para qué te gustaría usar ese dinero más adelante?</li><li>Si ese ahorro ya estuviera listo hoy, ¿en qué te ayudaría en este momento?</li></ul>
+</div></div>
+<div class="g-tip"><b>Si elige las tres:</b> Haz una pregunta de cada bloque. Escucha, toma nota y usa sus respuestas en el cierre.</div>
+      </div>
+    </section>
+
+    <section class="g-step" id="paso4">
+      <div class="g-step-head"><span class="g-num">4</span><h3>Cierre de descubrimiento</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Quiero asegurarme de que este plan realmente esté hecho a tu medida, [NOMBRE], porque lo que me acabas de decir es muy importante. Entonces, vamos a construir algo para que [parafraseas su dolor] puedas tener cubierto eso que hoy te preocupa, tanto en el presente como en el futuro. ¿Hay algo más que te preocupe o que quieras que yo considere?”</blockquote>
+      </div>
+    </section>
+
+    <section class="g-step" id="paso5">
+      <div class="g-step-head"><span class="g-num">5</span><h3>Lo que va a pasar en la llamada</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Perfecto, [NOMBRE]. Te explico cómo vamos a trabajar en esta llamada para que tengamos claridad desde el inicio.”</blockquote>
+<ol class="g-numbered">
+  <li><b>Primero:</b> te estoy enviando por mensaje mis credenciales para que tengas total tranquilidad de quién te está acompañando. <em>(Confirma tu NPN)</em></li>
+  <li><b>Segundo:</b> este producto no es de acceso masivo. Hay que calificar primero; eso es lo que vamos a hacer ahora.</li>
+  <li><b>Después:</b> vamos a entender bien tu perfil y estructurarlo de la mejor manera para ti.</li>
+</ol>
+      </div>
+    </section>
+
+    <section class="g-step" id="paso6">
+      <div class="g-step-head"><span class="g-num">6</span><h3>Califica</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Perfecto, [NOMBRE]. Ahora te voy a hacer unas preguntas muy sencillas sobre tu salud. Es muy importante que seas totalmente sincero conmigo, porque de esto depende directamente tu aplicación.”</blockquote>
+<div class="g-sub"><h4>Salud</h4><ul class="g-list"><li>¿Cómo te encuentras de salud? ¿Alguna condición médica que esté en tu récord?</li><li>¿Tienes o has tenido diabetes, presión alta o colesterol alto?</li><li>¿Has tenido algún problema del corazón: infarto, derrame, mini stroke, stent o marcapasos?</li><li>¿Has tenido cáncer, VIH o alguna amputación?</li><li>¿Tienes lupus, asma o alguna enfermedad pulmonar crónica (inhalador, oxígeno o esteroides)?</li><li>¿Problemas de tiroides, riñón, hígado o has estado en diálisis?</li><li>¿Algún tema neurológico o mental: ansiedad, depresión, bipolaridad, Parkinson, demencia o Alzheimer?</li><li>¿Actualmente cuánto pesas y cuánto mides?</li><li>¿Fumas? (Si sí: ¿con qué frecuencia? ¿qué fumas? ¿hace cuánto? ¿cuándo fue tu último cigarrillo?)</li><li>¿Estás tomando algún medicamento o te han recetado algo que no estés tomando?</li><li>¿Has tenido cirugías o trasplantes en los últimos dos años?</li></ul>
+</div>
+<div class="g-sub"><h4>Estatus legal e ingresos</h4><ul class="g-list"><li>¿Eres ciudadano, residente o estás en proceso de documentación? ¿Tienes ITIN o Social?</li><li>¿Tienes licencia de conducir? ¿Has tenido un DUI o alguna felonía? ¿Algún tema pendiente en corte?</li><li>¿A qué te dedicas? ¿Cuánto son tus ingresos al mes aproximadamente? ¿Cuánto son tus gastos?</li><li>¿Eres autónomo o independiente para tomar decisiones?</li></ul>
+</div>
+<div class="g-sub"><h4>Prueba social: monto del aporte</h4><blockquote class="g-quote">“La mayoría de personas suelen aportar un 10% o más de lo que ganan mensualmente. En tu caso sería de unos $___. ¿Cuánto crees tú que es un buen monto que puedas aportar sin afectar tu estilo de vida, y que si tienes una emergencia no tengas que dejar de aportar al IUL como primera opción?”</blockquote>
+</div>
+<div class="g-tip"><b>Tip:</b> Si la diferencia entre ingresos y gastos es menos del 10%, haz la recomendación directamente. Si no, deja que el cliente proponga el monto.</div>
+      </div>
+    </section>
+
+    <section class="g-step" id="paso7">
+      <div class="g-step-head"><span class="g-num">7</span><h3>Explica el IUL</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Perfecto, [NOMBRE], te estoy enviando un enlace para compartir mi pantalla y mostrarte cómo funciona el IUL y qué puede hacer por ti con esos $___. Si en algún momento dejas de ver lo que te estoy mostrando, por favor avísame.”</blockquote>
+<div class="g-tip"><b>Acción:</b> Confirma fecha de nacimiento y monto de aporte. Haz la ilustración adaptada al perfil del cliente.</div>
+<div class="g-rows"><div class="g-row"><div class="g-row-label">1. Beneficio por fallecimiento</div><div class="g-row-text">“[NOMBRE], si llegaras a faltar de forma inesperada, tu familia no quedaría desamparada. Ellos recibirían una cobertura de $___, para enfrentar el momento sin cargas económicas adicionales.”</div></div><div class="g-row"><div class="g-row-label">2. Beneficios en vida<br><small>Enfermedad crítica, crónica o terminal</small></div><div class="g-row-text">“Si algún día enfrentaras una enfermedad crítica como cáncer, derrame cerebral o un accidente que te deje incapacitado, este plan puede adelantarte hasta el 80% de tu cobertura. Ese dinero se deposita directamente en tu cuenta.”</div></div><div class="g-row"><div class="g-row-label">3. Beneficio para tu jubilación</div><div class="g-row-text">“Este programa te permite acumular dinero con interés compuesto. Tu dinero crece año tras año sin pérdidas (piso de cero), y lo puedes usar como ingreso libre de impuestos. En tu caso, a los [X] años, tendrías aproximadamente $___.”</div></div></div>
+<blockquote class="g-quote">“Hasta aquí, [NOMBRE], ¿tienes alguna pregunta?”</blockquote>
+<div class="g-tip"><b>Escucha:</b> Responde sus preguntas antes de continuar.</div>
+<div class="g-tip"><b>Validación final:</b> Explica las 3 áreas de verificación: Salud (SSN), Identificación (licencia o pasaporte) e Ingresos (cuenta bancaria). Pregunta si hay algo que deba saber en alguna de estas áreas antes de continuar.</div>
+      </div>
+    </section>
+
+    <section class="g-step" id="paso8">
+      <div class="g-step-head"><span class="g-num">8</span><h3>Presenta las dos opciones de póliza</h3></div>
+      <div class="g-step-body">
+<div class="g-cols">
+  <div class="g-col option"><h4>Opción 1</h4><p class="g-big">50% acumula</p><p>50% cobertura por fallecimiento y enfermedad</p></div>
+  <div class="g-col option"><h4>Opción 2</h4><p class="g-big">70% acumula</p><p>30% cobertura por fallecimiento y enfermedad</p></div>
+</div>
+<blockquote class="g-quote">“[NOMBRE], ¿cuál de estas dos opciones te parece mejor? ¿Cuál se ajusta mejor a lo que necesitas?”</blockquote>
+      </div>
+    </section>
+
+    <section class="g-step" id="paso9">
+      <div class="g-step-head"><span class="g-num">9</span><h3>Cierra: recolección de datos</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Perfecto, [NOMBRE], lo que vamos a hacer es enviar una solicitud a la compañía para ver si nos califica esta propuesta.”</blockquote>
+<div class="g-grid2"><div class="g-sub"><h4>Datos personales</h4><ul class="g-list"><li>Confírmame tu nombre como aparece en tu documento.</li><li>Si te aprueban, ¿cuál sería la dirección a la que llegaría tu póliza?</li><li>Tu lugar de nacimiento es… ¿correcto?</li><li>¿Cuál es el número de tu licencia de conducir?</li></ul>
+</div>
+<div class="g-sub"><h4>Historia familiar</h4><ul class="g-list"><li>¿Tus padres viven? ¿Qué edad tienen?</li><li>Si fallecieron, ¿de qué fallecieron y a qué edad?</li></ul>
+</div>
+<div class="g-sub"><h4>Información médica</h4><ul class="g-list"><li>¿Cuál es el nombre de tu médico de cabecera o la clínica a la que vas?</li><li>¿Cuándo fue tu última visita al médico?</li></ul>
+</div>
+<div class="g-sub"><h4>Beneficiario y banco</h4><ul class="g-list"><li>¿A quién vamos a poner de beneficiario?</li><li>¿Cuál es tu número de seguro social?</li><li>¿Cuál es el banco que usas?</li><li>Busca el número de ruta y confírmalo. ¿Cuál es el número de tu cuenta?</li></ul>
+</div>
+</div>
+<div class="g-rows"><div class="g-row"><div class="g-row-label">Aprobado</div><div class="g-row-text">“Una vez tengamos respuesta me comunico contigo para el siguiente paso. Tienes entre 24 y 48 horas para el primer aporte y así activar tu plan; a partir de ese momento tú y tu familia quedan protegidos.”</div></div><div class="g-row"><div class="g-row-label">No aprobado</div><div class="g-row-text">“Si por alguna razón no fueras aprobado, también te aviso y buscamos juntos otra opción para ti.”</div></div><div class="g-row"><div class="g-row-label">Seguridad del proceso</div><div class="g-row-text">“Recuerda que pusiste tus datos en internet. Si alguien más te llama para hacerte una aplicación, dale mi nombre y dile que ya estás en proceso. Dos solicitudes simultáneas pueden caerse las dos.”</div></div></div>
+<blockquote class="g-quote">“Tienes mi número personal. Cualquier duda o pregunta adicional que surja, me dejas saber. ¡Que tengas buen día!”</blockquote>
+      </div>
+    </section>
+
+    <section class="g-remember">
+      <h3>Recuerda siempre</h3>
+      <ul>
+        <li>Escucha la objeción o respuesta completa antes de hablar.</li>
+        <li>Siempre valida emocionalmente: “Te entiendo, [NOMBRE]…”</li>
+        <li>Usa las respuestas del cliente para personalizar el cierre.</li>
+        <li>La clave no es convencer: es ayudar a decidir con claridad.</li>
+        <li>Haz la ilustración siempre adaptada al perfil del cliente.</li>
+      </ul>
+      <p class="g-sign">Fortia · Academia Fortia</p>
+    </section>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
