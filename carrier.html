@@ -11,8 +11,24 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <style>
+.cr-nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 26px 0 26px; }
+.cr-nav a { display: flex; align-items: center; gap: 8px; padding: 8px 16px 8px 8px; font-size: 0.88rem; font-weight: 600; color: var(--navy); background: #F7F5EF; border: 1px solid #ECE6D8; border-radius: 22px; }
+.cr-nav a:hover { border-color: var(--gold); }
+.cr-nav a span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; font-size: 0.78rem; color: var(--navy-dark); background: var(--gold); }
+.cr-sec { margin-bottom: 34px; scroll-margin-top: 90px; }
+.cr-body { padding: 18px; border: 1px solid #E6E7EE; border-top: none; border-radius: 0 0 10px 10px; display: grid; gap: 20px; }
+.cr-item h4 { font-size: 1rem; font-weight: 600; color: var(--navy); }
+.cr-item p { font-size: 0.86rem; color: #5A5E73; margin-top: 2px; }
+.cr-item-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.cr-open { white-space: nowrap; font-size: 0.8rem; font-weight: 600; color: #9A7428; text-decoration: underline; }
+.cr-frame { position: relative; aspect-ratio: 16 / 10; min-height: 300px; border-radius: 10px; overflow: hidden; background: #F2F4FA; border: 1px solid #E6E7EE; }
+.cr-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.cr-empty { padding: 22px; text-align: center; font-size: 0.9rem; color: #8A8DA0; background: #FAFAFC; border: 1px dashed #D4D6E0; border-radius: 10px; }
+</style>
 </head>
-<body>
+<body class="paper">
 
   <header class="topbar">
     <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
@@ -26,25 +42,24 @@
     <a href="parte2-carriers.html" class="back">← Volver a carriers</a>
     <p class="eyebrow">Parte 2 · Carriers</p>
     <h1 id="pageTitle">Carrier</h1>
-    <p class="lead">Ilustraciones y sometimiento con este carrier.</p>
+    <p class="lead">Aprende a correr la ilustración y a someter la aplicación con este carrier.</p>
 
-    <h2>Módulos</h2>
-    <p class="section-note">El contenido se irá agregando paso a paso.</p>
+    <nav class="cr-nav" id="crNav"></nav>
 
-    <div class="grid">
-      <div class="card soon">
-        <span class="badge">Próximamente</span>
-        <div class="monogram">A</div>
-        <h3>Ilustraciones</h3>
-        <p>Cómo entrar al sistema, correr una ilustración y explicársela al cliente.</p>
-      </div>
-      <div class="card soon">
-        <span class="badge">Próximamente</span>
-        <div class="monogram">B</div>
-        <h3>Sometimiento</h3>
-        <p>La aplicación paso a paso, documentos, underwriting y entrega de la póliza.</p>
-      </div>
-    </div>
+    <section class="cr-sec" id="completo" hidden>
+      <div class="g-step-head"><span class="g-num">✓</span><h3>Ilustración + sometimiento</h3></div>
+      <div class="cr-body" id="list-completo"></div>
+    </section>
+
+    <section class="cr-sec" id="ilustracion">
+      <div class="g-step-head"><span class="g-num">A</span><h3>Ilustración</h3></div>
+      <div class="cr-body" id="list-ilustracion"></div>
+    </section>
+
+    <section class="cr-sec" id="sometimiento">
+      <div class="g-step-head"><span class="g-num">B</span><h3>Sometimiento</h3></div>
+      <div class="cr-body" id="list-sometimiento"></div>
+    </section>
   </main>
 
   <footer>© Fortia · Material exclusivo para agentes</footer>
@@ -63,10 +78,65 @@
       "national-life": "National Life Group",
       "fg": "F&G"
     };
+
+    // ================================================================
+    //  MATERIAL DE CADA CARRIER
+    //  Para agregar un video o documento, copia un bloque
+    //  { titulo: "...", descripcion: "...", drive: "ID" }
+    //  dentro de ilustracion: [ ], sometimiento: [ ] o completo: [ ]
+    //  (completo = videos que explican ilustración y sometimiento juntos).
+    //  El ID de Drive es lo que va entre /d/ y /view en el enlace.
+    // ================================================================
+    const CONTENIDO = {
+      "mutual-of-omaha":  { ilustracion: [], sometimiento: [] },
+      "transamerica": {
+        completo: [
+          { titulo: "Ilustración y sometimiento · Video 1", descripcion: "Cómo correr la ilustración y someter la aplicación con Transamerica.", drive: "1xfFhQE1pEf3kuyd-4ZQoObRiLl06jEP0" },
+          { titulo: "Ilustración y sometimiento · Video 2", descripcion: "Cómo correr la ilustración y someter la aplicación con Transamerica.", drive: "13IX8USDykUeFyJaEz63k3zfiBNzvfoGl" }
+        ],
+        ilustracion: [], sometimiento: []
+      },
+      "americo":          { ilustracion: [], sometimiento: [] },
+      "national-life":    { ilustracion: [], sometimiento: [] },
+      "fg":               { ilustracion: [], sometimiento: [] }
+    };
+
     const key = new URLSearchParams(location.search).get("c");
     if (!CARRIERS[key]) window.location.href = "parte2-carriers.html";
     document.getElementById("pageTitle").textContent = CARRIERS[key];
     document.title = "Academia Fortia | " + CARRIERS[key];
+
+    const data = CONTENIDO[key] || {};
+    const has = sec => (data[sec] || []).length > 0;
+    const NOMBRES = { completo: "Ilustración + sometimiento", ilustracion: "Ilustración", sometimiento: "Sometimiento" };
+    const LETRAS = { completo: "✓", ilustracion: "A", sometimiento: "B" };
+    // Si hay videos "completo", las secciones A y B solo se muestran cuando tienen material propio
+    const visibles = ["completo", "ilustracion", "sometimiento"].filter(sec =>
+      sec === "completo" ? has("completo") : (has(sec) || !has("completo")));
+    ["completo", "ilustracion", "sometimiento"].forEach(sec => document.getElementById(sec).hidden = !visibles.includes(sec));
+    document.getElementById("crNav").innerHTML = visibles.map(sec =>
+      '<a href="#' + sec + '"><span>' + LETRAS[sec] + '</span>' + NOMBRES[sec] + '</a>').join("");
+
+    visibles.forEach(sec => {
+      const box = document.getElementById("list-" + sec);
+      const items = data[sec] || [];
+      if (!items.length) {
+        box.innerHTML = '<div class="cr-empty">Próximamente: el material de ' + (sec === "ilustracion" ? "ilustración" : "sometimiento") + ' de ' + CARRIERS[key] + ' se agregará aquí.</div>';
+        return;
+      }
+      items.forEach(it => {
+        const el = document.createElement("div");
+        el.className = "cr-item";
+        el.innerHTML = '<div class="cr-item-head"><div><h4></h4><p></p></div><a class="cr-open" target="_blank" rel="noopener">Abrir en pantalla completa ↗</a></div>' +
+          '<div class="cr-frame"><iframe loading="lazy" allow="autoplay; fullscreen" allowfullscreen></iframe></div>';
+        el.querySelector("h4").textContent = it.titulo;
+        el.querySelector("p").textContent = it.descripcion || "";
+        el.querySelector("a").href = "https://drive.google.com/file/d/" + it.drive + "/view";
+        const f = el.querySelector("iframe");
+        f.src = "https://drive.google.com/file/d/" + it.drive + "/preview"; f.title = it.titulo;
+        box.appendChild(el);
+      });
+    });
   </script>
 </body>
 </html>
