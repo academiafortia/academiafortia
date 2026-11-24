@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Elegibilidad</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <link rel="stylesheet" href="elegibilidad.css?v=4">
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte1-kit.html" class="back">← Volver al kit de ventas</a>
+    <p class="eyebrow">Parte 1 · Kit de ventas</p>
+    <h1 id="pageTitle">Formulario de elegibilidad</h1>
+    <p class="lead">Llénalo con tu cliente durante la llamada, en el mismo orden del guion. Puedes escribir aquí mismo o descargarlo en blanco para imprimir.</p>
+
+    <div class="print-header"><img src="logo-fortia.png" alt="Fortia"><div><b>Academia Fortia</b><span>Formulario de elegibilidad IUL</span></div></div>
+    <div class="g-actions">
+      <a class="btn-gold" href="formulario-elegibilidad-fortia.pdf" download>Descargar en blanco (PDF)</a>
+      <button class="btn-outline-dark" onclick="window.print()">Imprimir lo que llené</button>
+      <button class="btn-outline-dark" id="clearForm">Borrar todo</button>
+    </div>
+    <div class="f-privacy">🔒 Lo que escribas aquí <b>no se guarda ni se envía</b> a ningún lado: se borra al cerrar o recargar la página. Si imprimes o guardas el formulario lleno, trátalo como un documento confidencial porque lleva datos personales del cliente.</div>
+    <form id="eligForm" onsubmit="return false">
+
+    <section class="g-step f-sec">
+      <div class="g-step-head"><h3>Datos del cliente</h3></div>
+      <div class="g-step-body">
+<div class="f-row"><label class="f-field" style="flex:2"><span># de póliza</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Fecha</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:2"><span>Nombre y apellidos</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>País de nacimiento</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:1.4"><span>Teléfono</span><input type="text" autocomplete="off" placeholder=""></label><div class="f-checks"><span>Género</span><label><input type="radio" name="genero"> F</label><label><input type="radio" name="genero"> M</label></div><label class="f-field" style="flex:1.3"><span>Fecha de nacimiento</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:.6"><span>Edad</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:.6"><span>Años en USA</span><input type="text" autocomplete="off" placeholder=""></label><div class="f-checks"><span>Tiene</span><label><input type="checkbox" name="tiene"> Seguro de vida</label><label><input type="checkbox" name="tiene"> Ahorro</label><label><input type="checkbox" name="tiene"> Pensión</label></div><label class="f-field" style="flex:1.6"><span>Información adicional</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><div class="f-checks"><span>Estado civil</span><label><input type="radio" name="civil"> Casado</label><label><input type="radio" name="civil"> Soltero</label><label><input type="radio" name="civil"> Viudo</label><label><input type="radio" name="civil"> Divorciado</label></div><label class="f-field" style="flex:1"><span>Hijos / dependientes</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<label class="f-area"><span>Descubrimiento: ¿qué pasaría? / ¿está preparado para…?</span><textarea rows="2"></textarea></label>
+      </div>
+    </section>
+
+    <section class="g-step f-sec">
+      <div class="g-step-head"><span class="g-num">1</span><h3>Salud</h3></div>
+      <div class="g-step-body">
+<div class="f-checks"><span>Condiciones médicas</span><label><input type="checkbox" name="cond"> Ataque al corazón</label><label><input type="checkbox" name="cond"> Derrame cerebral (stroke)</label><label><input type="checkbox" name="cond"> Marcapasos / stent</label><label><input type="checkbox" name="cond"> Cáncer</label><label><input type="checkbox" name="cond"> Diabetes (pastillas o insulina)</label><label><input type="checkbox" name="cond"> Neuropatía</label><label><input type="checkbox" name="cond"> Presión alta</label><label><input type="checkbox" name="cond"> Colesterol</label><label><input type="checkbox" name="cond"> Lupus</label><label><input type="checkbox" name="cond"> Asma o EPOC (inhalador, esteroides u oxígeno)</label><label><input type="checkbox" name="cond"> Tiroides</label><label><input type="checkbox" name="cond"> Riñones o hígado</label><label><input type="checkbox" name="cond"> Diálisis</label><label><input type="checkbox" name="cond"> Ansiedad / depresión</label><label><input type="checkbox" name="cond"> Bipolaridad</label><label><input type="checkbox" name="cond"> Parkinson</label><label><input type="checkbox" name="cond"> Demencia / Alzheimer</label><label><input type="checkbox" name="cond"> VIH</label><label><input type="checkbox" name="cond"> Otra enfermedad</label></div><div class="f-row"><div class="f-yn"><span>Fuma</span><label><input type="radio" name="fuma"> Sí</label><label><input type="radio" name="fuma"> No</label></div><label class="f-field" style="flex:.7"><span>Peso</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:.7"><span>Altura</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:2.4"><span>Medicamentos</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:1.3"><span>Cirugías o trasplante (fecha)</span><input type="text" autocomplete="off" placeholder=""></label><div class="f-yn"><span>¿Médico en USA?</span><label><input type="radio" name="medico"> Sí</label><label><input type="radio" name="medico"> No</label></div><label class="f-field" style="flex:1"><span>Última visita (fecha)</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><div class="f-checks"><span>Va a ser validado con su documento. ¿Cuál tiene?</span><label><input type="radio" name="doc"> SSN</label><label><input type="radio" name="doc"> ITIN</label><label><input type="radio" name="doc"> Pasaporte</label></div></div>
+      </div>
+    </section>
+
+    <section class="g-step f-sec">
+      <div class="g-step-head"><span class="g-num">2</span><h3>Antecedentes legales</h3></div>
+      <div class="g-step-body">
+<div class="f-row"><div class="f-yn"><span>Antecedentes legales o criminales</span><label><input type="radio" name="legal"> Sí</label><label><input type="radio" name="legal"> No</label></div><label class="f-field" style="flex:1"><span>Alcohol / droga / DUI / felonías</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><div class="f-yn"><span>Validación con ID: ¿licencia de conducir?</span><label><input type="radio" name="lic"> Sí</label><label><input type="radio" name="lic"> No</label></div><div class="f-checks"><span>Estado</span><label><input type="radio" name="licest"> Vigente</label><label><input type="radio" name="licest"> Suspendida</label><label><input type="radio" name="licest"> Revocada</label><label><input type="radio" name="licest"> Cancelada</label></div></div>
+      </div>
+    </section>
+
+    <section class="g-step f-sec">
+      <div class="g-step-head"><span class="g-num">3</span><h3>Estatus laboral y económico</h3></div>
+      <div class="g-step-body">
+<div class="f-row"><div class="f-yn"><span>Trabaja</span><label><input type="radio" name="trabaja"> Sí</label><label><input type="radio" name="trabaja"> No</label></div><div class="f-yn"><span>Jubilado</span><label><input type="radio" name="jub"> Sí</label><label><input type="radio" name="jub"> No</label></div><div class="f-yn"><span>Deshabilitado</span><label><input type="radio" name="desh"> Sí</label><label><input type="radio" name="desh"> No</label></div></div>
+<div class="f-row"><label class="f-field" style="flex:1.6"><span>¿En qué trabaja?</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Ingresos mensuales</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Renta o mortgage</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><div class="f-yn"><span>¿Tiene cuenta bancaria?</span><label><input type="radio" name="cuenta"> Sí</label><label><input type="radio" name="cuenta"> No</label></div><label class="f-field" style="flex:1"><span>¿En qué banco?</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="g-tip"><b>Dile al cliente:</b> La compañía necesita validar que la cuenta de donde salen los recursos no esté involucrada con lavado de dinero, terrorismo, la lista Clinton ni en bancarrota.</div>
+      </div>
+    </section>
+
+    <section class="g-step f-sec">
+      <div class="g-step-head"><span class="g-num">→</span><h3>Siguiente paso: la ilustración</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Ahora vamos a ver la ilustración. Usted decide cuál hace sentido para usted y luego vamos a completar unos datos que hacen falta para enviar la aplicación. La compañía es la que califica, no yo, y toma de 7 a 10 días.”</blockquote>
+<div class="g-tip"><b>Aquí:</b> Haz la ilustración con el monto que el cliente quiere aportar y muéstrale las dos opciones de IUL.</div>
+<div class="f-checks"><span>Opción que eligió</span><label><input type="radio" name="opcion"> 1. Más protección, menos ahorro</label><label><input type="radio" name="opcion"> 2. Menos protección, más ahorro</label></div><div class="f-row"><label class="f-field" style="flex:1"><span>Monto mensual a aportar ($)</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Cobertura ($)</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<blockquote class="g-quote">“¿Cuál de las dos le gustó más? Perfecto, pasemos a completar la información para enviarla a la compañía.”</blockquote>
+      </div>
+    </section>
+
+    <section class="g-step f-sec">
+      <div class="g-step-head"><span class="g-num">4</span><h3>Datos para la aplicación</h3></div>
+      <div class="g-step-body">
+<div class="f-row"><label class="f-field" style="flex:2"><span>Número de licencia (pide foto)</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Estado</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:1.6"><span>Dirección de residencia (validar)</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Correo electrónico (validar)</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<p class="f-sub">Antecedentes familiares</p><div class="f-row"><div class="f-yn"><span>¿Padre vive?</span><label><input type="radio" name="padre"> Sí</label><label><input type="radio" name="padre"> No</label></div><label class="f-field" style="flex:1"><span>Edad actual o de fallecimiento y causa</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><div class="f-yn"><span>¿Madre vive?</span><label><input type="radio" name="madre"> Sí</label><label><input type="radio" name="madre"> No</label></div><label class="f-field" style="flex:1"><span>Edad actual o de fallecimiento y causa</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:2"><span>Médico o clínica de la última visita</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Ciudad</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:1"><span>Nombre del empleador</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Número de SSN / ITIN / pasaporte</span><input type="text" autocomplete="off" placeholder=""></label></div>
+      </div>
+    </section>
+
+    <section class="g-step f-sec" id="benef">
+      <div class="g-step-head"><span class="g-num">5</span><h3>Beneficiarios</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“¿Quiénes van a ser los beneficiarios del valor de $____ en caso de que usted llegue a faltar?”</blockquote>
+<p class="f-sub">Beneficiarios principales</p><div class="f-row"><label class="f-field" style="flex:3"><span>Nombre</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.3"><span>Fecha de nacimiento</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.5"><span>Relación</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:3"><span></span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.3"><span></span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.5"><span></span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:3"><span></span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.3"><span></span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.5"><span></span><input type="text" autocomplete="off" placeholder=""></label></div>
+<p class="f-sub">Contingentes</p><div class="f-row"><label class="f-field" style="flex:3"><span>Nombre</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.3"><span>Fecha de nacimiento</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.5"><span>Relación</span><input type="text" autocomplete="off" placeholder=""></label></div>
+<div class="f-row"><label class="f-field" style="flex:3"><span></span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.3"><span></span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1.5"><span></span><input type="text" autocomplete="off" placeholder=""></label></div>
+      </div>
+    </section>
+
+    <section class="g-step f-sec">
+      <div class="g-step-head"><span class="g-num">6</span><h3>Información bancaria</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Me dijo que su banco es ______. En el sistema me aparece que el número de routing es ______. ¿Me lo confirma, por favor? ¿Y su número de cuenta cuál es?”</blockquote>
+<div class="f-row"><label class="f-field" style="flex:1"><span>Banco</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Número de routing</span><input type="text" autocomplete="off" placeholder=""></label><label class="f-field" style="flex:1"><span>Número de cuenta</span><input type="text" autocomplete="off" placeholder=""></label></div>
+      </div>
+    </section>
+
+    <section class="g-step f-sec">
+      <div class="g-step-head"><span class="g-num">✓</span><h3>Cierre</h3></div>
+      <div class="g-step-body">
+<blockquote class="g-quote">“Vamos entonces a ayudarlo a calificar con la información que nos proporcionó. Entre 7 y 10 días tendremos respuesta y yo lo estaré llamando.”</blockquote>
+<blockquote class="g-quote">“Le pido dos favores: guarde mi contacto y, si tiene cualquier inquietud, me escribe. Y no le dé sus datos a otra persona: las compañías comparten información, y si ven otra solicitud por otro lado nos pueden negar el IUL porque piensan que usted lo está necesitando por alguna razón médica.”</blockquote>
+      </div>
+    </section>
+
+    </form>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+
+    document.getElementById("clearForm").addEventListener("click", () => {
+      if (confirm("¿Borrar todo lo que escribiste en el formulario?")) document.getElementById("eligForm").reset();
+    });
+  </script>
+</body>
+</html>
