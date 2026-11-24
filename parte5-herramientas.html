@@ -19,6 +19,9 @@
 .hr-head h3 { font-size: 1.1rem; font-weight: 600; }
 .hr-head p { font-size: 0.88rem; color: var(--text-soft); margin-top: 3px; line-height: 1.5; }
 .hr-open { margin-left: auto; align-self: center; white-space: nowrap; font-size: 0.82rem; font-weight: 600; color: var(--gold); text-decoration: underline; }
+a.hr-guide { display: block; transition: border-color .2s, transform .2s; }
+a.hr-guide:hover { border-color: var(--gold); transform: translateY(-2px); }
+a.hr-guide .hr-open { text-decoration: none; padding: 8px 14px; border: 1px solid var(--gold); border-radius: 8px; }
 .hr-frame { position: relative; aspect-ratio: 16 / 10; min-height: 260px; background: #000; }
 .hr-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 @media (max-width: 760px) { .hr-head { flex-wrap: wrap; } .hr-open { margin-left: 56px; } }
@@ -41,7 +44,7 @@
     <p class="lead">Tutoriales para las tareas de tu trabajo como agente: licencias, trámites y más.</p>
 
     <h2>Tutoriales</h2>
-    <p class="section-note">Videos cortos para resolver las tareas del día a día como agente.</p>
+    <p class="section-note">Videos y guías para resolver las tareas del día a día como agente.</p>
     <div class="hr-list">
       <article class="hr-item">
         <div class="hr-head">
@@ -53,6 +56,14 @@
           <iframe loading="lazy" src="https://drive.google.com/file/d/1_VjL0ciC8D3kwhmsIy3290xGb5Rga1Al/preview" allow="autoplay; fullscreen" allowfullscreen title="Solicitar licencias de otros estados"></iframe>
         </div>
       </article>
+
+      <a class="hr-item hr-guide" href="crankwheel.html">
+        <div class="hr-head">
+          <div class="monogram">2</div>
+          <div><h3>Guía rápida de CrankWheel</h3><p>Cómo instalar y usar la extensión para compartir tu pantalla con clientes durante la llamada.</p></div>
+          <span class="hr-open">Abrir guía →</span>
+        </div>
+      </a>
     </div>
   </main>
 

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Guía CrankWheel</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <style>
+.cw-intro { margin: 24px 0 8px; padding: 16px 20px; border-radius: 12px; background: #FCF6E6; border-left: 4px solid var(--gold); font-size: 0.95rem; line-height: 1.6; }
+.cw-intro b { color: var(--navy); }
+.cw-part { margin-top: 34px; }
+.cw-part-head { display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-radius: 12px 12px 0 0; background: var(--navy); border-left: 5px solid var(--gold); }
+.cw-part-head small { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.cw-part-head h3 { font-size: 1.1rem; font-weight: 600; color: #fff; }
+.cw-list { border: 1px solid #E6E7EE; border-top: none; border-radius: 0 0 12px 12px; }
+.cw-step { display: grid; grid-template-columns: 1.2fr 1fr; gap: 22px; align-items: center; padding: 20px; break-inside: avoid; }
+.cw-step + .cw-step { border-top: 1px solid #EEF0F5; }
+.cw-title { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.cw-title h4 { font-size: 1.02rem; font-weight: 600; color: var(--navy); }
+.cw-step ul { list-style: none; padding-left: 42px; }
+.cw-step li { position: relative; padding: 3px 0 3px 16px; font-size: 0.92rem; line-height: 1.5; }
+.cw-step li::before { content: ""; position: absolute; left: 0; top: 11px; width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+.cw-step li b { color: var(--navy); }
+.cw-tip { margin: 8px 0 0 42px; padding: 7px 12px; font-size: 0.84rem; color: #6B5320; background: #FCF6E6; border-radius: 8px; }
+.cw-fig { margin: 0; text-align: center; }
+.cw-fig img { max-width: 100%; max-height: 230px; border-radius: 10px; border: 1px solid #E1E3EB; box-shadow: 0 6px 16px rgba(28,31,53,0.1); background: #fff; }
+.cw-fig figcaption { margin-top: 6px; font-size: 0.75rem; font-style: italic; color: #8A8DA0; }
+.cw-sum { margin-top: 34px; }
+.cw-sum h3 { padding: 12px 18px; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; color: var(--gold); background: var(--navy); border-radius: 12px 12px 0 0; }
+.cw-sum table { width: 100%; border-collapse: collapse; font-size: 0.9rem; border: 1px solid #E6E7EE; }
+.cw-sum td { padding: 11px 14px; border-top: 1px solid #EEF0F5; }
+.cw-sum td:first-child { font-weight: 600; color: var(--navy); background: #F7F5EF; width: 22%; }
+.cw-sum tr.best td { background: #FCF6E6; }
+.cw-sum tr.best td:last-child { font-weight: 600; color: #9A7428; }
+.cw-next { margin-top: 26px; }
+.cw-next a { color: #9A7428; font-weight: 600; text-decoration: underline; }
+@media (max-width: 760px) { .cw-step { grid-template-columns: 1fr; } .cw-step ul, .cw-tip { padding-left: 0; margin-left: 0; } }
+@media print {
+  body.paper main > .lead, body.paper main > .eyebrow, body.paper main > h1, .cw-next { display: none !important; }
+  .cw-step { padding: 10px 14px; gap: 14px; }
+  .cw-fig img { max-height: 150px; box-shadow: none; }
+  .cw-part { margin-top: 14px; break-inside: auto; }
+  .cw-part-head { break-after: avoid; }
+  .cw-intro { margin: 0 0 6px; }
+  .cw-sum { break-inside: avoid; margin-top: 16px; }
+  .cw-step { grid-template-columns: 1.35fr 1fr !important; padding: 8px 14px; }
+  .cw-step ul { padding-left: 38px !important; }
+  .cw-tip { margin-left: 38px !important; padding: 4px 10px; font-size: 0.78rem; }
+  .cw-step li { font-size: 0.84rem; padding: 1px 0 1px 14px; }
+  .cw-step li::before { top: 8px; }
+  .cw-title h4 { font-size: 0.95rem; }
+  .cw-fig img { max-height: 118px; }
+  .cw-fig figcaption { margin-top: 2px; font-size: 0.68rem; }
+  .cw-intro { font-size: 0.86rem; padding: 10px 14px; }
+}
+</style>
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte5-herramientas.html" class="back">← Volver a herramientas</a>
+    <p class="eyebrow">Parte 5 · Herramientas</p>
+    <h1 id="pageTitle">Guía rápida de CrankWheel</h1>
+    <p class="lead">Cómo instalar y usar la extensión para compartir tu pantalla con clientes.</p>
+
+    <div class="print-header"><img src="logo-fortia.png" alt="Fortia"><div><b>Academia Fortia · Guía rápida</b><span>CrankWheel: cómo instalar y usar la extensión para compartir tu pantalla con clientes</span></div></div>
+    <div class="g-actions">
+      <a class="btn-gold" href="guia-crankwheel-fortia.pdf" download>Descargar PDF</a>
+      <button class="btn-outline-dark" onclick="window.print()">Imprimir</button>
+    </div>
+    <div class="cw-intro"><b>¿Qué es CrankWheel?</b> Es una herramienta gratuita para compartir tu pantalla con un cliente en segundos, sin que él tenga que descargar nada. Solo recibe un enlace por texto, correo o WhatsApp, y puede ver tu pantalla desde cualquier teléfono o computadora. La usas en el <b>paso 7 del guion</b>, cuando le muestras la ilustración.</div>
+
+    <section class="cw-part">
+      <div class="cw-part-head"><div><small>Parte 1 de 2</small><h3>Instalación de la extensión</h3></div></div>
+      <div class="cw-list">
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">1</span><h4>Buscar la extensión en Google</h4></div>
+          <ul><li>Abre <b>Google Chrome</b> en tu computadora.</li><li>Busca en Google: <b>CrankWheel Chrome Extension sharing</b>.</li><li>Haz clic en el resultado de <b>Chrome Web Store</b>.</li></ul>
+          <p class="cw-tip">Normalmente aparece como primer resultado.</p>
+        </div>
+        <figure class="cw-fig"><img src="img/cw-01-google.png" alt="Búsqueda en Google" loading="lazy"><figcaption>Búsqueda en Google</figcaption></figure>
+      </article>
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">2</span><h4>Seleccionar la extensión en Chrome Web Store</h4></div>
+          <ul><li>Entra a <b>Chrome Web Store</b>.</li><li>Busca y selecciona <b>CrankWheel Screen Sharing</b>.</li></ul>
+          
+        </div>
+        <figure class="cw-fig"><img src="img/cw-02-webstore.png" alt="Chrome Web Store" loading="lazy"><figcaption>Chrome Web Store</figcaption></figure>
+      </article>
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">3</span><h4>Instalar la extensión</h4></div>
+          <ul><li>Haz clic en el botón azul <b>Obtener</b> (o “Agregar a Chrome”).</li><li>En la ventana que aparece, haz clic en <b>Agregar extensión</b>.</li></ul>
+          <p class="cw-tip">Solo toma unos segundos. No necesitas reiniciar Chrome.</p>
+        </div>
+        <figure class="cw-fig"><img src="img/cw-03-obtener.png" alt="Botón Obtener" loading="lazy"><figcaption>Botón Obtener</figcaption></figure>
+      </article>
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">4</span><h4>Crear tu cuenta gratuita</h4></div>
+          <ul><li>Se abrirá el sitio de CrankWheel. Haz clic en <b>Sign up Free</b>.</li><li>Escribe tu <b>correo electrónico</b> y acepta las políticas.</li><li>Haz clic en <b>Continuar</b>.</li></ul>
+          <p class="cw-tip">No necesitas tarjeta de crédito. La cuenta básica es 100% gratuita.</p>
+        </div>
+        <figure class="cw-fig"><img src="img/cw-04-registro.png" alt="Registro con correo" loading="lazy"><figcaption>Registro con correo</figcaption></figure>
+      </article>
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">5</span><h4>Verificar tu correo con el PIN</h4></div>
+          <ul><li>Revisa tu bandeja de entrada (o la carpeta de spam).</li><li>Te llegará un <b>PIN de verificación</b>.</li><li>Escríbelo en la pantalla y haz clic en <b>Continue</b>.</li></ul>
+          
+        </div>
+        <figure class="cw-fig"><img src="img/cw-05-pin.png" alt="Pantalla del PIN" loading="lazy"><figcaption>Pantalla del PIN</figcaption></figure>
+      </article>
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">6</span><h4>Confirmar que la extensión está instalada</h4></div>
+          <ul><li>Haz clic en el ícono de <b>Extensiones</b> (la pieza de rompecabezas, arriba a la derecha en Chrome).</li><li>Busca <b>CrankWheel Screen Sharing</b> en la lista.</li></ul>
+          
+        </div>
+        <figure class="cw-fig"><img src="img/cw-06-extensiones.png" alt="Panel de extensiones" loading="lazy"><figcaption>Panel de extensiones</figcaption></figure>
+      </article>
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">7</span><h4>Fijar el ícono en la barra de Chrome</h4></div>
+          <ul><li>Haz clic en el ícono de <b>pin</b> junto a CrankWheel.</li><li>El ícono naranja quedará <b>siempre visible</b> en tu barra.</li></ul>
+          <p class="cw-tip">Así lo tienes a la mano durante las llamadas con clientes.</p>
+        </div>
+        <figure class="cw-fig"><img src="img/cw-07-fijar.png" alt="Fijar la extensión" loading="lazy"><figcaption>Fijar la extensión</figcaption></figure>
+      </article>
+      </div>
+    </section>
+
+    <section class="cw-part">
+      <div class="cw-part-head"><div><small>Parte 2 de 2</small><h3>Cómo usar CrankWheel con clientes</h3></div></div>
+      <div class="cw-list">
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">1</span><h4>Abrir la página y activar CrankWheel</h4></div>
+          <ul><li>Abre en Chrome la página que quieres mostrarle al cliente (por ejemplo, la ilustración).</li><li>Haz clic en el <b>ícono naranja</b> de CrankWheel en tu barra.</li><li>Elige <b>Full Screen</b> para compartir toda la pantalla.</li></ul>
+          <p class="cw-tip">También puedes elegir <b>Program window</b> para compartir solo una ventana.</p>
+        </div>
+        <figure class="cw-fig"><img src="img/cw-u1-panel.png" alt="Panel de CrankWheel" loading="lazy"><figcaption>Panel de CrankWheel</figcaption></figure>
+      </article>
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">2</span><h4>Enviar el enlace al cliente</h4></div>
+          <ul><li><b>Mensaje de texto:</b> escribe el número y haz clic en <b>Text</b>.</li><li><b>Correo:</b> escribe el correo y haz clic en <b>Send</b>.</li><li><b>WhatsApp:</b> haz clic en <b>Copy</b> y pega el enlace en WhatsApp.</li></ul>
+          
+        </div>
+        <figure class="cw-fig"><img src="img/cw-u2-enviar.png" alt="Opciones para enviar" loading="lazy"><figcaption>Opciones para enviar</figcaption></figure>
+      </article>
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">3</span><h4>Confirmar el permiso (si lo envías por texto)</h4></div>
+          <ul><li>CrankWheel te pide confirmar antes de mandar el mensaje.</li><li>Haz clic en <b>Confirm</b>: así confirmas que el cliente te dio permiso de palabra.</li></ul>
+          
+        </div>
+        <figure class="cw-fig"><img src="img/cw-u3-confirm.png" alt="Botón Confirm" loading="lazy"><figcaption>Botón Confirm</figcaption></figure>
+      </article>
+      <article class="cw-step">
+        <div class="cw-text">
+          <div class="cw-title"><span class="g-num">4</span><h4>El cliente se conecta y ve tu pantalla</h4></div>
+          <ul><li>El cliente abre el enlace, <b>sin descargar nada</b>.</li><li>Verás un aviso cuando se conecte.</li><li>¡Listo! Sigue con tu presentación normalmente.</li></ul>
+          <p class="cw-tip">Cuando termines, haz clic en <b>Stop</b> (el botón rojo) para cerrar la sesión.</p>
+        </div>
+        <figure class="cw-fig"><img src="img/cw-u4-conectado.png" alt="Cliente conectado" loading="lazy"><figcaption>Cliente conectado</figcaption></figure>
+      </article>
+      </div>
+    </section>
+
+    <section class="cw-sum">
+      <h3>Cómo enviar el enlace al cliente</h3>
+      <table>
+        <tr><td>Mensaje de texto</td><td>Escribe el número → clic en <b>Text</b> → clic en <b>Confirm</b></td><td>Confirma el permiso del cliente</td></tr>
+        <tr><td>Correo</td><td>Escribe el correo → clic en <b>Send</b></td><td>Le llega al instante</td></tr>
+        <tr class="best"><td>WhatsApp</td><td>Clic en <b>Copy</b> → pega el enlace en WhatsApp</td><td>La opción más usada</td></tr>
+      </table>
+    </section>
+
+    <div class="g-tip cw-next"><b>Siguiente paso:</b> practica compartiendo tu pantalla con alguien del equipo antes de tu primera llamada, y repasa el <a href="guion.html#paso7">paso 7 del guion</a>.</div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
