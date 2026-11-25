@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia Fortia | Comisiones</title>
+  <link rel="icon" type="image/png" href="logo-fortia.png">
+  <script>
+    // Protección: si no entró por la página de acceso, lo regresa
+    if (!sessionStorage.getItem("fortiaAgent")) window.location.href = "index.html";
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="guion.css?v=3">
+  <style>
+.cm-calc { margin: 26px 0 20px; padding: 24px; border-radius: 14px; color: #fff; background: var(--navy); border-top: 4px solid var(--gold); }
+.cm-calc h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 1.6rem; margin-bottom: 14px; }
+.cm-inputs { display: grid; grid-template-columns: 0.7fr 1fr 1.4fr 0.9fr 0.6fr; gap: 12px; }
+.cm-inputs label { display: flex; flex-direction: column; gap: 6px; }
+.cm-inputs span { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+.cm-inputs select, .cm-inputs input { padding: 11px 12px; font-family: inherit; font-size: 0.98rem; color: #fff; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; outline: none; min-width: 0; }
+.cm-inputs select option, .cm-inputs select optgroup { color: #1C1F35; }
+.cm-inputs select:focus, .cm-inputs input:focus { border-color: var(--gold); }
+.cm-out { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+.cm-out div { padding: 14px 16px; border-radius: 10px; background: rgba(255,255,255,0.06); }
+.cm-out small { display: block; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
+.cm-out b { display: block; margin-top: 4px; font-size: 1.45rem; }
+.cm-out .hl { background: rgba(220,182,104,0.18); border: 1px solid var(--gold); }
+.cm-out .hl b { color: var(--gold-light); }
+.cm-note { margin-top: 12px; font-size: 0.8rem; color: var(--text-soft); line-height: 1.5; }
+body.paper .cm-h2 { color: var(--navy); margin-top: 40px; }
+body.paper .cm-sn { color: #5A5E73; }
+.cm-iul { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.cm-iul div { padding: 12px 14px; border-radius: 10px; background: #F7F5EF; border-left: 4px solid var(--gold); }
+.cm-iul small { display: block; font-size: 0.72rem; color: #6B6F85; }
+.cm-iul b { display: block; font-size: 0.92rem; color: var(--navy); margin: 2px 0; }
+.cm-iul span { font-size: 1.3rem; font-weight: 600; color: #9A7428; }
+.cm-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.cm-tabs button { padding: 9px 14px; font-family: inherit; font-size: 0.84rem; font-weight: 600; cursor: pointer; color: var(--navy); background: #fff; border: 1px solid #D9DBE5; border-radius: 9px 9px 0 0; border-bottom: none; }
+.cm-tabs button.active { color: #fff; background: var(--navy); border-color: var(--navy); box-shadow: inset 0 3px 0 var(--gold); }
+.cm-wrap { overflow-x: auto; border: 1px solid #E6E7EE; border-radius: 0 12px 12px 12px; }
+.cm-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; text-align: center; }
+.cm-table th { padding: 10px 8px; font-size: 0.74rem; font-weight: 600; color: #fff; background: var(--navy); white-space: nowrap; }
+.cm-table th.iul { color: var(--gold-light); }
+.cm-table th.iul::after { content: " ★"; }
+.cm-table td { padding: 7px 8px; border-top: 1px solid #EEF0F5; }
+.cm-table td:first-child { font-weight: 600; color: var(--navy); background: #F7F5EF; }
+.cm-table tr.sel td { background: #FCF1D6; font-weight: 600; }
+.cm-table tr.sel td:first-child { background: var(--gold); color: var(--navy-dark); }
+.cm-gl { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.cm-gl div { padding: 14px 16px; border: 1px solid #E6E7EE; border-radius: 10px; }
+.cm-gl b { display: block; color: var(--navy); margin-bottom: 4px; }
+.cm-gl p { font-size: 0.88rem; color: #4A4E63; line-height: 1.5; }
+.cm-src { margin-top: 10px; font-size: 0.75rem; color: #8A8DA0; }
+@media (max-width: 900px) { .cm-inputs { grid-template-columns: 1fr 1fr; } .cm-out { grid-template-columns: 1fr 1fr; } .cm-gl { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="paper">
+
+  <header class="topbar">
+    <a href="inicio.html" class="brand"><img src="logo-fortia.png" alt="Fortia"><span>Academia</span></a>
+    <div class="user">
+      <span class="hello">Hola, <strong id="agent"></strong></span>
+      <button class="btn-outline" id="logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="parte3-comisiones.html" class="back">← Volver a comisiones y bonos</a>
+    <p class="eyebrow">Parte 3 · Comisiones y bonos</p>
+    <h1 id="pageTitle">Comisiones</h1>
+    <p class="lead">Cuánto ganas por cada producto según tu contrato. Elige tu contrato una vez y la página lo recuerda.</p>
+
+    <section class="cm-calc">
+      <h3>Calcula tu comisión</h3>
+      <div class="cm-inputs">
+        <label><span>Tu contrato</span><select id="lvl"><option value="135">135</option><option value="130">130</option><option value="125">125</option><option value="120">120</option><option value="115">115</option><option value="110">110</option><option value="105">105</option><option value="100">100</option><option value="95">95</option><option value="90">90</option><option value="85">85</option><option value="80">80</option></select></label>
+        <label><span>Carrier</span><select id="car"></select></label>
+        <label><span>Producto</span><select id="prod"></select></label>
+        <label><span>Pago mensual del cliente</span><input id="pay" type="number" min="0" step="10" placeholder="Ej. 200"></label>
+        <label><span>Adelanto %</span><input id="adv" type="number" min="0" max="100" value="75"></label>
+      </div>
+      <div class="cm-out">
+        <div><small>Tu porcentaje</small><b id="oPct">—</b></div>
+        <div><small>Prima anual</small><b id="oAnnual">—</b></div>
+        <div><small>Comisión estimada</small><b id="oComm">—</b></div>
+        <div class="hl"><small>Adelanto estimado</small><b id="oAdv">—</b></div>
+      </div>
+      <p class="cm-note">Cálculo aproximado: pago mensual × 12 × tu porcentaje. La comisión real se calcula sobre la <b>prima objetivo (target premium)</b> de la póliza, que puede ser diferente a la prima anual. El adelanto depende de tu contrato: confirma el tuyo con tu líder.</p>
+    </section>
+
+    <h2 class="cm-h2">Tus comisiones en IUL</h2>
+    <p class="section-note cm-sn" id="iulNote"></p>
+    <div class="cm-iul" id="iulGrid"></div>
+
+    <h2 class="cm-h2">Tablas completas por carrier</h2>
+    <p class="section-note cm-sn">Porcentaje de comisión según tu contrato. La fila de tu contrato se resalta. ★ = productos IUL.</p>
+    <div class="cm-tabs" id="tabs"></div>
+    <div class="cm-wrap"><table class="cm-table" id="tbl"></table></div>
+    <p class="cm-src">Fuente: Nationwide Financial Firm, Compensation Guide 2026. Solo para uso interno de agentes.</p>
+
+    <h2 class="cm-h2">Palabras que debes conocer</h2>
+    <div class="cm-gl">
+      <div><b>Contrato</b><p>Tu nivel dentro de la agencia (de 80 a 135). Mientras más alto, mayor es tu porcentaje de comisión en cada producto.</p></div>
+      <div><b>Prima objetivo (target premium)</b><p>La parte de la prima sobre la que la compañía calcula tu comisión. Aparece en la ilustración de la póliza.</p></div>
+      <div><b>Adelanto</b><p>Parte de la comisión del primer año que te pagan por adelantado cuando la póliza se aprueba y se paga.</p></div>
+      <div><b>Chargeback</b><p>Si el cliente cancela o deja de pagar en los primeros meses, la compañía te descuenta la comisión que ya te adelantó.</p></div>
+    </div>
+  </main>
+
+  <footer>© Fortia · Material exclusivo para agentes</footer>
+
+  <script>
+    document.getElementById("agent").textContent = sessionStorage.getItem("fortiaAgent");
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.removeItem("fortiaAgent");
+      window.location.href = "index.html";
+    });
+
+    const COMP = {"levels": [135, 130, 125, 120, 115, 110, 105, 100, 95, 90, 85, 80], "order": ["Mutual of Omaha", "Transamerica", "Americo", "National Life Group", "F&G", "American Amicable", "Otros carriers"], "data": {"Mutual of Omaha": [{"p": "Term Life Express", "iul": 0, "v": {"135": 135.0, "130": 130.0, "125": 125.0, "120": 120.0, "115": 115.0, "110": 110.0, "105": 105.0, "100": 100.0, "95": 95.0, "90": 90.0, "85": 85.0, "80": 80.0}}, {"p": "Final Expense", "iul": 0, "v": {"135": 120.0, "130": 115.0, "125": 110.0, "120": 105.0, "115": 100.0, "110": 95.0, "105": 90.0, "100": 86.0, "95": 82.0, "90": 78.0, "85": 74.0, "80": 70.0}}, {"p": "IUL", "iul": 1, "v": {"135": 120.0, "130": 115.0, "125": 110.0, "120": 105.0, "115": 100.0, "110": 95.0, "105": 90.0, "100": 85.0, "95": 80.0, "90": 75.0, "85": 70.0, "80": 65.0}}, {"p": "Children's Whole Life", "iul": 0, "v": {"135": 97.0, "130": 95.0, "125": 92.0, "120": 90.0, "115": 85.0, "110": 80.0, "105": 75.0, "100": 70.0, "95": 65.0, "90": 60.0, "85": 55.0, "80": 50.0}}, {"p": "IUL Express (IULE)", "iul": 1, "v": {"135": 125.0, "130": 120.0, "125": 115.0, "120": 110.0, "115": 105.0, "110": 100.0, "105": 95.0, "100": 90.0, "95": 85.0, "90": 80.0, "85": 75.0, "80": 70.0}}, {"p": "Term Life Answers", "iul": 0, "v": {"135": 105.0, "130": 100.0, "125": 95.0, "120": 90.0, "115": 85.0, "110": 80.0, "105": 75.0, "100": 70.0, "95": 65.0, "90": 60.0, "85": 55.0, "80": 50.0}}, {"p": "Accidental Death", "iul": 0, "v": {"135": 125.0, "130": 120.0, "125": 115.0, "120": 110.0, "115": 105.0, "110": 100.0, "105": 95.0, "100": 90.0, "95": 85.0, "90": 80.0, "85": 75.0, "80": 70.0}}], "Transamerica": [{"p": "FEX", "iul": 0, "v": {"135": 135.0, "130": 130.0, "125": 125.0, "120": 120.0, "115": 115.0, "110": 110.0, "105": 105.0, "100": 100.0, "95": 95.0, "90": 90.0, "85": 85.0, "80": 80.0}}, {"p": "UL", "iul": 0, "v": {"135": 115.0, "130": 110.0, "125": 105.0, "120": 100.0, "115": 95.0, "110": 90.0, "105": 80.0, "100": 75.0, "95": 70.0, "90": 60.0, "85": 55.0, "80": 50.0}}], "Americo": [{"p": "HMS 125", "iul": 0, "v": {"135": 135.0, "130": 130.0, "125": 125.0, "120": 120.0, "115": 115.0, "110": 110.0, "105": 105.0, "100": 100.0, "95": 95.0, "90": 90.0, "85": 85.0, "80": 80.0}}, {"p": "Eagle Premier", "iul": 0, "v": {"135": 130.0, "130": 125.0, "125": 120.0, "120": 115.0, "115": 110.0, "110": 105.0, "105": 100.0, "100": 95.0, "95": 90.0, "90": 85.0, "85": 80.0, "80": 75.0}}, {"p": "Instant Decision IUL", "iul": 1, "v": {"135": 120.0, "130": 115.0, "125": 110.0, "120": 105.0, "115": 100.0, "110": 95.0, "105": 90.0, "100": 85.0, "95": 80.0, "90": 75.0, "85": 70.0, "80": 65.0}}], "National Life Group": [{"p": "10/15 YR Term", "iul": 0, "v": {"135": 88.0, "130": 83.0, "125": 80.0, "120": 75.0, "115": 71.0, "110": 67.0, "105": 62.0, "100": 58.0, "95": 55.0, "90": 50.0, "85": 45.0, "80": 42.0}}, {"p": "20/30 YR Term", "iul": 0, "v": {"135": 105.0, "130": 100.0, "125": 95.0, "120": 90.0, "115": 85.0, "110": 80.0, "105": 75.0, "100": 70.0, "95": 65.0, "90": 60.0, "85": 55.0, "80": 50.0}}, {"p": "Flex Life IUL", "iul": 1, "v": {"135": 105.0, "130": 100.0, "125": 95.0, "120": 90.0, "115": 85.0, "110": 80.0, "105": 75.0, "100": 70.0, "95": 65.0, "90": 60.0, "85": 55.0, "80": 50.0}}, {"p": "Summit Life IUL", "iul": 1, "v": {"135": 105.0, "130": 100.0, "125": 95.0, "120": 90.0, "115": 85.0, "110": 80.0, "105": 75.0, "100": 70.0, "95": 65.0, "90": 60.0, "85": 55.0, "80": 50.0}}], "F&G": [{"p": "Pathsetter IUL 0-17", "iul": 1, "v": {"135": 90.0, "130": 87.5, "125": 85.0, "120": 82.5, "115": 80.0, "110": 77.5, "105": 75.0, "100": 72.5, "95": 70.0, "90": 67.5, "85": 65.0, "80": 62.5}}, {"p": "Pathsetter IUL 18-80", "iul": 1, "v": {"135": 125.0, "130": 120.0, "125": 115.0, "120": 110.0, "115": 105.0, "110": 100.0, "105": 95.0, "100": 90.0, "95": 85.0, "90": 80.0, "85": 75.0, "80": 70.0}}, {"p": "Everlast IUL 0-17", "iul": 1, "v": {"135": 90.0, "130": 87.5, "125": 85.0, "120": 82.5, "115": 80.0, "110": 77.5, "105": 75.0, "100": 72.5, "95": 70.0, "90": 67.5, "85": 65.0, "80": 62.5}}, {"p": "Everlast IUL 18-80", "iul": 1, "v": {"135": 120.0, "130": 115.0, "125": 110.0, "120": 105.0, "115": 100.0, "110": 95.0, "105": 90.0, "100": 85.0, "95": 80.0, "90": 75.0, "85": 70.0, "80": 65.0}}], "American Amicable": [{"p": "Senior/Family Choice", "iul": 0, "v": {"135": 120.0, "130": 115.0, "125": 110.0, "120": 105.0, "115": 100.0, "110": 95.0, "105": 90.0, "100": 85.0, "95": 80.0, "90": 75.0, "85": 70.0, "80": 65.0}}, {"p": "EZ Term", "iul": 0, "v": {"135": 95.0, "130": 90.0, "125": 85.0, "120": 80.0, "115": 75.0, "110": 70.0, "105": 65.0, "100": 60.0, "95": 55.0, "90": 50.0, "85": 45.0, "80": 40.0}}, {"p": "Secure Life", "iul": 0, "v": {"135": 135.0, "130": 130.0, "125": 125.0, "120": 120.0, "115": 115.0, "110": 110.0, "105": 105.0, "100": 100.0, "95": 95.0, "90": 90.0, "85": 85.0, "80": 80.0}}, {"p": "Home Protector", "iul": 0, "v": {"135": 135.0, "130": 130.0, "125": 125.0, "120": 120.0, "115": 115.0, "110": 110.0, "105": 105.0, "100": 100.0, "95": 95.0, "90": 90.0, "85": 85.0, "80": 80.0}}, {"p": "OBA", "iul": 0, "v": {"135": 95.0, "130": 90.0, "125": 85.0, "120": 80.0, "115": 75.0, "110": 70.0, "105": 65.0, "100": 60.0, "95": 55.0, "90": 50.0, "85": 45.0, "80": 40.0}}, {"p": "Term Made Simple", "iul": 0, "v": {"135": 125.0, "130": 120.0, "125": 115.0, "120": 110.0, "115": 105.0, "110": 100.0, "105": 95.0, "100": 90.0, "95": 85.0, "90": 80.0, "85": 75.0, "80": 70.0}}, {"p": "Family Protector", "iul": 0, "v": {"135": 125.0, "130": 120.0, "125": 115.0, "120": 110.0, "115": 105.0, "110": 100.0, "105": 95.0, "100": 90.0, "95": 85.0, "90": 80.0, "85": 75.0, "80": 70.0}}, {"p": "UL", "iul": 0, "v": {"135": 100.0, "130": 95.0, "125": 90.0, "120": 85.0, "115": 80.0, "110": 75.0, "105": 70.0, "100": 65.0, "95": 60.0, "90": 55.0, "85": 50.0, "80": 45.0}}], "Otros carriers": [{"p": "AIG/Corebridge GIWL", "iul": 0, "v": {"135": 77.5, "130": 75.0, "125": 72.5, "120": 70.0, "115": 67.5, "110": 65.0, "105": 62.5, "100": 60.0, "95": 57.5, "90": 57.5, "85": 55.0, "80": 55.0}}, {"p": "AIG/Corebridge SIWL", "iul": 0, "v": {"135": 127.0, "130": 122.0, "125": 117.0, "120": 112.0, "115": 107.0, "110": 102.0, "105": 97.0, "100": 92.0, "95": 87.0, "90": 82.0, "85": 77.0, "80": 72.0}}, {"p": "Aetna Whole Life", "iul": 0, "v": {"135": 137.0, "130": 130.0, "125": 125.0, "120": 120.0, "115": 115.0, "110": 110.0, "105": 105.0, "100": 100.0, "95": 95.0, "90": 90.0, "85": 85.0, "80": 80.0}}, {"p": "Ameritas", "iul": 0, "v": {"135": 115.0, "130": 110.0, "125": 105.0, "120": 100.0, "115": 95.0, "110": 90.0, "105": 85.0, "100": 80.0, "95": 75.0, "90": 70.0, "85": 65.0, "80": 60.0}}, {"p": "Ethos · Ameritas SI IUL", "iul": 1, "v": {"135": 115.0, "130": 112.5, "125": 110.0, "120": 107.5, "115": 105.0, "110": 102.5, "105": 100.0, "100": 97.5, "95": 95.0, "90": 92.5, "85": 90.0, "80": 87.5}}, {"p": "Ethos · LGA Prime Term", "iul": 0, "v": {"135": 115.0, "130": 112.5, "125": 110.0, "120": 107.5, "115": 105.0, "110": 102.5, "105": 100.0, "100": 97.5, "95": 95.0, "90": 92.5, "85": 90.0, "80": 87.5}}, {"p": "TruStage TAWL", "iul": 0, "v": {"135": 117.5, "130": 115.0, "125": 110.0, "120": 105.0, "115": 100.0, "110": 95.0, "105": 90.0, "100": 87.5, "95": 85.0, "90": 82.5, "85": 80.0, "80": 77.5}}, {"p": "TruStage SITL", "iul": 0, "v": {"135": 50.0, "130": 47.5, "125": 45.0, "120": 42.5, "115": 40.0, "110": 37.5, "105": 35.0, "100": 32.5, "95": 30.0, "90": 27.5, "85": 25.0, "80": 22.5}}, {"p": "TruStage GAWL", "iul": 0, "v": {"135": 25.0, "130": 22.5, "125": 20.0, "120": 17.5, "115": 15.0, "110": 12.5, "105": 10.0, "100": 7.5, "95": 5.0, "90": 2.5, "85": 2.5, "80": 2.5}}, {"p": "JH ROP", "iul": 0, "v": {"135": 135.0, "130": 130.0, "125": 125.0, "120": 115.0, "115": 105.0, "110": 100.0, "105": 95.0, "100": 90.0, "95": 85.0, "90": 80.0, "85": 75.0, "80": 75.0}}]}};
+    const $ = id => document.getElementById(id);
+    const lvl = $("lvl"), car = $("car"), prod = $("prod"), pay = $("pay"), adv = $("adv");
+    const money = n => "$" + n.toLocaleString("en-US", { maximumFractionDigits: 0 });
+    const pct = n => (Math.round(n * 10) / 10) + "%";
+
+    COMP.order.forEach(c => car.add(new Option(c, c)));
+    function fillProducts() {
+      prod.innerHTML = "";
+      const list = COMP.data[car.value];
+      const iul = list.filter(p => p.iul), rest = list.filter(p => !p.iul);
+      [["IUL", iul], ["Otros productos", rest]].forEach(([g, arr]) => {
+        if (!arr.length) return;
+        const og = document.createElement("optgroup"); og.label = g;
+        arr.forEach(p => og.appendChild(new Option(p.p, list.indexOf(p))));
+        prod.appendChild(og);
+      });
+    }
+
+    // Recordar el contrato del agente en este navegador
+    try { const s = localStorage.getItem("fortiaContrato"); if (s) lvl.value = s; } catch (e) {}
+
+    function calc() {
+      const p = COMP.data[car.value][+prod.value], L = lvl.value, r = p.v[L];
+      $("oPct").textContent = pct(r);
+      const m = parseFloat(pay.value), a = parseFloat(adv.value);
+      if (m > 0) {
+        const annual = m * 12, comm = annual * r / 100;
+        $("oAnnual").textContent = money(annual);
+        $("oComm").textContent = money(comm);
+        $("oAdv").textContent = a >= 0 ? money(comm * a / 100) : "—";
+      } else { ["oAnnual", "oComm", "oAdv"].forEach(i => $(i).textContent = "—"); }
+    }
+
+    function iulGrid() {
+      const L = lvl.value;
+      $("iulNote").textContent = "Con tu contrato " + L + ", esto ganas en cada IUL:";
+      const g = $("iulGrid"); g.innerHTML = "";
+      COMP.order.forEach(c => COMP.data[c].filter(p => p.iul).forEach(p => {
+        const d = document.createElement("div");
+        d.innerHTML = "<small></small><b></b><span></span>";
+        d.querySelector("small").textContent = c; d.querySelector("b").textContent = p.p; d.querySelector("span").textContent = pct(p.v[L]);
+        g.appendChild(d);
+      }));
+    }
+
+    let tab = COMP.order[0];
+    function table() {
+      document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("active", b.dataset.c === tab));
+      const list = COMP.data[tab];
+      let h = "<thead><tr><th>Contrato</th>" + list.map(p => "<th class='" + (p.iul ? "iul" : "") + "'>" + p.p + "</th>").join("") + "</tr></thead><tbody>";
+      COMP.levels.forEach(L => { h += "<tr class='" + (String(L) === lvl.value ? "sel" : "") + "'><td>" + L + "</td>" + list.map(p => "<td>" + pct(p.v[L]) + "</td>").join("") + "</tr>"; });
+      $("tbl").innerHTML = h + "</tbody>";
+    }
+    COMP.order.forEach(c => { const b = document.createElement("button"); b.textContent = c; b.dataset.c = c; b.onclick = () => { tab = c; table(); }; $("tabs").appendChild(b); });
+
+    function all() { try { localStorage.setItem("fortiaContrato", lvl.value); } catch (e) {} calc(); iulGrid(); table(); }
+    lvl.addEventListener("change", all);
+    car.addEventListener("change", () => { fillProducts(); tab = car.value; calc(); table(); });
+    [prod, pay, adv].forEach(el => el.addEventListener("input", calc));
+    fillProducts(); all();
+  </script>
+</body>
+</html>
